@@ -63,4 +63,5 @@ public class Environment {
   public LifeForm getLifeForm(int row, int col) {
     return cells[row][col].getLifeForm();
   }
+
 }
