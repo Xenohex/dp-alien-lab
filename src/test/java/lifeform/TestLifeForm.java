@@ -17,9 +17,21 @@ public class TestLifeForm {
   @Test
   public void testInitialization() {
     LifeForm entity;
-    entity = new LifeForm("Bob", 40);
+    entity = new MockLifeForm("Bob", 40);
     assertEquals("Bob", entity.getName());
     assertEquals(40, entity.getCurrentLifePoints());
   }
 
+  /**
+   * Test that the LifeForm can take hits and it's health will not go below 0
+   */
+  @Test
+  public void testTakeHits() {
+    LifeForm entity;
+    entity = new MockLifeForm("Bob", 40);
+    entity.takeHit(20);
+    assertEquals(20, entity.getCurrentLifePoints());
+    entity.takeHit(30);
+    assertEquals(0, entity.getCurrentLifePoints());
+  }
 }

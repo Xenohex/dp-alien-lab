@@ -34,7 +34,7 @@ public class Cell {
   /**
    * removes the LifeForm in the Cell
    */
-  void removeLifeForm() {
+  public void removeLifeForm() {
     lifeForm = null;
   }
 }

@@ -5,9 +5,10 @@ package lifeform;
  * provides the functionality related to the life form.
  *
  */
-public class LifeForm {
+public abstract class LifeForm {
   private String myName;
-  private int currentLifePoints;
+  protected int currentLifePoints;
+  private int attackStrength;
 
   /**
    * Create an instance
@@ -18,6 +19,7 @@ public class LifeForm {
   public LifeForm(String name, int points) {
     myName = name;
     currentLifePoints = points;
+
   }
 
   /**
@@ -33,4 +35,15 @@ public class LifeForm {
   public int getCurrentLifePoints() {
     return currentLifePoints;
   }
+
+  /**
+   * this life form takes some amount of damage that will not fall below 0
+   */
+  public void takeHit(int damage) {
+    currentLifePoints -= damage;
+    if (currentLifePoints < 0) {
+      currentLifePoints = 0;
+    }
+  }
+
 }
