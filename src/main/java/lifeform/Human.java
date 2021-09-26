@@ -17,17 +17,9 @@ public class Human extends LifeForm {
    */
   public Human(String name, int life, int armor) {
     super(name, life);
-    if (armor < 0) {
-      armorPoints = 0;
-    } else {
-      armorPoints = armor;
-    }
-    
-    if (life < 0) {
-      currentLifePoints = 0;
-    } else {
-      currentLifePoints = life;
-    }
+    armorPoints = Math.max(0, armor);
+    currentLifePoints = Math.max(0, life);
+    attackStrength = 5;
   }
 
   /**
@@ -44,10 +36,15 @@ public class Human extends LifeForm {
    * @param armor
    */
   public void setArmorPoints(int armor) {
-    if (armor < 0) {
-      armorPoints = 0;
-    } else {
-      armorPoints = armor;
-    }
+    armorPoints = Math.max(0,  armor);
+  }
+  
+  /**
+   * Humans have armor to reduce the actual damage that is deal to them
+   */
+  @Override
+  public void takeHit(int damage) {
+    int realDamage = Math.max(0, damage - armorPoints);
+    currentLifePoints = Math.max(0, currentLifePoints - realDamage);
   }
 }

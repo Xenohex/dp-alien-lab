@@ -1,6 +1,7 @@
 package lifeform;
 
 import exceptions.RecoveryRateException;
+import gameplay.TimerObserver;
 import recovery.RecoveryBehavior;
 import recovery.RecoveryNone;
 
@@ -11,12 +12,14 @@ import recovery.RecoveryNone;
  * @author Jun
  *
  */
-public class Alien extends LifeForm {
+public class Alien extends LifeForm implements TimerObserver {
 
   int maxLifePoints = 0;
   int recoveryRate = 0;
+  int roundsTillRecover = 1;
   RecoveryBehavior rb;
-
+  int currentRound = 0;
+  
   /**
    * @param name
    * @param life
@@ -47,8 +50,10 @@ public class Alien extends LifeForm {
   public Alien(String name, int life, RecoveryBehavior rb, 
       int recoveryRate) throws RecoveryRateException {
     super(name, life);
+    attackStrength = 10;
     maxLifePoints = life;
     this.rb = rb;
+    this.recoveryRate = recoveryRate;
     try {
       if (recoveryRate < 0) {
         throw new RecoveryRateException("Recovery Rate is Negative!");
@@ -79,5 +84,22 @@ public class Alien extends LifeForm {
    */
   public void recover() {
     currentLifePoints = rb.calculateRecovery(currentLifePoints, maxLifePoints);
+  }
+
+  /**
+   * recovers according to the recovery rate and updates the round
+   */
+  public void updateTime(int time) {
+    currentRound = time;
+    if (currentLifePoints < maxLifePoints) {
+      if (recoveryRate == 0) {
+        recover();
+      } else if (roundsTillRecover % recoveryRate == 0) {
+        recover();
+      }
+      roundsTillRecover++;
+    } else {
+      roundsTillRecover = 0;
+    }
   }
 }

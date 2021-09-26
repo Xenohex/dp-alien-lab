@@ -8,7 +8,7 @@ package lifeform;
 public abstract class LifeForm {
   private String myName;
   protected int currentLifePoints;
-  private int attackStrength;
+  protected int attackStrength;
 
   /**
    * Create an instance
@@ -17,9 +17,19 @@ public abstract class LifeForm {
    * @param points the current staring life points of the life form
    */
   public LifeForm(String name, int points) {
+    this(name,points,0);
+  }
+  
+  /**
+   * creates an instance
+   * @param name
+   * @param points - the life points
+   * @param attack - the attack strength
+   */
+  public LifeForm(String name, int points, int attack) {
     myName = name;
     currentLifePoints = points;
-
+    attackStrength = attack;
   }
 
   /**
@@ -40,10 +50,24 @@ public abstract class LifeForm {
    * this life form takes some amount of damage that will not fall below 0
    */
   public void takeHit(int damage) {
-    currentLifePoints -= damage;
-    if (currentLifePoints < 0) {
-      currentLifePoints = 0;
+    currentLifePoints = Math.max(0, currentLifePoints - damage);
+  }
+  
+  /**
+   * 
+   * @return the attack strength of the current LifeForm
+   */
+  public int getAttackStrength() {
+    return attackStrength;
+  }
+  
+  /**
+   * attack another LifeForm with attack strength
+   * @param opponent the other LifeForm that is being attacked
+   */
+  public void attack(LifeForm opponent) {
+    if (currentLifePoints != 0) {
+      opponent.takeHit(attackStrength);
     }
   }
-
 }

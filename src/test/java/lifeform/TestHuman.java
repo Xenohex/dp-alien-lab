@@ -30,4 +30,52 @@ public class TestHuman {
     assertEquals(0, bob.getArmorPoints());
   }
 
+  /**
+   * default attack of 5
+   */
+  @Test
+  public void defaultAttackStrength() {
+    Human bob = new Human("bob", 20, 5);
+    assertEquals(bob.getAttackStrength(),5);
+  }
+  
+  /**
+   * takes damage normally when armor = 0
+   */
+  @Test
+  public void zeroArmor() {
+    Human bob = new Human("bob", 20, 0);
+    bob.takeHit(10);
+    assertEquals(bob.getCurrentLifePoints(), 10);
+  }
+  
+  /**
+   * absorb all damage when armor > damage
+   */
+  @Test
+  public void moreArmorThanDamage() {
+    Human bob = new Human("bob", 20, 10);
+    bob.takeHit(5);
+    assertEquals(bob.getCurrentLifePoints(), 20);
+  }
+  
+  /**
+   * reduces damage taken when armor < damage
+   */
+  @Test
+  public void lessArmorThanDamage() {
+    Human bob = new Human("bob", 20, 10);
+    bob.takeHit(15);
+    assertEquals(bob.getCurrentLifePoints(), 15);
+  }
+  
+  /**
+   * no damage taken when armor = damage
+   */
+  @Test
+  public void sameArmorThanDamage() {
+    Human bob = new Human("bob", 20, 10);
+    bob.takeHit(10);
+    assertEquals(bob.getCurrentLifePoints(), 20);
+  }
 }
