@@ -231,3 +231,4 @@ Using the following table
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 1 | 10a-11a, 10/08 | MCT162 | All members | Meet the team |
+| 2 | 10-11a, 10/11  | MCT162 | All members | Built UML, assigned work sections |
