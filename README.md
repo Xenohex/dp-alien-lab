@@ -222,13 +222,14 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Scope and Stabilizer classes | John Doe | 10/11/18 | Scope done; Stabilizer 50% (10/09/18) |
-| Hard copy | John Doe | 10/17/18 | Cannot print: code not finished |
+| Generic Weapon | Bader | 10/11/21 |  |
+| Pistol, Chain Gun, Plasma Cannon | Christian | 10/11/18 |  |
+| attachment, and Stabilizer, Scope, PowerBooster | Junje and Austin | 10/11/18|  |
 
 
 # Team Meeting Log
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 1 | 10a-11a, 10/08 | MCT162 | All members | Meet the team |
-| 2 | 10-11a, 10/11  | MCT162 | All members | Built UML, assigned work sections |
+| 1 | 10a-11a, 10/08/21 | MCT162 | All members | Meet the team |
+| 2 | 10-11a, 10/11/21  | MCT162 | All members | Built UML, assigned work sections |
