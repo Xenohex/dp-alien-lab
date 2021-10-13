@@ -1,6 +1,12 @@
 package weapon;
 
-public interface Weapon {
+import gameplay.TimerObserver;
+
+/**
+ * @author Christian Spitler
+ *
+ */
+public interface Weapon extends TimerObserver {
   
   public int fire(int distance);
   public int getBaseDamage();
