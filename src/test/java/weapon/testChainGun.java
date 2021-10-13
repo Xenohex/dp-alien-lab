@@ -12,5 +12,11 @@ public class testChainGun {
     assertEquals(15*(60/60),gun.fire(60));
     assertEquals(15*(15/60),gun.fire(15));
   }
+  
+  @Test
+  public void testTosString() {
+    var gun = new ChainGun();
+    assertEquals("Chain Gun", gun.toString());
+  }
 
 }

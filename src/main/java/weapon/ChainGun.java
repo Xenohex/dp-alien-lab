@@ -6,6 +6,8 @@ package weapon;
  */
 public class ChainGun {
 
+  int baseDamage = 15;
+  int maxRange = 60;
   /**
    * @param distance
    * @return the damage the weapon deals to the target, 
@@ -16,9 +18,12 @@ public class ChainGun {
    *  negative)
    */
   public int fire(int distance) {
-    int damage = Math.round(15*(distance/60));
+    int damage = Math.round(baseDamage*(distance/maxRange));
     return damage;
   }
 
+  public String toString() {
+    return "Chain Gun"; //+ attachments;
+  }
   
 }

@@ -13,4 +13,10 @@ public class testPlasmaCannon {
     assertEquals(50*(4/4),gun.fire(35));
   }
 
+  
+  @Test
+  public void testTosString() {
+    var gun = new PlasmaCannon();
+    assertEquals("Plasma Cannon", gun.toString());
+  }
 }

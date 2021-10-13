@@ -20,5 +20,9 @@ public class PlasmaCannon {
     //return baseDamage*(actualAmmo/maxAmmo);
     return 50;
   }
+  
+  public String toString( ) {
+    return "Plasma Cannon";//+attachments
+  }
 }
 

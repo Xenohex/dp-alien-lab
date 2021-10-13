@@ -14,4 +14,9 @@ public class testPistol {
   }
   
   
+  @Test
+  public void testTosString() {
+    var gun = new Pistol();
+    assertEquals("Pistol", gun.toString());
+  }
 }
