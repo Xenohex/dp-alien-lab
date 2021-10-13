@@ -8,6 +8,7 @@ public class ChainGun {
 
   int baseDamage = 15;
   int maxRange = 60;
+  
   /**
    * @param distance
    * @return the damage the weapon deals to the target, 
@@ -18,7 +19,7 @@ public class ChainGun {
    *  negative)
    */
   public int fire(int distance) {
-    int damage = Math.round(baseDamage*(distance/maxRange));
+    int damage = Math.round(baseDamage * (distance / maxRange));
     return damage;
   }
 

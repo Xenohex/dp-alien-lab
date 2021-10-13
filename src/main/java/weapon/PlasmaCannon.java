@@ -21,7 +21,7 @@ public class PlasmaCannon {
     return 50;
   }
   
-  public String toString( ) {
+  public String toString() {
     return "Plasma Cannon";//+attachments
   }
 }

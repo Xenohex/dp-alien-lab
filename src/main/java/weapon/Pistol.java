@@ -4,12 +4,12 @@ package weapon;
  * @author Christian Spitler
  *
  */
-public class Pistol {
+public class Pistol {//extends GenericWeapon {
 
-  int MaxRange = 50;
-  int BaseDamage = 10;
-  int RateOfFire = 2;
-  int MaxAmmo = 10;
+  int maxRange = 50;
+  int baseDamage = 10;
+  int rateOfFire = 2;
+  int maxAmmo = 10;
   
   /**
    * @param distance
@@ -21,8 +21,8 @@ public class Pistol {
    *  negative)
    */
   public int fire(int distance) {
-    int damage = Math.round
-        (BaseDamage*((MaxRange - distance) + 10)/MaxRange);
+    int damage = Math.round(
+        baseDamage * ((maxRange - distance) + 10) / maxRange);
     return damage;
   }
   
