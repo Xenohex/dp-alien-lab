@@ -4,8 +4,19 @@ package weapon;
  * @author Christian Spitler
  *
  */
-public class PlasmaCannon {
+public class PlasmaCannon extends GenericWeapon { 
 
+  
+  /**
+   * Contstructor for PlasmaCannon
+   */
+  public PlasmaCannon() {
+    baseDamage = 50;
+    maxRange = 40;
+    rateOfFire = 1;
+    maxAmmo = 4;
+    currentAmmo = 4;
+  }
   
   /**
    * @param distance
@@ -17,10 +28,19 @@ public class PlasmaCannon {
    *  negative)
    */
   public int fire(int distance) {
-    //return baseDamage*(actualAmmo/maxAmmo);
-    return 50;
+    if (distance > maxRange || currentAmmo == 0) {
+      return 0;
+    } else { 
+    int damage = Double.valueOf(Math.floor(
+        baseDamage*currentAmmo/maxAmmo)).intValue();
+    currentAmmo--;
+    return damage;
+    }
   }
   
+  /**
+   * @return string of Plasma Cannon
+   */
   public String toString() {
     return "Plasma Cannon";//+attachments
   }
