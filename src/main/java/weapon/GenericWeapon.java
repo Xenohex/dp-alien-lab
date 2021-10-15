@@ -21,7 +21,6 @@ protected int shotsLeft;
   /**
    * Return the baseDamage
    */
-  @Override
   public int getBaseDamage() {
     return baseDamage;
   }
@@ -29,7 +28,6 @@ protected int shotsLeft;
   /**
    * Return the maxRange
    */
-  @Override
   public int getMaxRange() {
     return maxRange;
   }
@@ -37,7 +35,6 @@ protected int shotsLeft;
   /**
    * Return the rateOfFire
    */
-  @Override
   public int getRateOfFire() {
     return rateOfFire;
   }
@@ -45,12 +42,13 @@ protected int shotsLeft;
   /**
    * Return the maxAmmo
    */
-  @Override
   public int getMaxAmmo() {
     return maxAmmo;
   }
 
-  @Override
+  /**
+   * Return currentAmmo
+   */
   public int getCurrentAmmo() {
     return currentAmmo;
   }
@@ -58,13 +56,13 @@ protected int shotsLeft;
   /**
    * Return the number of shotsLeft
    */
-  @Override
   public int getShotsLeft() {
     return shotsLeft;
   }
 
-  // Return the number of attachments in a weapon
-  @Override
+  /**
+   * Return the number of attachments in a weapon
+   */
   public int getNumAttachments() {
     return 0;
   }
@@ -72,9 +70,18 @@ protected int shotsLeft;
   /**
    * Reload the clips of the weapon
    */
-  @Override
   public void reload() {
     currentAmmo = maxAmmo;
   }
 
+  /**
+   * Update how many shots left in each round
+   * @param time
+   */
+  @Override
+  public void updateTime(int time) {
+    if (time >= 0) {
+      shotsLeft = rateOfFire;
+    }
+  }
 }
