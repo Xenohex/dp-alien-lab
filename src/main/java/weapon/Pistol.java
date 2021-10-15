@@ -4,12 +4,20 @@ package weapon;
  * @author Christian Spitler
  *
  */
-public class Pistol {//extends GenericWeapon {
+public class Pistol extends GenericWeapon { 
 
-  int maxRange = 50;
-  int baseDamage = 10;
-  int rateOfFire = 2;
-  int maxAmmo = 10;
+  
+  
+  /**
+   * Constructor for Pistol
+   */
+  public Pistol() {
+    maxRange = 50;
+    baseDamage = 10;
+    rateOfFire = 2;
+    maxAmmo = 10;
+    currentAmmo = 10;
+  }
   
   /**
    * @param distance
@@ -21,12 +29,21 @@ public class Pistol {//extends GenericWeapon {
    *  negative)
    */
   public int fire(int distance) {
-    int damage = Math.round(
-        baseDamage * ((maxRange - distance) + 10) / maxRange);
+    if (distance > maxRange || currentAmmo == 0) {
+      currentAmmo = Math.max(currentAmmo - 1,0);
+      return 0;
+    } else {
+    int damage = Double.valueOf(Math.floor(
+        baseDamage * ((maxRange - distance) + 10) / maxRange)).intValue();
+    currentAmmo--;
     return damage;
+    }
   }
   
+  /**
+   * @return string of pistol
+   */
   public String toString() {
-    return "Pistol";//+attachments
+    return "Pistol"; //+attachments
   }
 }

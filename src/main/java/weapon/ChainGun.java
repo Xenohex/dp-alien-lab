@@ -4,10 +4,21 @@ package weapon;
  * @author Christian Spitler
  *
  */
-public class ChainGun {
+public class ChainGun extends GenericWeapon { 
 
-  int baseDamage = 15;
-  int maxRange = 60;
+  
+  
+  /**
+   * Constructor for ChainGun
+   */
+  public ChainGun() {
+    baseDamage = 15;
+    maxRange = 60;
+    rateOfFire = 4;
+    maxAmmo = 40;
+    currentAmmo = 40;
+  }
+  
   
   /**
    * @param distance
@@ -19,10 +30,21 @@ public class ChainGun {
    *  negative)
    */
   public int fire(int distance) {
-    int damage = Math.round(baseDamage * (distance / maxRange));
+    if(distance > maxRange || currentAmmo == 0) {
+      currentAmmo = Math.max(currentAmmo - 1, 0);
+      return 0;
+    } else {
+      int damage = Double.valueOf(Math.floor(
+          baseDamage * distance / maxRange)).intValue();
+      currentAmmo--;
     return damage;
+    }
+    
   }
 
+  /**
+   * @return string of ChainGun
+   */
   public String toString() {
     return "Chain Gun"; //+ attachments;
   }
