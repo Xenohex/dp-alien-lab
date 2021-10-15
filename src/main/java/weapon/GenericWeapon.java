@@ -63,12 +63,11 @@ protected int shotsLeft;
     return shotsLeft;
   }
 
-  /*
-   * Return the number of attachments in a weapon
+  // Return the number of attachments in a weapon
   @Override
   public int getNumAttachments() {
-    return numOfattachments;
-  }*/
+    return 0;
+  }
 
   /**
    * Reload the clips of the weapon

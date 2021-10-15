@@ -1,16 +1,21 @@
 package weapon;
 
+import exceptions.AttachmentException;
+
 public class PowerBooster extends Attachment{
-  public PowerBooster() {
-    
+  public PowerBooster(Attachment b) throws AttachmentException {
+    if (b.getNumAttachments() >= 2) {
+      throw new AttachmentException("You are trying to add too many Attachments!");
+    }
+    this.base = b;
   }
   public int fire(int distance) {
-    return 0;
+    return Double.valueOf(Math.floor((1 + 
+        (base.getCurrentAmmo()) / base.getMaxAmmo()) * 
+        base.fire(distance))).intValue();
   }
   public String toString() {
-    return " ";
+    return base.toString() + " + PowerBooster";
   }
-  public int getMaxRange() {
-    return 0;
-  }
+
 }

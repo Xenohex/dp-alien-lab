@@ -1,37 +1,40 @@
 package weapon;
 
-public class Attachment {
+abstract class Attachment implements Weapon{
+  protected Weapon base;
   public Attachment() {
     
   }
-  public int fire(int distance) {
-    return 0;
-  }
+  public abstract int fire(int distance);
   public int getBaseDamage() {
-    return 0;
+    return base.getBaseDamage();
   }
   public int getMaxRange() {
-    return 0;
+    return base.getMaxRange();
   }
   public int getRateOfFire() {
-    return 0;
+    return base.getRateOfFire();
   }
   public int getMaxAmmo() {
-    return 0;
+    return base.getMaxAmmo();
   }
   public int getCurrentAmmo() {
-    return 0;
+    return base.getCurrentAmmo();
   }
   public int getShotsLeft() {
-    return 0;
+    return base.getShotsLeft();
   }
   public int getNumAttachments() {
-    return 0;
+    return base.getNumAttachments() + 1;
   }
   public void reload() {
-    
+    base.reload();
   }
-  public void updateTime() {
-    
+  public void updateTime(int time) {
+    if (time >= 0) {
+      base.updateTime(time);
+    } else {
+      System.out.println("bad");
+    }
   }
 }
