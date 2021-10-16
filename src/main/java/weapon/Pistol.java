@@ -29,9 +29,13 @@ public class Pistol extends GenericWeapon {
    *  negative)
    */
   public int fire(int distance) {
-    if (distance > maxRange || currentAmmo == 0) {
-      currentAmmo = Math.max(currentAmmo - 1,0);
+    if(distance > maxRange) {  
+      currentAmmo = Math.max(currentAmmo - 1, 0);
+      shotsLeft--;
       return 0;
+    } else if (currentAmmo == 0) {
+        currentAmmo = Math.max(currentAmmo - 1, 0);
+        return 0;
     } else {
     int damage = Double.valueOf(Math.floor(
         baseDamage * ((maxRange - distance) + 10) / maxRange)).intValue();

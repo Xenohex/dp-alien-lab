@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import weapon.Pistol;
+import weapon.PlasmaCannon;
 import weapon.Weapon;
 
 /**
@@ -101,6 +102,18 @@ public class TestLifeForm {
     a.pickUpWeapon(w);
     a.attack(c, 10);
     assertEquals(11-(10*(50-10+10)/50), c.getCurrentLifePoints());
+  }
+  
+  @Test
+  public void attackWithWeapon() {
+    LifeForm a = new MockLifeForm("Bob", 10, 3);
+    LifeForm c = new MockLifeForm("Chris", 11, 3);
+    Weapon w = new PlasmaCannon();
+    a.pickUpWeapon(w);
+    a.attack(c,45);
+    a.attack(c,40);
+    assertEquals(2,w.getCurrentAmmo());
+    
   }
   
   @Test

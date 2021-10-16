@@ -71,11 +71,13 @@ public abstract class LifeForm extends Object {
    */
   public void attack(LifeForm opponent, int distance) {
     if (currentLifePoints == 0) {
-    } else if (weapon == null && distance <= 5) {
+    } else if (hasWeapon() == false && distance <= 5) {
       opponent.takeHit(attackStrength);
-    } else if (weapon != null && weapon.getCurrentAmmo() == 0 && distance <= 5) {
+    } else if (hasWeapon() == true && weapon.getCurrentAmmo() == 0 && distance <= 5) {
       opponent.takeHit(attackStrength);
-    } else if (weapon != null && distance > 5 && distance <= weapon.getMaxRange()) {
+    } else if (hasWeapon() == true && distance > 5 && distance <= weapon.getMaxRange()) {
+      opponent.takeHit(weapon.fire(distance));
+    } else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
       opponent.takeHit(weapon.fire(distance));
     }
   }
@@ -112,5 +114,12 @@ public abstract class LifeForm extends Object {
       return true;
     }
     return false;
+  }
+  
+  /**
+   * allows life form to reload
+   */
+  public void reload() {
+    weapon.reload();
   }
 }
