@@ -21,7 +21,7 @@ public abstract class LifeForm extends Object {
    * @param points the current staring life points of the life form
    */
   public LifeForm(String name, int points) {
-    this(name,points,0);
+    this(name,points,1);
   }
   
   /**
@@ -73,9 +73,9 @@ public abstract class LifeForm extends Object {
     if (currentLifePoints == 0) {
     } else if (weapon == null && distance <= 5) {
       opponent.takeHit(attackStrength);
-    } else if (weapon.getCurrentAmmo() == 0 && distance <= 5) {
+    } else if (weapon != null && weapon.getCurrentAmmo() == 0 && distance <= 5) {
       opponent.takeHit(attackStrength);
-    } else if (distance > 5 && distance < weapon.getMaxRange()) {
+    } else if (weapon != null && distance > 5 && distance <= weapon.getMaxRange()) {
       opponent.takeHit(weapon.fire(distance));
     }
   }
