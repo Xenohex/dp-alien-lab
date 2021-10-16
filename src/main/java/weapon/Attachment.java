@@ -5,7 +5,7 @@ abstract class Attachment implements Weapon{
   public Attachment() {
     
   }
-  public abstract int fire(int distance);
+  public abstract int fire(int distance) throws WeaponException;
   public int getBaseDamage() {
     return base.getBaseDamage();
   }
