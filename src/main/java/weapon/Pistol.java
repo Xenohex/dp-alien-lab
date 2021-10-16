@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 /**
  * @author Christian Spitler
  *
@@ -28,7 +30,10 @@ public class Pistol extends GenericWeapon {
    *  the weapon was out of ammo (ammo cannot be 
    *  negative)
    */
-  public int fire(int distance) {
+  public int fire(int distance) throws WeaponException {
+    if (distance < 0) {
+      throw new WeaponException("Given Distance is negative!!!");
+    }
     if (distance > maxRange) { 
       currentAmmo = Math.max(currentAmmo - 1, 0);
       shotsLeft--;

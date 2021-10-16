@@ -1,6 +1,7 @@
 package weapon;
 
 import gameplay.TimerObserver;
+import exceptions.WeaponException;
 
 /**
  * @author Christian Spitler
@@ -8,7 +9,7 @@ import gameplay.TimerObserver;
  */
 public interface Weapon extends TimerObserver {
   
-  public int fire(int distance);
+  public int fire(int distance) throws WeaponException;
   public int getBaseDamage();
   public int getMaxRange();
   public int getRateOfFire();

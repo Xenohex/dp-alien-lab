@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 /**
  * Generic weapon
  * @author Bader
@@ -17,7 +19,7 @@ abstract class GenericWeapon implements Weapon {
   /**
    * Fire method for each weapon
    */
-  abstract public int fire(int distance);
+  abstract public int fire(int distance) throws WeaponException;
   
   /**
    * Return the baseDamage
