@@ -1,6 +1,7 @@
 package weapon;
 
 import exceptions.AttachmentException;
+import exceptions.WeaponException;
 
 public class Stabilizer extends Attachment{
   public Stabilizer(Weapon b) throws AttachmentException {
