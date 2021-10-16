@@ -10,7 +10,7 @@ public class Scope extends Attachment{
     }
     this.base = b;
   }
-  public int fire(int distance) {
+  public int fire(int distance) throws WeaponException {
     if (base.getMaxRange() < distance && distance <= getMaxRange()) {
       return (5 + base.fire(base.getMaxRange()));
     }

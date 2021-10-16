@@ -9,7 +9,7 @@ public class PowerBooster extends Attachment{
     }
     this.base = b;
   }
-  public int fire(int distance) {
+  public int fire(int distance) throws WeaponException {
     return Double.valueOf(Math.floor((1 + 
         (base.getCurrentAmmo()) / base.getMaxAmmo()) * 
         base.fire(distance))).intValue();

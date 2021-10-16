@@ -9,7 +9,7 @@ public class Stabilizer extends Attachment{
     }
     this.base = b;
   }
-  public int fire(int distance) {
+  public int fire(int distance) throws WeaponException {
     int damage = base.fire(distance);
     if(base.getCurrentAmmo() == 0) {
       base.reload();
