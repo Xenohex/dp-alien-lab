@@ -106,9 +106,9 @@ public abstract class LifeForm extends Object {
    * @param weapon
    * @return true if lifeform picks up weapon
    */
-  public boolean pickUpWeapon(Weapon weapon) {
-    if (this.weapon == null) {
-      this.weapon = weapon;
+  public boolean pickUpWeapon(Weapon w) {
+    if (weapon == null) {
+      weapon = w;
       return true;
     }
     return false;
