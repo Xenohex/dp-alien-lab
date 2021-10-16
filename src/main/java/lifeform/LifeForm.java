@@ -1,6 +1,7 @@
 package lifeform;
 
 import weapon.Weapon;
+import exceptions.WeaponException;
 
 /**
  * Keeps track of the information associated with a simple life form. Also
@@ -69,16 +70,24 @@ public abstract class LifeForm extends Object {
    * attack another LifeForm with attack strength
    * @param opponent the other LifeForm that is being attacked
    */
-  public void attack(LifeForm opponent, int distance) {
+  public void attack(LifeForm opponent, int distance) throws WeaponException{
     if (currentLifePoints == 0) {
     } else if (hasWeapon() == false && distance <= 5) {
       opponent.takeHit(attackStrength);
     } else if (hasWeapon() == true && weapon.getCurrentAmmo() == 0 && distance <= 5) {
       opponent.takeHit(attackStrength);
     } else if (hasWeapon() == true && distance > 5 && distance <= weapon.getMaxRange()) {
-      opponent.takeHit(weapon.fire(distance));
+      try{
+        opponent.takeHit(weapon.fire(distance));
+      } catch(WeaponException e) {
+        throw e;
+      }
     } else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
-      opponent.takeHit(weapon.fire(distance));
+      try{
+        opponent.takeHit(weapon.fire(distance));
+      } catch(WeaponException e) {
+        throw e;
+      }
     }
   }
   
