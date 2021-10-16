@@ -19,7 +19,7 @@ public class Scope extends Attachment{
             Double.valueOf(getMaxRange())))).intValue();
   }
   public String toString() {
-    return base.toString() + " + Scope";
+    return base.toString() + " +Scope";
   }
   public int getMaxRange() {
     return base.getMaxRange() + 10;

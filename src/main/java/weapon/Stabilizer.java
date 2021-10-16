@@ -18,6 +18,6 @@ public class Stabilizer extends Attachment{
         + damage)).intValue();
   }
   public String toString() {
-    return base.toString() + " + Stabilizer";
+    return base.toString() + " +Stabilizer";
   }
 }

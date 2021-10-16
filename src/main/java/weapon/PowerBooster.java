@@ -15,7 +15,7 @@ public class PowerBooster extends Attachment{
         base.fire(distance))).intValue();
   }
   public String toString() {
-    return base.toString() + " + PowerBooster";
+    return base.toString() + " +PowerBooster";
   }
 
 }
