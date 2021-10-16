@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 abstract class Attachment implements Weapon{
   protected Weapon base;
   public Attachment() {
