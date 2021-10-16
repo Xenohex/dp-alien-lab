@@ -59,7 +59,7 @@ Using the following table
 | attachment, and Stabilizer, Scope, PowerBooster | Junje and Austin | 10/19/21 | 10/14/21 |
 | Generic Weapon timer | Bader | 10/19/21 |  |
 | testLifeForm | Christian | 10/19/21 |  |
-| testGenericWeapon | Bader | 10/19/21 |  |
+| testGenericWeapon | Bader | 10/19/21 | 10/15/21 |
 | Weapon tests | Christian | 10/19/21 |  |
 | Attachments tests | Christian | 10/19/21 |  |
 | edit README | Jun | 10/19/21 | 10/14/21 |
