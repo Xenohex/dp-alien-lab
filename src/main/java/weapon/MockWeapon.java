@@ -23,11 +23,10 @@ public class MockWeapon extends GenericWeapon{
   @Override
   public int fire(int distance) {
     int damage = 0;
-    if(currentAmmo > 0 && distance < maxRange) {
+    if (currentAmmo > 0 && distance < maxRange) {
       currentAmmo--;
       damage++;
-    }
-    else if (currentAmmo > 0 && distance > maxRange) {
+    } else if (currentAmmo > 0 && distance > maxRange) {
       currentAmmo--;
     }
     return damage;

@@ -1,17 +1,18 @@
 package weapon;
+
 /**
  * Generic weapon
  * @author Bader
  *
  */
-abstract class GenericWeapon implements Weapon{
+abstract class GenericWeapon implements Weapon {
   
-protected int baseDamage;
-protected int currentAmmo;
-protected int maxAmmo;
-protected int maxRange;
-protected int rateOfFire;
-protected int shotsLeft;
+  protected int baseDamage;
+  protected int currentAmmo;
+  protected int maxAmmo;
+  protected int maxRange;
+  protected int rateOfFire;
+  protected int shotsLeft;
   
   /**
    * Fire method for each weapon
@@ -84,4 +85,5 @@ protected int shotsLeft;
       shotsLeft = rateOfFire;
     }
   }
+  
 }
