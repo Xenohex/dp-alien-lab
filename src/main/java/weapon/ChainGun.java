@@ -32,10 +32,12 @@ public class ChainGun extends GenericWeapon {
   public int fire(int distance) {
     if(distance > maxRange || currentAmmo == 0) {
       currentAmmo = Math.max(currentAmmo - 1, 0);
+      shotsLeft--;//add if with just current ammo
       return 0;
     } else {
       int damage = Double.valueOf(Math.floor(
           baseDamage * distance / maxRange)).intValue();
+      shotsLeft--;
       currentAmmo--;
     return damage;
     }

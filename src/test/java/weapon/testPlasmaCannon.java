@@ -9,8 +9,9 @@ public class testPlasmaCannon {
   @Test
   public void testFire() {
     var gun = new PlasmaCannon();
+    var gun2 = new PlasmaCannon();
     assertEquals(50*(4/4),gun.fire(10));
-    assertEquals(50*(4/4),gun.fire(35));
+    assertEquals(50*(4/4),gun2.fire(35));
   }
 
   

@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import weapon.Pistol;
+import weapon.Weapon;
+
 /**
  * Tests the functionality provided by the LifeForm class
  *
@@ -46,7 +49,7 @@ public class TestLifeForm {
     b = new MockLifeForm("Poo", 40, 10);
     assertEquals(a.getAttackStrength(),5);
     assertEquals(b.getAttackStrength(),10);
-    a.attack(b);
+    a.attack(b, 1);
     assertEquals(b.getCurrentLifePoints(),35);
   }
   
@@ -58,9 +61,86 @@ public class TestLifeForm {
     LifeForm a,b;
     a = new MockLifeForm("Bob", 0, 5);
     b = new MockLifeForm("Poo", 40, 10);
-    a.attack(b);
+    a.attack(b, 1);
     assertEquals(b.getCurrentLifePoints(),40);
-    b.attack(a);
+    b.attack(a, 1);
     assertEquals(a.getCurrentLifePoints(),0);
   }
+  
+
+  @Test
+  public void pickUpWeapon() {
+    LifeForm a = new MockLifeForm("Bob", 0, 5);
+    Weapon w = new Pistol();
+    assertEquals(true,a.pickUpWeapon(w));
+    assertEquals(w,a.weapon);
+  }
+  
+  @Test
+  public void noPickUpWeapon() {
+    LifeForm a = new MockLifeForm("bob", 0, 5);
+    Weapon w = new Pistol();
+    Weapon x = new Pistol();
+    a.pickUpWeapon(x);
+    assertEquals(false,a.pickUpWeapon(w));
+  }
+  
+  @Test
+  public void dropWeapon() {
+    LifeForm a = new MockLifeForm("Bob", 0, 5);
+    Weapon w = new Pistol();
+    a.pickUpWeapon(w);
+    assertEquals(w,a.dropWeapon());
+  }
+  
+  @Test
+  public void useWeapon() {
+    LifeForm a = new MockLifeForm("Bob", 10, 3);
+    LifeForm c = new MockLifeForm("Chris", 11, 3);
+    Weapon w = new Pistol();
+    a.pickUpWeapon(w);
+    a.attack(c, 10);
+    assertEquals(11-(10*(50-10+10)/50), c.getCurrentLifePoints());
+  }
+  
+  @Test
+  public void useMeleeNoAmmo() {
+    LifeForm a = new MockLifeForm("Bob", 10, 3);
+    LifeForm c = new MockLifeForm("Chris", 11, 3);
+    Weapon w = new Pistol();
+    a.pickUpWeapon(w);
+    for(int i = 0; i < 10; i++) {
+      w.fire(10);
+    }
+    assertEquals(0, w.getCurrentAmmo());
+    a.attack(c, 2);
+    assertEquals(8, c.getCurrentLifePoints());
+  }
+  
+  @Test
+  public void meleeNoDamage() {
+    LifeForm a = new MockLifeForm("Bob", 10, 3);
+    LifeForm c = new MockLifeForm("Chris", 11, 3);
+    Weapon w = new Pistol();
+    a.pickUpWeapon(w);
+    for(int i = 0; i < 10; i++) {
+      w.fire(10);
+    }
+    a.attack(c,6);
+    assertEquals(11,c.getCurrentLifePoints());
+  }
+  
+  /**
+  @Test public void canReload() {
+    LifeForm a = new MockLifeForm("Bob", 10, 3);
+    LifeForm c = new MockLifeForm("Chris", 11, 3);
+    Weapon w = new Pistol();
+    a.pickUpWeapon(w);
+    for(int i = 0; i < 10; i++) {
+      w.fire(10);
+    }
+    w.reload();
+    
+  }
+  **/
 }

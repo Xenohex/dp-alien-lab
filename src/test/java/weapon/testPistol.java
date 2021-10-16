@@ -19,4 +19,20 @@ public class testPistol {
     var gun = new Pistol();
     assertEquals("Pistol", gun.toString());
   }
+  
+  @Test
+  public void fireTooFar() {
+    var gun = new Pistol();
+    assertEquals(0,gun.fire(70));
+  }
+  
+  @Test
+  public void fireNoAmmo() {
+    var gun = new Pistol();
+    gun.currentAmmo = 2;
+    gun.fire(5);
+    gun.fire(90);
+    assertEquals(gun.currentAmmo,0);
+    assertEquals(0,gun.fire(5));
+  }
 }

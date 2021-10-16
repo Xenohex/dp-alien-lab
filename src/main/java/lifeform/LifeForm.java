@@ -1,15 +1,19 @@
 package lifeform;
 
+import weapon.Weapon;
+
 /**
  * Keeps track of the information associated with a simple life form. Also
  * provides the functionality related to the life form.
  *
  */
-public abstract class LifeForm {
+public abstract class LifeForm extends Object {
   private String myName;
   protected int currentLifePoints;
   protected int attackStrength;
+  protected Weapon weapon;
 
+  
   /**
    * Create an instance
    * 
@@ -65,9 +69,48 @@ public abstract class LifeForm {
    * attack another LifeForm with attack strength
    * @param opponent the other LifeForm that is being attacked
    */
-  public void attack(LifeForm opponent) {
-    if (currentLifePoints != 0) {
+  public void attack(LifeForm opponent, int distance) {
+    if (currentLifePoints == 0) {
+    } else if (weapon == null && distance <= 5) {
       opponent.takeHit(attackStrength);
+    } else if (weapon.getCurrentAmmo() == 0 && distance <= 5) {
+      opponent.takeHit(attackStrength);
+    } else if (distance > 5 && distance < weapon.getMaxRange()) {
+      opponent.takeHit(weapon.fire(distance));
     }
+  }
+  
+  
+  /**
+   * @return true if lifeform has a weapon
+   */
+  public boolean hasWeapon() {
+    if (weapon != null) {
+      return true;
+    }
+    else
+      return false;
+  }
+  
+  /**
+   * @return the weapon the lifeform drops
+   */
+  public Weapon dropWeapon() {
+    Weapon weaponHolder = weapon;
+    weapon = null;
+    return weaponHolder;
+  }
+  
+  
+  /**
+   * @param weapon
+   * @return true if lifeform picks up weapon
+   */
+  public boolean pickUpWeapon(Weapon weapon) {
+    if (this.weapon == null) {
+      this.weapon = weapon;
+      return true;
+    }
+    return false;
   }
 }
