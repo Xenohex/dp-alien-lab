@@ -3,7 +3,7 @@ package weapon;
 import exceptions.AttachmentException;
 
 public class PowerBooster extends Attachment{
-  public PowerBooster(Attachment b) throws AttachmentException {
+  public PowerBooster(Weapon b) throws AttachmentException {
     if (b.getNumAttachments() >= 2) {
       throw new AttachmentException("You are trying to add too many Attachments!");
     }

@@ -4,7 +4,7 @@ import exceptions.AttachmentException;
 
 public class Scope extends Attachment{
 
-  public Scope(Attachment b) throws AttachmentException {
+  public Scope(weapon b) throws AttachmentException {
     if (b.getNumAttachments() >= 2) {
       throw new AttachmentException("You are trying to add too many Attachments!");
     }
