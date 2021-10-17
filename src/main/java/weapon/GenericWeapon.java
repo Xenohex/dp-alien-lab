@@ -20,7 +20,7 @@ abstract class GenericWeapon implements Weapon {
    * Fire method for each weapon
    */
   abstract public int fire(int distance) throws WeaponException;
-  
+  abstract public String toString();
   /**
    * Return the baseDamage
    */

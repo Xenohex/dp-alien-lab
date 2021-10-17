@@ -7,17 +7,26 @@ import exceptions.WeaponException;
  * @author Bader
  *
  */
-public class MockWeapon extends GenericWeapon{
-
+public class MockWeapon extends GenericWeapon {
+  
   /**
    * Constructor for a MockWeapon
    */
-  public MockWeapon(int ammo, int max, int rate, int range) {
-    maxAmmo = max;
-    currentAmmo = ammo;
-    rateOfFire = rate;
-    maxRange = range;
+  public MockWeapon() {
+    baseDamage = 5;
+    maxRange = 40;
+    rateOfFire = 3;
+    maxAmmo = 20;
+    currentAmmo = 20;
+    shotsLeft = 3;
   }
+  
+  /**
+   * @return string of MockWeapon
+   */
+  public String toString() {
+    return "MockWeapon";
+  } 
   
   /**
    * Fire in this case just decrements currentAmmo
@@ -26,16 +35,19 @@ public class MockWeapon extends GenericWeapon{
   @Override
   public int fire(int distance) throws WeaponException {
     if(distance < 0) {
-      throw new WeaponException("Distance is less than zero.");
+      throw new WeaponException("Distance is less than zero!");
     }
-    int damage = 0;
-    if(currentAmmo > 0 && distance < maxRange) {
+    if (distance > maxRange) {  
+      currentAmmo = Math.max(currentAmmo - 1, 0);
+      shotsLeft--;
+      return 0;
+    } else if (currentAmmo == 0 || shotsLeft == 0) {
+      currentAmmo = Math.max(currentAmmo, 0);
+      return 0;
+    } else { 
+      int damage = baseDamage;
       currentAmmo--;
-      damage++;
-    }
-    else if (currentAmmo > 0 && distance > maxRange) {
-      currentAmmo--;
-    }
     return damage;
+    }
   }
 }
