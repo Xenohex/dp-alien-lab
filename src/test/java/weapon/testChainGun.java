@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import exceptions.WeaponException;
+
 public class testChainGun {
 
   @Test
-  public void testFire() {
+  public void testFire() throws WeaponException {
     var gun = new ChainGun();
     assertEquals(15*(60/60),gun.fire(60));
     assertEquals(15/4,gun.fire(15));
@@ -20,13 +22,13 @@ public class testChainGun {
   }
   
   @Test
-  public void fireTooFar() {
+  public void fireTooFar() throws WeaponException {
     var gun = new ChainGun();
     assertEquals(0,gun.fire(70));
   }
   
   @Test
-  public void fireNoAmmo() {
+  public void fireNoAmmo() throws WeaponException {
     var gun = new ChainGun();
     gun.currentAmmo = 2;
     gun.fire(5);

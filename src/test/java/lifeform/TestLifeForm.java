@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import exceptions.WeaponException;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;
@@ -42,9 +43,10 @@ public class TestLifeForm {
   /**
    * test to make sure attack strength is stored correctly and one LifeForm
    * can attack the other
+   * @throws WeaponException 
    */
   @Test
-  public void attackAnotherLifeForm() {
+  public void attackAnotherLifeForm() throws WeaponException {
     LifeForm a,b;
     a = new MockLifeForm("Bob", 40, 5);
     b = new MockLifeForm("Poo", 40, 10);
@@ -56,9 +58,10 @@ public class TestLifeForm {
   
   /**
    * test to make sure a dead LifeForm cannot attack another LifeForm
+   * @throws WeaponException 
    */
   @Test
-  public void cannotAttackWhenDead() {
+  public void cannotAttackWhenDead() throws WeaponException {
     LifeForm a,b;
     a = new MockLifeForm("Bob", 0, 5);
     b = new MockLifeForm("Poo", 40, 10);
@@ -95,7 +98,7 @@ public class TestLifeForm {
   }
   
   @Test
-  public void useWeapon() {
+  public void useWeapon() throws WeaponException {
     LifeForm a = new MockLifeForm("Bob", 10, 3);
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
@@ -105,7 +108,7 @@ public class TestLifeForm {
   }
   
   @Test
-  public void attackWithWeapon() {
+  public void attackWithWeapon() throws WeaponException {
     LifeForm a = new MockLifeForm("Bob", 10, 3);
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new PlasmaCannon();
@@ -117,7 +120,7 @@ public class TestLifeForm {
   }
   
   @Test
-  public void useMeleeNoAmmo() {
+  public void useMeleeNoAmmo() throws WeaponException {
     LifeForm a = new MockLifeForm("Bob", 10, 3);
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
@@ -131,7 +134,7 @@ public class TestLifeForm {
   }
   
   @Test
-  public void meleeNoDamage() {
+  public void meleeNoDamage() throws WeaponException {
     LifeForm a = new MockLifeForm("Bob", 10, 3);
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
