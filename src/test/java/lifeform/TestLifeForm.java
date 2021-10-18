@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import exceptions.WeaponException;
+import gameplay.SimpleTimer;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;

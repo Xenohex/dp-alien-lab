@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
+import gameplay.SimpleTimer;
 
 /**
  * @author Austin Pliska
@@ -22,6 +23,9 @@ public class TestScope {
   @Test
   public void testPistolNoAttachments() throws WeaponException, AttachmentException {
     var gun = new Pistol();
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
     assertEquals(10 * ((50 - 25) + 10) / 50, gun.fire(25));
     assertEquals(10 * ((50 - 5) + 10) / 50, gun.fire(5));
   }
@@ -42,6 +46,9 @@ public class TestScope {
   @Test
   public void testPistolScopeLosesAmmo() throws WeaponException, AttachmentException {
     var gun = new Scope(new Pistol());
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
     assertEquals(gun.getMaxAmmo(), gun.getCurrentAmmo());
     gun.fire(10);
     assertEquals(gun.getMaxAmmo() - 1, gun.getCurrentAmmo());
@@ -53,6 +60,11 @@ public class TestScope {
   public void testPistolScope() throws WeaponException, AttachmentException {
     var gun = new Pistol();
     Scope gun2 = new Scope(gun);
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    t.addTimeObserver(gun2);
+    gun.updateTime(99);
+    gun2.updateTime(99);
     assertEquals(11, gun2.fire(25)); // 10 * ((50 - 25) + 10) / 50) * (1 + (60 - 25) / 60) * (1 + (70 - 25) / 70) rounded
     assertEquals(((10 * ((50 - 50) + 10) / 50) + 5), gun2.fire(55));
     assertEquals(0, gun2.fire(99));
@@ -61,6 +73,9 @@ public class TestScope {
   @Test
   public void testPistolScopeScope() throws WeaponException, AttachmentException {
     var gun = new Scope(new Scope(new Pistol()));
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
     assertEquals(18, gun.fire(25)); // 10 * ((50 - 25) + 10) / 50) * (1 + (60 - 25) / 60) * (1 + (70 - 25) / 70) rounded
     assertEquals(((10 * ((50 - 50) + 10) / 50) + 5 + 5), gun.fire(65));
     assertEquals(0, gun.fire(99));
@@ -69,10 +84,14 @@ public class TestScope {
   @Test
   public void testPistolScopeStabilizer() throws WeaponException, AttachmentException {
     var gun = new Stabilizer(new Scope(new Pistol()));
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
     assertEquals(13, gun.fire(25)); // (10 * ((50 - 25) + 10) / 50) * (1 + (60 - 25) / 60) * 1.25 = 13.85 rounded down
     for (int x = gun.getCurrentAmmo(); x > 1; x--) {
-      assertEquals(x, gun.getCurrentAmmo());
+      System.out.println(gun.getCurrentAmmo());
       gun.fire(25);
+      gun.updateTime(99-x);
     }
     assertEquals(1, gun.getCurrentAmmo());
     gun.fire(25);
@@ -84,8 +103,11 @@ public class TestScope {
   @Test
   public void testPistolScopePowerBooster() throws WeaponException, AttachmentException {
     var gun = new PowerBooster(new Scope(new Pistol()));
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
     assertEquals(22, gun.fire(25)); // pistol damage with just scope * stabilizer boost (1 + currentAmmo / maxAmmo) rounded
-    assertEquals(21, gun.fire(25));
+    assertEquals(20, gun.fire(25));
   }
   
 }

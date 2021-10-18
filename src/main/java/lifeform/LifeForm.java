@@ -76,19 +76,19 @@ public abstract class LifeForm extends Object {
       opponent.takeHit(attackStrength);
     } else if (hasWeapon() == true && weapon.getCurrentAmmo() == 0 && distance <= 5) {
       opponent.takeHit(attackStrength);
-    } else if (hasWeapon() == true && distance > 5 && distance <= weapon.getMaxRange()) {
+    } else if (hasWeapon() == true && distance > 5 /*&& distance <= weapon.getMaxRange()*/) {
       try{
         opponent.takeHit(weapon.fire(distance));
       } catch(WeaponException e) {
         throw e;
       }
-    } else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
+    } /* else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
       try{
         opponent.takeHit(weapon.fire(distance));
       } catch(WeaponException e) {
         throw e;
-      }
-    }
+      } 
+    } */
   }
   
   

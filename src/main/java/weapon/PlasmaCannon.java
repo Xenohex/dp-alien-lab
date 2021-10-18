@@ -10,7 +10,7 @@ public class PlasmaCannon extends GenericWeapon {
 
   
   /**
-   * Contstructor for PlasmaCannon
+   * Constructor for PlasmaCannon
    */
   public PlasmaCannon() {
     baseDamage = 50;
@@ -38,7 +38,7 @@ public class PlasmaCannon extends GenericWeapon {
       shotsLeft--;
       return 0;
     } else if (currentAmmo == 0 || shotsLeft == 0) {
-      currentAmmo = Math.max(currentAmmo, 0);
+      //currentAmmo = Math.max(currentAmmo, 0);
       return 0;
     } else { 
       int damage = Double.valueOf(Math.floor(
