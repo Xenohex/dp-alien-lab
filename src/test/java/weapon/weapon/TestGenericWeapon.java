@@ -17,7 +17,7 @@ public class TestGenericWeapon {
   @Test
   public void testUpdateTime() throws WeaponException {
     SimpleTimer t = new SimpleTimer();
-    MockWeapon weapon = new MockWeapon(30, 50, 3, 20);
+    MockWeapon weapon = new MockWeapon();
     t.addTimeObserver(weapon);
     weapon.fire(0);
     t.timeChanged();
@@ -25,26 +25,28 @@ public class TestGenericWeapon {
   }
   @Test
   public void testFire() throws WeaponException {
-    MockWeapon weapon = new MockWeapon(30, 50, 3, 20);
+    MockWeapon weapon = new MockWeapon();
     weapon.fire(15);
-    assertEquals(29, weapon.getCurrentAmmo()); 
+    assertEquals(19, weapon.getCurrentAmmo()); 
   }
   @Test
   public void testNoAmmo() throws WeaponException {
-    MockWeapon weapon = new MockWeapon(0, 50, 3, 20);
-    assertEquals(0, weapon.fire(15)); 
+    MockWeapon weapon = new MockWeapon();
+    for(int i = 0; i < 20; i++) {
+      weapon.fire(10);
+    }
+    assertEquals(0, weapon.fire(10)); 
   }
   @Test
   public void testMaxRange() throws WeaponException {
-    MockWeapon weapon = new MockWeapon(10, 50, 3, 20);
-    assertEquals(0, weapon.fire(30)); 
-    assertEquals(9, weapon.getCurrentAmmo()); 
+    MockWeapon weapon = new MockWeapon();
+    assertEquals(0, weapon.fire(50)); 
+    assertEquals(19, weapon.getCurrentAmmo()); 
   }
   @Test
   public void testReload() {
-    MockWeapon weapon = new MockWeapon(0, 50, 3, 20);
+    MockWeapon weapon = new MockWeapon();
     weapon.reload();
-    assertEquals(50, weapon.getCurrentAmmo()); 
+    assertEquals(20, weapon.getCurrentAmmo()); 
   }
-
 }
