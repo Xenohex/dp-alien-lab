@@ -117,7 +117,11 @@ public class TestLifeForm {
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new PlasmaCannon();
     a.pickUpWeapon(w);
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(w);
+    w.updateTime(1);
     a.attack(c,45);
+    w.updateTime(1);
     a.attack(c,40);
     assertEquals(2,w.getCurrentAmmo());
     assertEquals(0,c.getCurrentLifePoints());

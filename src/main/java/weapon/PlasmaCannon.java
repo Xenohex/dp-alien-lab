@@ -18,6 +18,7 @@ public class PlasmaCannon extends GenericWeapon {
     rateOfFire = 1;
     maxAmmo = 4;
     currentAmmo = 4;
+    shotsLeft = rateOfFire;
   }
   
   /**

@@ -19,6 +19,7 @@ public class Pistol extends GenericWeapon {
     rateOfFire = 2;
     maxAmmo = 10;
     currentAmmo = 10;
+    shotsLeft = rateOfFire;
   }
   
   /**
