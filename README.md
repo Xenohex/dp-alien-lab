@@ -56,13 +56,18 @@ Using the following table
 |---|---|---|---|
 | Generic Weapon | Bader | 10/19/21 |  |
 | Pistol, Chain Gun, Plasma Cannon | Christian | 10/19/21 |  |
-| attachment, and Stabilizer, Scope, PowerBooster | Junje and Austin | 10/19/21 | 10/14/21 |
+| attachment, and Stabilizer, Scope, PowerBooster | Jun and Austin | 10/19/21 | 10/14/21 |
 | Generic Weapon timer | Bader | 10/19/21 |  |
 | testLifeForm | Christian | 10/19/21 |  |
 | testGenericWeapon | Bader | 10/19/21 | 10/15/21 |
 | Weapon tests | Christian | 10/19/21 |  |
 | Attachments tests | Christian | 10/19/21 |  |
 | edit README | Jun | 10/19/21 | 10/14/21 |
+| fixed issues related with WeaponException | Jun | 10/19/21 | 10/16/21 |
+| fixed a few bugs | Team | 10/19/21 | 10/17/21 |
+| fix tests for attachments | Austin | 10/19/21 |  |
+| fix tests for weapons | Christian | 10/19/21 |  |
+| edit README | Jun | 10/19/21 | 10/17/21 |
 
 
 # Team Meeting Log
@@ -72,3 +77,4 @@ Using the following table
 | 1 | 10a-11a, 10/08/21 | MCT162 | All members | Meet the team |
 | 2 | 10-11a, 10/11/21  | MCT162 | All members | Built UML, assigned work sections |
 | 3 | 8-9p, 10/14/21    | Zoom   | All members | answer questions and concerns, assigned tasks |
+| 4 | 8-9:30p, 10/17/21 | Zoom   | All members | fixed bugs, assign new tasks, waiting for response |
