@@ -1,16 +1,21 @@
-package weapon;
+package weapon.weapon;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import exceptions.WeaponException;
+import gameplay.SimpleTimer;
+import weapon.ChainGun;
 
 public class testChainGun {
 
   @Test
   public void testFire() throws WeaponException {
     var gun = new ChainGun();
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(1);
     assertEquals(15*(60/60),gun.fire(60));
     assertEquals(15/4,gun.fire(15));
   }
@@ -18,7 +23,7 @@ public class testChainGun {
   @Test
   public void testTosString() {
     var gun = new ChainGun();
-    assertEquals("Chain Gun", gun.toString());
+    assertEquals("ChainGun", gun.toString());
   }
   
   @Test
@@ -30,10 +35,15 @@ public class testChainGun {
   @Test
   public void fireNoAmmo() throws WeaponException {
     var gun = new ChainGun();
-    gun.currentAmmo = 2;
+    for(int i = 0; i < 40; i++) {
+      SimpleTimer t = new SimpleTimer();
+      t.addTimeObserver(gun);
+      gun.updateTime(1);
+      gun.fire(30);
+    }
     gun.fire(5);
     gun.fire(90);
-    assertEquals(gun.currentAmmo,0);
+    assertEquals(gun.getCurrentAmmo(),0);
     assertEquals(0,gun.fire(5));
   }
 
