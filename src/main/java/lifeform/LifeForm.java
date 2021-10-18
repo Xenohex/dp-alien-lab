@@ -74,13 +74,13 @@ public abstract class LifeForm extends Object {
    * @throws WeaponException 
    */
   public void attack(LifeForm opponent, int distance) throws WeaponException {
-    if (currentLifePoints == 0) {
-    } else if (distance <= 5) {
+    if (distance <= 5 && currentLifePoints != 0) {
       opponent.takeHit(attackStrength);
-    } else if (hasWeapon() == true && distance > 5 && weapon.getShotsLeft() != 0) {
-      try{
+    } else if (hasWeapon() == true && distance > 5 && weapon.getShotsLeft() != 0 
+        && currentLifePoints != 0) {
+      try {
         opponent.takeHit(weapon.fire(distance));
-      } catch(WeaponException e) {
+      } catch (WeaponException e) {
         throw e;
       }
     } /* else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
@@ -99,9 +99,9 @@ public abstract class LifeForm extends Object {
   public boolean hasWeapon() {
     if (weapon != null) {
       return true;
-    }
-    else
+    } else {
       return false;
+    }
   }
   
   /**

@@ -34,7 +34,7 @@ public class MockWeapon extends GenericWeapon {
    */
   @Override
   public int fire(int distance) throws WeaponException {
-    if(distance < 0) {
+    if (distance < 0) {
       throw new WeaponException("Distance is less than zero!");
     }
     if (distance > maxRange) {  
@@ -47,7 +47,7 @@ public class MockWeapon extends GenericWeapon {
     } else { 
       int damage = baseDamage;
       currentAmmo--;
-    return damage;
+      return damage;
     }
   }
 }

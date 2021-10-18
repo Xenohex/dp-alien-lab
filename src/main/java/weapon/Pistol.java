@@ -44,7 +44,7 @@ public class Pistol extends GenericWeapon {
       return 0;
     } else {
       int damage = Double.valueOf(Math.floor(
-      baseDamage * ((maxRange - distance) + 10) / maxRange)).intValue();
+          baseDamage * ((maxRange - distance) + 10) / maxRange)).intValue();
       currentAmmo--;
       shotsLeft--;
       return damage;

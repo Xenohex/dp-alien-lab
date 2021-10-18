@@ -45,7 +45,7 @@ public class ChainGun extends GenericWeapon {
       return 0;
     } else {
       int damage = Double.valueOf(Math.floor(
-      baseDamage * distance / maxRange)).intValue();
+          baseDamage * distance / maxRange)).intValue();
       shotsLeft--;
       currentAmmo--;
       return damage;

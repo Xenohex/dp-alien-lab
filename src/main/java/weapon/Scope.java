@@ -11,17 +11,25 @@ public class Scope extends Attachment{
     }
     this.base = b;
   }
+  
+  /*
+   * @param distance
+   * @return the adjusted damage with scope
+   * @throws WeaponException
+   */
   public int fire(int distance) throws WeaponException {
     if (base.getMaxRange() < distance && distance <= getMaxRange()) {
       return (5 + base.fire(base.getMaxRange()));
     }
-    return Double.valueOf(Math.floor(base.fire(distance) *
-        (1 + (getMaxRange() - distance) / 
-            Double.valueOf(getMaxRange())))).intValue();
+    return Double.valueOf(Math.floor(base.fire(distance) 
+        * (1 + (getMaxRange() - distance) 
+            / Double.valueOf(getMaxRange())))).intValue();
   }
+  
   public String toString() {
     return base.toString() + " +Scope";
   }
+  
   public int getMaxRange() {
     return base.getMaxRange() + 10;
   }
