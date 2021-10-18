@@ -3,7 +3,7 @@ package weapon;
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
-public class Scope extends Attachment{
+public class Scope extends Attachment {
 
   public Scope(Weapon b) throws AttachmentException {
     if (b.getNumAttachments() >= 2) {
