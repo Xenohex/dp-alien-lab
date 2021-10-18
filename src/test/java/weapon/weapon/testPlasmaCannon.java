@@ -18,6 +18,7 @@ public class testPlasmaCannon {
     t.addTimeObserver(gun);
     gun.updateTime(1);
     assertEquals(50*(4/4),gun.fire(10));
+    gun2.updateTime(2);
     assertEquals(50*(4/4),gun2.fire(35));
   }
 
