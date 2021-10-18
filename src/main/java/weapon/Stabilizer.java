@@ -4,6 +4,7 @@ import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
 public class Stabilizer extends Attachment{
+  
   public Stabilizer(Weapon b) throws AttachmentException {
     if (b.getNumAttachments() >= 2) {
       throw new AttachmentException("You are trying to add too many Attachments!");
