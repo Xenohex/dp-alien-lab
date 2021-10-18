@@ -104,6 +104,9 @@ public class TestLifeForm {
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
     a.pickUpWeapon(w);
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(w);
+    w.updateTime(1);
     a.attack(c, 10);
     assertEquals(11-(10*(50-10+10)/50), c.getCurrentLifePoints());
   }
@@ -117,6 +120,7 @@ public class TestLifeForm {
     a.attack(c,45);
     a.attack(c,40);
     assertEquals(2,w.getCurrentAmmo());
+    assertEquals(0,c.getCurrentLifePoints());
     
   }
   
@@ -127,6 +131,9 @@ public class TestLifeForm {
     Weapon w = new Pistol();
     a.pickUpWeapon(w);
     for(int i = 0; i < 10; i++) {
+      SimpleTimer t = new SimpleTimer();
+      t.addTimeObserver(w);
+      w.updateTime(1);
       w.fire(10);
     }
     assertEquals(0, w.getCurrentAmmo());
