@@ -53,6 +53,7 @@ public abstract class LifeForm extends Object {
 
   /**
    * this life form takes some amount of damage that will not fall below 0
+   * @param damage 
    */
   public void takeHit(int damage) {
     currentLifePoints = Math.max(0, currentLifePoints - damage);
@@ -69,26 +70,26 @@ public abstract class LifeForm extends Object {
   /**
    * attack another LifeForm with attack strength
    * @param opponent the other LifeForm that is being attacked
+   * @param distance 
+   * @throws WeaponException 
    */
-  public void attack(LifeForm opponent, int distance) throws WeaponException{
-    if (currentLifePoints == 0) {
-    } else if (hasWeapon() == false && distance <= 5) {
+  public void attack(LifeForm opponent, int distance) throws WeaponException {
+    if (distance <= 5 && currentLifePoints != 0) {
       opponent.takeHit(attackStrength);
-    } else if (hasWeapon() == true && weapon.getCurrentAmmo() == 0 && distance <= 5) {
-      opponent.takeHit(attackStrength);
-    } else if (hasWeapon() == true && distance > 5 && distance <= weapon.getMaxRange()) {
+    } else if (hasWeapon() == true && distance > 5 && weapon.getShotsLeft() != 0 
+        && currentLifePoints != 0) {
+      try {
+        opponent.takeHit(weapon.fire(distance));
+      } catch (WeaponException e) {
+        throw e;
+      }
+    } /* else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
       try{
         opponent.takeHit(weapon.fire(distance));
       } catch(WeaponException e) {
         throw e;
-      }
-    } else if (hasWeapon() == true && distance > weapon.getMaxRange()) {
-      try{
-        opponent.takeHit(weapon.fire(distance));
-      } catch(WeaponException e) {
-        throw e;
-      }
-    }
+      } 
+    } */
   }
   
   
@@ -98,9 +99,9 @@ public abstract class LifeForm extends Object {
   public boolean hasWeapon() {
     if (weapon != null) {
       return true;
-    }
-    else
+    } else {
       return false;
+    }
   }
   
   /**
@@ -114,7 +115,7 @@ public abstract class LifeForm extends Object {
   
   
   /**
-   * @param weapon
+   * @param w
    * @return true if lifeform picks up weapon
    */
   public boolean pickUpWeapon(Weapon w) {
