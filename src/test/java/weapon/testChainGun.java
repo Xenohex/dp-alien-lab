@@ -18,7 +18,7 @@ public class testChainGun {
   @Test
   public void testTosString() {
     var gun = new ChainGun();
-    assertEquals("Chain Gun", gun.toString());
+    assertEquals("ChainGun", gun.toString());
   }
   
   @Test
