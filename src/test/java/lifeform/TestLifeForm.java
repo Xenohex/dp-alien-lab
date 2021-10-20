@@ -158,17 +158,22 @@ public class TestLifeForm {
     assertEquals(11,c.getCurrentLifePoints());
   }
   
-  /**
-  @Test public void canReload() {
+  
+  @Test public void canReload() throws WeaponException {
     LifeForm a = new MockLifeForm("Bob", 10, 3);
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
     a.pickUpWeapon(w);
     for(int i = 0; i < 10; i++) {
+      SimpleTimer t = new SimpleTimer();
+      t.addTimeObserver(w);
+      w.updateTime(1);
       w.fire(10);
     }
+    assertEquals(0,w.getCurrentAmmo());
     w.reload();
+    assertEquals(10,w.getCurrentAmmo());
     
   }
-  **/
+  
 }
