@@ -1,4 +1,4 @@
-package weapon.weapon;
+package weapon;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
-import weapon.PlasmaCannon;
 
 public class testPlasmaCannon {
 
