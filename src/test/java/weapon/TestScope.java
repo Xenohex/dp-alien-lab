@@ -1,4 +1,4 @@
-package weapon.weapon;
+package weapon;
 
 import static org.junit.Assert.*;
 
@@ -7,11 +7,6 @@ import org.junit.Test;
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
-import weapon.ChainGun;
-import weapon.Pistol;
-import weapon.PowerBooster;
-import weapon.Scope;
-import weapon.Stabilizer;
 
 /**
  * @author Austin Pliska
