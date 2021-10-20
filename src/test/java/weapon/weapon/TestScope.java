@@ -1,4 +1,4 @@
-package weapon;
+package weapon.weapon;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,11 @@ import org.junit.Test;
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
+import weapon.ChainGun;
+import weapon.Pistol;
+import weapon.PowerBooster;
+import weapon.Scope;
+import weapon.Stabilizer;
 
 /**
  * @author Austin Pliska
@@ -110,4 +115,23 @@ public class TestScope {
     assertEquals(20, gun.fire(25));
   }
   
+  @Test
+  public void testChainGunPowerBoosterScope() throws WeaponException, AttachmentException {
+    var gun = new PowerBooster(new Scope(new ChainGun()));
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
+    assertEquals(16,gun.fire(20));
+    assertEquals(39,gun.fire(70));
+  }
+  
+  @Test
+  public void testPlasmaCannonStabilizerScope() throws WeaponException, AttachmentException {
+    var gun = new PowerBooster(new Scope(new ChainGun()));
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(gun);
+    gun.updateTime(99);
+    assertEquals(18,gun.fire(25));
+    assertEquals(29,gun.fire(50));
+  }
 }
