@@ -67,7 +67,10 @@ Using the following table
 | fixed a few bugs | Team | 10/19/21 | 10/17/21 |
 | fix tests for attachments | Austin | 10/19/21 |  |
 | fix tests for weapons | Christian | 10/19/21 |  |
-| edit README | Jun | 10/19/21 | 10/17/21 |
+| added tests for stabilizer | Jun | 10/19/21 | 10/19/21 |
+| added tests for scope | Christian | 10/19/21 | 10/19/21 |
+| added tests for power booster | Austin | 10/19/21 | 10/19/21 |
+| edit README | Jun | 10/19/21 | 10/19/21 |
 
 
 # Team Meeting Log
