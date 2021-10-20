@@ -24,7 +24,7 @@ public class Stabilizer extends Attachment {
     this.base = b;
   }
   
-  /*
+  /**
    * fire the weapon, reduce current ammo by 1
    * @param distance of the target
    * @return the adjusted damage with scope

@@ -11,6 +11,7 @@ abstract class Attachment implements Weapon {
   protected Weapon base;
   
   public Attachment() {}
+  
   /**
    * Fire method for each attachment
    */

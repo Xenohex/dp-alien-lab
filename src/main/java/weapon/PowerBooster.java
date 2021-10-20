@@ -23,7 +23,7 @@ public class PowerBooster extends Attachment {
     this.base = b;
   }
   
-  /*
+  /**
    * fire the weapon, reduce current ammo by 1
    * @param distance of the target
    * @return the adjusted damage with scope
@@ -37,6 +37,7 @@ public class PowerBooster extends Attachment {
         + (base.getCurrentAmmo()) / Double.valueOf(base.getMaxAmmo())) 
         * base.fire(distance))).intValue();
   }
+  
   /**
   * @return the weapon plus any attachments
   */

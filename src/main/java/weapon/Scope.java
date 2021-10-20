@@ -23,7 +23,7 @@ public class Scope extends Attachment {
     this.base = b;
   }
   
-  /*
+  /**
    * fire the weapon, reduce current ammo by 1
    * @param distance of the target
    * @return the adjusted damage with scope
@@ -37,12 +37,14 @@ public class Scope extends Attachment {
         * (1 + (getMaxRange() - distance) 
             / Double.valueOf(getMaxRange())))).intValue();
   }
+  
   /**
   * @return the weapon plus any attachments
   */
   public String toString() {
     return base.toString() + " +Scope";
   }
+  
   /**
   * @return the maximum range + 10
   */
