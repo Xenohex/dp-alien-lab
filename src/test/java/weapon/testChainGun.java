@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
-import weapon.ChainGun;
 
 public class testChainGun {
 
