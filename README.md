@@ -54,20 +54,24 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Generic Weapon | Bader | 10/19/21 |  |
-| Pistol, Chain Gun, Plasma Cannon | Christian | 10/19/21 |  |
+| Generic Weapon | Bader | 10/19/21 | 10/19/21 |
+| Pistol, Chain Gun, Plasma Cannon | Christian | 10/19/21 | 10/19/21 |
 | attachment, and Stabilizer, Scope, PowerBooster | Jun and Austin | 10/19/21 | 10/14/21 |
-| Generic Weapon timer | Bader | 10/19/21 |  |
-| testLifeForm | Christian | 10/19/21 |  |
+| Generic Weapon timer | Bader | 10/19/21 | 10/19/21 |
+| testLifeForm | Christian | 10/19/21 | 10/19/21 |
 | testGenericWeapon | Bader | 10/19/21 | 10/15/21 |
-| Weapon tests | Christian | 10/19/21 |  |
-| Attachments tests | Christian | 10/19/21 |  |
+| Weapon tests | Christian | 10/19/21 | 10/19/21 |
+| Attachments tests | Christian | 10/19/21 | 10/19/21 |
 | edit README | Jun | 10/19/21 | 10/14/21 |
 | fixed issues related with WeaponException | Jun | 10/19/21 | 10/16/21 |
 | fixed a few bugs | Team | 10/19/21 | 10/17/21 |
-| fix tests for attachments | Austin | 10/19/21 |  |
-| fix tests for weapons | Christian | 10/19/21 |  |
-| edit README | Jun | 10/19/21 | 10/17/21 |
+| fix tests for attachments | Austin | 10/19/21 | 10/19/21 |
+| fix tests for weapons | Christian | 10/19/21 | 10/19/21 |
+| added tests for stabilizer | Jun | 10/19/21 | 10/19/21 |
+| added tests for scope | Christian | 10/19/21 | 10/19/21 |
+| added tests for power booster | Austin | 10/19/21 | 10/19/21 |
+| Cleaned up Lab#4 | All group members | 10/19/21 | 10/19/21
+| edit README | Jun | 10/19/21 | 10/19/21 |
 
 
 # Team Meeting Log
