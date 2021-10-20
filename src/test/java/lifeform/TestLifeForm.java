@@ -134,10 +134,10 @@ public class TestLifeForm {
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
     a.pickUpWeapon(w);
-    for(int i = 0; i < 10; i++) {
-      SimpleTimer t = new SimpleTimer();
+    SimpleTimer t = new SimpleTimer();
       t.addTimeObserver(w);
-      w.updateTime(1);
+    for(int i = 0; i < 10; i++) {
+      w.updateTime(i);
       w.fire(10);
     }
     assertEquals(0, w.getCurrentAmmo());
@@ -164,10 +164,10 @@ public class TestLifeForm {
     LifeForm c = new MockLifeForm("Chris", 11, 3);
     Weapon w = new Pistol();
     a.pickUpWeapon(w);
+    SimpleTimer t = new SimpleTimer();
+    t.addTimeObserver(w);
     for(int i = 0; i < 10; i++) {
-      SimpleTimer t = new SimpleTimer();
-      t.addTimeObserver(w);
-      w.updateTime(1);
+      w.updateTime(i);
       w.fire(10);
     }
     assertEquals(0,w.getCurrentAmmo());
