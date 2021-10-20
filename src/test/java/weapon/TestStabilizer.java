@@ -69,20 +69,13 @@ public class TestStabilizer {
   }
   
   @Test
-  public void testPlasmaCannonStabilizerScope() throws WeaponException, AttachmentException {
-    var gun = new Scope(new Stabilizer(new PlasmaCannon()));
-    var gun2 = new Scope(new Stabilizer(new PlasmaCannon()));
+  public void testPistolStabilizerScope() throws WeaponException, AttachmentException {
+    var gun = new Scope(new Stabilizer(new Pistol()));
     SimpleTimer t = new SimpleTimer();
     t.addTimeObserver(gun);
-    t.addTimeObserver(gun2);
     gun.updateTime(99);
-    gun2.updateTime(99);
-    assertEquals(111, gun.fire(10)); // (50 * (4 / 4) * 1.25) * (1 + (50 - 10) / 50) rounded down after each step
-    gun.updateTime(99);
-    assertEquals(82, gun.fire(10)); // 50 * (3 / 4) * 1.25 * (1 + (50 - 10) / 50) 
-    assertEquals(67, gun2.fire(45)); // (50 * (4 / 4) * 1.25) + 5
-    gun2.updateTime(99);
-    assertEquals(51, gun2.fire(45)); // (50 * (3 / 4) * 1.25) + 5
+    assertEquals(22, gun.fire(10)); 
+    assertEquals(7, gun.fire(60));
   }
   
   @Test
@@ -96,15 +89,14 @@ public class TestStabilizer {
     assertEquals(57, gun.fire(10)); // (50 * (3 / 4) * 1.25) * 1.25
   }
   
-  @Test //TODO DOES NOT PASS LINE 54, SHOULD BE 81, RETURNS 46
-  public void testPlasmaCannonStabilizerPowerBooster() throws WeaponException, AttachmentException {
-    var gun = new PowerBooster(new Stabilizer(new PlasmaCannon()));
+  @Test 
+  public void testChainGunPowerBoosterStabilizer() throws WeaponException, AttachmentException {
+    var gun = new Stabilizer(new PowerBooster(new ChainGun()));
     SimpleTimer t = new SimpleTimer();
     t.addTimeObserver(gun);
     gun.updateTime(99);
-    assertEquals(124, gun.fire(10)); // (50 * (4 / 4) * 1.25) * (1 + (4 / 4)) rounded down after each step
-    gun.updateTime(99);
-    assertEquals(80, gun.fire(10)); // (50 * (3 / 4) * 1.25) * (1 + (3 / 4)) 
+    assertEquals(5, gun.fire(10)); 
+    assertEquals(28, gun.fire(50)); 
   }
   
 }

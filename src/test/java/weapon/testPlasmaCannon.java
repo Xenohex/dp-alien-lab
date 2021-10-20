@@ -1,4 +1,4 @@
-package weapon.weapon;
+package weapon;
 
 import static org.junit.Assert.*;
 
