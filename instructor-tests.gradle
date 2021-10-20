@@ -7,7 +7,7 @@ task zipzip(type: Zip) {
 }
 
 task testZip(type: Zip) {
-  archiveName = 'lab2-instructor-tests.zip'
+  archiveName = 'lab1-instructor-tests.zip'
   from sourceSets.test.output
   excludes = ["**/.gradle"]
   destinationDir = file("${buildDir}/dist")
@@ -15,9 +15,7 @@ task testZip(type: Zip) {
 
 task downloadFile(type: Download) {
   quiet true
-  // the below is java 11
-  // src 'https://www.dropbox.com/s/ut30a52m27f47bc/lab4-instructor-tests.zip?dl=1'
-  src 'https://www.dropbox.com/s/x6mjl3wvvnildra/lab4-instructor-tests.zip?dl=1'
+  src 'https://www.dropbox.com/s/ynq048wbd2kyuk1/lab5-instructor-tests.zip?dl=1'
   dest new File(buildDir, 'dist/instructor-tests.zip')
 }
 
@@ -31,5 +29,5 @@ task instTest(dependsOn: downloadAndUnzip, type: Test) {
 
   testClassesDirs = files("$buildDir/instructor")
   classpath = sourceSets.main.output + testClassesDirs + sourceSets.test.runtimeClasspath
-  print "Reports can be found at: ${reports.html.entryPoint}\n\n"
 }
+
