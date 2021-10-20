@@ -54,8 +54,8 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Generic Weapon | Bader | 10/19/21 |  |
-| Pistol, Chain Gun, Plasma Cannon | Christian | 10/19/21 |  |
+| Generic Weapon | Bader | 10/19/21 | 10/19/21 |
+| Pistol, Chain Gun, Plasma Cannon | Christian | 10/19/21 | 10/19/21 |
 | attachment, and Stabilizer, Scope, PowerBooster | Jun and Austin | 10/19/21 | 10/14/21 |
 | Generic Weapon timer | Bader | 10/19/21 | 10/19/21 |
 | testLifeForm | Christian | 10/19/21 | 10/19/21 |
