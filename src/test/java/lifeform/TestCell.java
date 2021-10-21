@@ -8,12 +8,81 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import environment.Cell;
+import weapon.Pistol;
+import weapon.PlasmaCannon;
+import weapon.ChainGun;
+import weapon.Weapon;
 
 /**
  * The test cases for the Cell class
  *
  */
 public class TestCell {
+  ///-------------lab5 tests------------
+  @Test
+  public void testInitializationWithSingleton() {
+    Cell cell = new Cell();
+    assertNull(cell.getLifeForm());
+  }
+  
+  @Test
+  public void testAddWeapon() {
+    Cell cell = new Cell();
+    Weapon pistol = new Pistol();
+    Weapon chainGun = new ChainGun();
+    Weapon plasmaCannon = new PlasmaCannon();
+    assertTrue(cell.addWeapon(pistol));
+    assertTrue(cell.addWeapon(chainGun));
+    assertFalse(cell.addWeapon(plasmaCannon));
+    
+  }
+  
+  @Test
+  public void testRemoveWeapon() {
+    Cell cell = new Cell();
+    Weapon pistol = new Pistol();
+    Weapon chainGun = new ChainGun();
+    Weapon plasmaCannon = new PlasmaCannon();
+    cell.addWeapon(pistol);
+    cell.addWeapon(chainGun);
+    assertEquals(pistol,cell.removeWeapon(pistol));
+    assertNull(cell.removeWeapon(plasmaCannon));
+    assertTrue(cell.addWeapon(plasmaCannon));
+  }
+  
+  @Test
+  public void testCellFull() {
+    Cell cell = new Cell();
+    Weapon pistol = new Pistol();
+    Weapon chainGun = new ChainGun();
+    Weapon plasmaCannon = new PlasmaCannon();
+    assertTrue(cell.addWeapon(pistol));
+    assertTrue(cell.addWeapon(chainGun));
+    assertFalse(cell.addWeapon(plasmaCannon));
+  }
+  
+  @Test
+  public void testWeaponCount() {
+    Cell cell = new Cell();
+    Weapon pistol = new Pistol();
+    Weapon chainGun = new ChainGun();
+    Weapon plasmaCannon = new PlasmaCannon();
+    assertEquals(0,cell.getWeaponsCount());
+    
+    assertTrue(cell.addWeapon(pistol));
+    assertEquals(1,cell.getWeaponsCount());
+    
+    assertTrue(cell.addWeapon(chainGun));
+    assertEquals(2,cell.getWeaponsCount());
+    
+    assertFalse(cell.addWeapon(plasmaCannon));
+    assertEquals(2,cell.getWeaponsCount());
+    
+  }
+  
+  
+  
+  //---------Decorator Tests and pre-lab5 tests------
   /**
    * At initialization, the Cell should be empty and not contain a LifeForm.
    */
