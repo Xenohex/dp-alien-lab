@@ -8,6 +8,10 @@ import lifeform.LifeForm;
  *
  */
 public class Environment {
+  
+  private volatile static Environment theEnvironment;
+  
+  
   /**
    * A 2-Dimensional array of the individual Cells.
    */
@@ -17,13 +21,27 @@ public class Environment {
    * @param rows size of the rows in the 2d array
    * @param cols size of the cols in the 2d array
    */
-  public Environment(int rows, int cols) {
+  private Environment(int rows, int cols) {
     cells = new Cell[rows][cols];
     for (int i = 0; i < cells.length; i++) {
       for (int j = 0; j < cells[0].length; j++) {
         cells[i][j] = new Cell();
       }
     }
+  }
+  
+  /**
+   * @param rows
+   * @param cols
+   * @return a new instance of environment if there is none.
+   * It permits only one instance to be created. If an instance 
+   * of environment already exists, this returns that instance.
+   */
+  public static synchronized Environment getInstance(int rows, int cols) {
+    if(theEnvironment == null) {
+      theEnvironment = new Environment(rows, cols);
+    }
+    return theEnvironment;
   }
 
   /**

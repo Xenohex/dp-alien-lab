@@ -21,7 +21,7 @@ public class TestEnvironment {
    */
   @Test
   public void testEnvironmentInitialization() {
-    Environment environment = new Environment(1, 1);
+    Environment environment = Environment.getInstance(1, 1);
     assertNull(environment.getLifeForm(0, 0));
   }
 
@@ -30,7 +30,7 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeForm() {
-    Environment environment = new Environment(2, 3);
+    Environment environment = Environment.getInstance(2, 3);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertTrue(environment.addLifeForm(bob, 0, 1));
     assertEquals("Bob", environment.getLifeForm(0, 1).getName());
@@ -42,7 +42,7 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeFormBigNum() {
-    Environment environment = new Environment(2, 3);
+    Environment environment = Environment.getInstance(2, 3);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertFalse(environment.addLifeForm(bob, 3, 4));
   }
@@ -53,7 +53,7 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeFormNegNum() {
-    Environment environment = new Environment(2, 3);
+    Environment environment = Environment.getInstance(2, 3);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertFalse(environment.addLifeForm(bob, -1, -5));
   }
@@ -64,7 +64,7 @@ public class TestEnvironment {
    */
   @Test
   public void testLifeFormtoCellContainingLifeForm() {
-    Environment environment = new Environment(2, 3);
+    Environment environment = Environment.getInstance(2, 3);
     LifeForm bob = new MockLifeForm("Bob", 40);
     LifeForm dude = new MockLifeForm("Dude", 60);
     assertTrue(environment.addLifeForm(bob, 1, 2));
@@ -77,7 +77,7 @@ public class TestEnvironment {
    */
   @Test
   public void testRemoveLifeForm() {
-    Environment environment = new Environment(2, 3);
+    Environment environment = Environment.getInstance(2, 3);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertTrue(environment.addLifeForm(bob, 1, 2));
     environment.removeLifeForm(1, 2);
