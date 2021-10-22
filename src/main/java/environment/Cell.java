@@ -47,7 +47,9 @@ public class Cell {
    * in the cell. false otherwise(when full).
    */
   public boolean addWeapon(Weapon weapon) {
-    if (weapon1 == null) {
+    if (weapon1 == weapon || weapon2 == weapon) {
+      return false;
+    } else if (weapon1 == null) {
       weapon1 = weapon;
       return true;
     } else if (weapon2 == null) {

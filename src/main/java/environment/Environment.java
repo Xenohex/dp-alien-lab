@@ -1,6 +1,7 @@
 package environment;
 
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 /**
  * Keeps track of a small world of cells in which LifeForms can exist. These
@@ -82,4 +83,49 @@ public class Environment {
     return cells[row][col].getLifeForm();
   }
 
+  /**
+   * @param weapon
+   * @param row
+   * @param col
+   * @return true if the weapon was aded, false if the weapon
+   * could not be added. There are several reasons for failure:
+   * There are no spots availabe. the weapon instance is already in the cell.
+   * OR the cell was off the board.
+   */
+  public boolean addWeapon(Weapon weapon, int row, int col) {
+    return cells[row][col].addWeapon(weapon);
+  }
+  
+  /**
+   * @param weapon
+   * @param row
+   * @param col
+   * @return the weapon removed from the cell.
+   * Returns null of the cell was off the grid.
+   */
+  public Weapon removeWeapon(Weapon weapon, int row, int col) {
+    return cells[row][col].removeWeapon(weapon);
+  }
+  
+  public Weapon[] getWeapons(int row, int col) {
+    Weapon[] arr = new Weapon[2];
+    Weapon w = cells[row][col].getWeapon1();
+    Weapon w2 = cells[row][col].getWeapon2();
+    
+    if (cells[row][col].getWeaponsCount() == 2) {
+      arr = new Weapon[2];
+      arr[0] = w;
+      arr[1] = w2;
+    } else if (cells[row][col].getWeaponsCount() == 1) {
+      arr = new Weapon[1];
+      if (w == null) {
+        arr[0] = w2;
+      } else
+        arr[0] = w;
+    }
+    return arr;
+    
+    
+    
+  }
 }

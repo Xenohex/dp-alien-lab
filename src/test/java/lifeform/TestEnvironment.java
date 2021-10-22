@@ -5,38 +5,70 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import environment.Environment;
+import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.Weapon;
 
 /**
  * Test all cases for environment class
  * 
- * @author Christian Spitler - lab 5; jun - up to lab 4
+ * @author Christian Spitler lab 5; jun up to lab 4
  *
  */
 public class TestEnvironment {
   
   //-------lab5 tests -------------------------
   
+  /**
+   * 
+   */
   @Test
   public void testEnvironmentInitializationSingle() {
-    Environment environment = Environment.getInstance(1, 1);
+    Environment environment = Environment.getInstance(6, 6);
     assertNull(environment.getLifeForm(0, 0));
-    Environment environment2 = Environment.getInstance(3, 3);
+    Environment environment2 = Environment.getInstance(8, 8);
     LifeForm bob = new MockLifeForm("bob", 40);
-    assertFalse(environment.addLifeForm(bob, 2, 2));
+    assertFalse(environment.addLifeForm(bob, 5, 6));
+  }
+  
+  /**
+   * 
+   */
+  @Test
+  public void addWeapon() {
+    Environment environment = Environment.getInstance(6, 6);
+    Weapon pistol = new Pistol();
+    Weapon chain = new ChainGun();
+    assertTrue(environment.addWeapon(pistol, 2, 4));
+    assertTrue(environment.addWeapon(chain, 2, 4));
+    assertFalse(environment.addWeapon(chain, 2, 4));
+    
   }
   
   @Test
-  public void addWeapon() {
-    Environment environment = Environment.getInstance(4, 4);
+  public void removeWeapon() {
+    Environment environment = Environment.getInstance(6, 6);
     Weapon pistol = new Pistol();
-   // assertTrue(environment.addWeapon(pistol));
-    //assertFalse(environment)
-    
+    Weapon chain = new ChainGun();
+    environment.addWeapon(pistol, 1, 5);
+    environment.addWeapon(chain, 2, 3);
+    assertEquals(chain,environment.removeWeapon(chain, 2, 3));
+    assertNull(environment.removeWeapon(chain, 2,3));
+  }
+  
+  @Test
+  public void testWeaponArray() {
+    Environment environment = Environment.getInstance(6, 6);
+    Weapon pistol = new Pistol();
+    Weapon chain = new ChainGun();
+    environment.addWeapon(pistol, 1, 5);
+    environment.addWeapon(chain, 1, 5);
+    Weapon w[] = { pistol, chain };
+    assertEquals(w, environment.getWeapons(1, 5));
   }
   
   
@@ -48,7 +80,7 @@ public class TestEnvironment {
    */
   @Test
   public void testEnvironmentInitialization() {
-    Environment environment = Environment.getInstance(1, 1);
+    Environment environment = Environment.getInstance(6, 6);
     assertNull(environment.getLifeForm(0, 0));
   }
 
@@ -57,7 +89,7 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeForm() {
-    Environment environment = Environment.getInstance(2, 3);
+    Environment environment = Environment.getInstance(6, 6);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertTrue(environment.addLifeForm(bob, 0, 1));
     assertEquals("Bob", environment.getLifeForm(0, 1).getName());
@@ -69,9 +101,9 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeFormBigNum() {
-    Environment environment = Environment.getInstance(2, 3);
+    Environment environment = Environment.getInstance(6, 6);
     LifeForm bob = new MockLifeForm("Bob", 40);
-    assertFalse(environment.addLifeForm(bob, 3, 4));
+    assertFalse(environment.addLifeForm(bob, 6, 7));
   }
 
   /**
@@ -80,7 +112,7 @@ public class TestEnvironment {
    */
   @Test
   public void testAddLifeFormNegNum() {
-    Environment environment = Environment.getInstance(2, 3);
+    Environment environment = Environment.getInstance(6, 7);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertFalse(environment.addLifeForm(bob, -1, -5));
   }
@@ -91,7 +123,7 @@ public class TestEnvironment {
    */
   @Test
   public void testLifeFormtoCellContainingLifeForm() {
-    Environment environment = Environment.getInstance(2, 3);
+    Environment environment = Environment.getInstance(6, 6);
     LifeForm bob = new MockLifeForm("Bob", 40);
     LifeForm dude = new MockLifeForm("Dude", 60);
     assertTrue(environment.addLifeForm(bob, 1, 2));
@@ -104,7 +136,7 @@ public class TestEnvironment {
    */
   @Test
   public void testRemoveLifeForm() {
-    Environment environment = Environment.getInstance(2, 3);
+    Environment environment = Environment.getInstance(6, 6);
     LifeForm bob = new MockLifeForm("Bob", 40);
     assertTrue(environment.addLifeForm(bob, 1, 2));
     environment.removeLifeForm(1, 2);
