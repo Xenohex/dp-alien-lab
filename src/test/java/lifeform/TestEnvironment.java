@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 
@@ -26,6 +27,12 @@ public class TestEnvironment {
   /**
    * 
    */
+  @Before 
+  public void resetEnvironment() {
+    Environment environment = Environment.getInstance(6, 6);
+    environment.clearBoard();
+  }
+  
   @Test
   public void testEnvironmentInitializationSingle() {
     Environment environment = Environment.getInstance(6, 6);

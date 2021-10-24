@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
+import weapon.MockWeapon;
 
 /**
  * Tests for GenericWeapon
