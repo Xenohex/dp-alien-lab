@@ -39,7 +39,7 @@ public class Environment {
    * It permits only one instance to be created. If an instance 
    * of environment already exists, this returns that instance.
    */
-  public static synchronized Environment getInstance(int rows, int cols) {
+  public static synchronized Environment getEnvironment(int rows, int cols) {
     if(theEnvironment == null) {
       theEnvironment = new Environment(rows, cols);
     }
@@ -157,7 +157,7 @@ public class Environment {
    * @return the distance
    * @throws EnvironmentException
    */
-  public double getDistance​(int row1, int col1, int row2, int col2) throws EnvironmentException {
+  public double getDistance(int row1, int col1, int row2, int col2) throws EnvironmentException {
     int displace = 0;
     if (row1 < 0 || row1 > getNumRows() || row2 < 0 || row2 > getNumRows() || 
         col1 < 0 || col1 > getNumCols() || col2 < 0 || col2 > getNumCols()) {
