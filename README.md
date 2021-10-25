@@ -54,9 +54,9 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Singleton for environmet | | Chris | | 10/27/21 | | 10/23/21 |
-| Creating Range part 1 | | Bader | | 10/27/21 | | 10/24/21 |
-| Creating Range part 2 | | Austin | | 10/27/21 | | 10/25/21 |
+| Singleton for environmet | Chris | 10/27/21 | 10/23/21 |
+| Creating Range part 1 | Bader | 10/27/21 | 10/24/21 |
+| Creating Range part 2 | Austin | 10/27/21 | 10/25/21 |
 | edit README | Bader | 10/27/21 | 10/25/21 |
 
 
@@ -64,4 +64,4 @@ Using the following table
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 01 | | 10/25/ 21 | | class | | all group | | get things done by 10/25/21 |
+| 01 | 10/25/ 21 | class | all group | get things done by 10/25/21 |
