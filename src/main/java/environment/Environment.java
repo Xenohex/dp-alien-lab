@@ -133,7 +133,15 @@ public class Environment {
    * Reset the Singleton environment for tests
    */
   public void clearBoard() {
-    theEnvironment = null;
+    for(int i = 0; i < cells.length; i++) {
+      for(int j = 0; j < cells[i].length; j++) {
+        cells[i][j].removeLifeForm();
+        Weapon[] arr = getWeapons(i,j);
+        for(int w = 0; w < arr.length; w++) {
+          removeWeapon(arr[w],i,j);
+        }
+      }
+    }
   }
   
   /**
