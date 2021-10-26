@@ -65,3 +65,4 @@ Using the following table
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 01 | 10/25/ 21 | class | all group | get things done by 10/25/21 |
+| 02 | 10/26/ 21 | Zoom | all group | Cleaning up Lab 5 |

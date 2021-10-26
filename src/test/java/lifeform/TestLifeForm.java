@@ -30,8 +30,8 @@ public class TestLifeForm {
     LifeForm entity;
     entity = new MockLifeForm("Bob", 40);
     env.addLifeForm(entity, 1, 3);
-    assertEquals(1, entity.getCurrentRow());
-    assertEquals(3, entity.getCurrentCol());
+    assertEquals(1, entity.getRow());
+    assertEquals(3, entity.getCol());
   }
   
   /**
@@ -43,8 +43,8 @@ public class TestLifeForm {
     Environment env = Environment.getEnvironment(6, 6);
     LifeForm entity;
     entity = new MockLifeForm("Bob", 40);
-    assertEquals(-1, entity.getCurrentRow());
-    assertEquals(-1, entity.getCurrentCol());
+    assertEquals(-1, entity.getRow());
+    assertEquals(-1, entity.getCol());
   }
   
   /**
@@ -59,8 +59,8 @@ public class TestLifeForm {
     env.addLifeForm(entity, -9, 3);
     env.addLifeForm(entity, 9, -3);
     env.addLifeForm(entity, -9, -3);
-    assertEquals(-1, entity.getCurrentRow());
-    assertEquals(-1, entity.getCurrentCol());
+    assertEquals(-1, entity.getRow());
+    assertEquals(-1, entity.getCol());
   }
   
   //----------Decorator/pre-lab5 tests---------------

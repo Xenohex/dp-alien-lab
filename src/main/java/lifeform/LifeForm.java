@@ -16,8 +16,8 @@ public abstract class LifeForm extends Object {
   protected int attackStrength;
   protected Weapon weapon;
   
-  protected int currentRow;
-  protected int currentCol;
+  protected int row;
+  protected int col;
 
   
   /**
@@ -28,8 +28,8 @@ public abstract class LifeForm extends Object {
    */
   public LifeForm(String name, int points) {
     this(name,points,1);
-    this.currentRow = -1;
-    this.currentCol = -1;
+    this.row = -1;
+    this.col = -1;
   }
   
   /**
@@ -42,8 +42,8 @@ public abstract class LifeForm extends Object {
     myName = name;
     currentLifePoints = points;
     attackStrength = attack;
-    this.currentRow = -1;
-    this.currentCol = -1;
+    this.row = -1;
+    this.col = -1;
   }
 
   /**
@@ -146,28 +146,30 @@ public abstract class LifeForm extends Object {
    * 
    * @return lifeform's current row / currentRow
    */
-  public int getCurrentRow() {
-    return currentRow;
+  public int getRow() {
+    return row;
   }
 
   /**
    * 
    * @return lifeform's current column / currentCol
    */
-  public int getCurrentCol() {
-    return currentCol;
+  public int getCol() {
+    return col;
   }
 
   /**
-   * sets the lifeform's current coordinates to the entered arguments, unless it either of them are less than zero
+   * sets the lifeform's current coordinates to the entered arguments, 
+   * unless it either of them are less than zero
    * @param row
    * @param col
    * @throws EnvironmentException
    */
   public void setLocation(int row, int col) throws EnvironmentException {
-    if (row < 0 || col < 0)
+    if (row < 0 || col < 0) {
       throw new EnvironmentException("Coordinates are invalid!");
-    this.currentRow = row;
-    this.currentCol = col;
+    }
+    this.row = row;
+    this.col = col;
   }
 }
