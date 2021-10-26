@@ -16,8 +16,8 @@ public abstract class LifeForm extends Object {
   protected int attackStrength;
   protected Weapon weapon;
   
-  private int currentRow = -1;
-  private int currentCol = -1;
+  protected int currentRow;
+  protected int currentCol;
 
   
   /**
@@ -28,6 +28,8 @@ public abstract class LifeForm extends Object {
    */
   public LifeForm(String name, int points) {
     this(name,points,1);
+    this.currentRow = -1;
+    this.currentCol = -1;
   }
   
   /**
@@ -40,6 +42,8 @@ public abstract class LifeForm extends Object {
     myName = name;
     currentLifePoints = points;
     attackStrength = attack;
+    this.currentRow = -1;
+    this.currentCol = -1;
   }
 
   /**

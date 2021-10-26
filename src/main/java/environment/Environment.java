@@ -203,10 +203,3 @@ public class Environment {
   }
   
 }
-
-/*
- * Current Objectives:
- * Implement lifeform's self position tracking capability
- * Implement both versions of getDistance
- * Finish creating tests
-*/
