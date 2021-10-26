@@ -1,7 +1,9 @@
 package lifeform;
 
 import weapon.Weapon;
+import environment.Environment;
 import exceptions.WeaponException;
+import exceptions.EnvironmentException;
 
 /**
  * Keeps track of the information associated with a simple life form. Also
@@ -13,6 +15,9 @@ public abstract class LifeForm extends Object {
   protected int currentLifePoints;
   protected int attackStrength;
   protected Weapon weapon;
+  
+  private int currentRow = -1;
+  private int currentCol = -1;
 
   
   /**
@@ -131,5 +136,34 @@ public abstract class LifeForm extends Object {
    */
   public void reload() {
     weapon.reload();
+  }
+
+  /**
+   * 
+   * @return lifeform's current row / currentRow
+   */
+  public int getCurrentRow() {
+    return currentRow;
+  }
+
+  /**
+   * 
+   * @return lifeform's current column / currentCol
+   */
+  public int getCurrentCol() {
+    return currentCol;
+  }
+
+  /**
+   * sets the lifeform's current coordinates to the entered arguments, unless it either of them are less than zero
+   * @param row
+   * @param col
+   * @throws EnvironmentException
+   */
+  public void setLocation(int row, int col) throws EnvironmentException {
+    if (row < 0 || col < 0)
+      throw new EnvironmentException("Coordinates are invalid!");
+    this.currentRow = row;
+    this.currentCol = col;
   }
 }

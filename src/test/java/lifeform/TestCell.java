@@ -18,7 +18,9 @@ import weapon.Weapon;
  *
  */
 public class TestCell {
+  
   ///-------------lab5 tests------------
+  
   @Test
   public void testInitializationWithSingleton() {
     Cell cell = new Cell();
@@ -83,6 +85,7 @@ public class TestCell {
   
   
   //---------Decorator Tests and pre-lab5 tests------
+  
   /**
    * At initialization, the Cell should be empty and not contain a LifeForm.
    */

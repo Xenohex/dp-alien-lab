@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import environment.Environment;
+import exceptions.EnvironmentException;
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
 import weapon.Pistol;
@@ -15,6 +17,53 @@ import weapon.Weapon;
  *
  */
 public class TestLifeForm {
+  
+  //-------lab5 tests ---------------------------
+  
+  /**
+   * Tests that the lifeform can be added to the environment and retains its position
+   * @throws EnvironmentException
+   */
+  @Test
+  public void testLifeFormPlacement() throws EnvironmentException {
+    Environment env = Environment.getEnvironment(6, 6);
+    LifeForm entity;
+    entity = new MockLifeForm("Bob", 40);
+    env.addLifeForm(entity, 1, 3);
+    assertEquals(1, entity.getCurrentRow());
+    assertEquals(3, entity.getCurrentCol());
+  }
+  
+  /**
+   * Tests that the lifeform starts at (-1, -1)
+   * @throws EnvironmentException
+   */
+  @Test
+  public void testCoordinateInitialization() throws EnvironmentException {
+    Environment env = Environment.getEnvironment(6, 6);
+    LifeForm entity;
+    entity = new MockLifeForm("Bob", 40);
+    assertEquals(-1, entity.getCurrentRow());
+    assertEquals(-1, entity.getCurrentCol());
+  }
+  
+  /**
+   * Tests that the lifeform will retain its initial (-1, -1) placement if given invalid coordinates to spawn in
+   * @throws EnvironmentException
+   */
+  @Test
+  public void testLifeFormResistInvalidPlacement() throws EnvironmentException {
+    Environment env = Environment.getEnvironment(6, 6);
+    LifeForm entity;
+    entity = new MockLifeForm("Bob", 40);
+    env.addLifeForm(entity, -9, 3);
+    env.addLifeForm(entity, 9, -3);
+    env.addLifeForm(entity, -9, -3);
+    assertEquals(-1, entity.getCurrentRow());
+    assertEquals(-1, entity.getCurrentCol());
+  }
+  
+  //----------Decorator/pre-lab5 tests---------------
 
   /**
    * When a LifeForm is created, it should know its name and how many life points
