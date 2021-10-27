@@ -43,11 +43,8 @@ public class TestEnvironment {
     assertFalse(environment.addLifeForm(bob, 5, 6));
   }
   
-  /**
-   * 
-   */
   @Test
-  public void addWeapon() {
+  public void testAddWeapon() {
     Environment environment = Environment.getEnvironment(6, 6);
     Weapon pistol = new Pistol();
     Weapon chain = new ChainGun();
@@ -58,7 +55,7 @@ public class TestEnvironment {
   }
   
   @Test
-  public void removeWeapon() {
+  public void testRemoveWeapon() {
     Environment environment = Environment.getEnvironment(6, 6);
     Weapon pistol = new Pistol();
     Weapon chain = new ChainGun();
