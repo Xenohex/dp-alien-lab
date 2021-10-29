@@ -61,4 +61,5 @@ Using the following table
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 01 | 10/27/ 21 | class | all group | get Activity 4 done first |
+| 01 | 10/27/21 | class | all group | get Activity 4 done first |
+| 02 | 10/28/21 | Zoom | all group | work on the design |
