@@ -54,7 +54,7 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| edit README | Bader | 10/27/21 | 10/30/21 |
+| edit README | Bader | 11/16/21 | 11/3/21 |
 
 
 # Team Meeting Log
@@ -63,3 +63,4 @@ Using the following table
 |---|---|---|---|---|
 | 01 | 10/27/21 | class | all group | get Activity 4 done first |
 | 02 | 10/28/21 | Zoom | all group | work on the design |
+| 03 | 10/3/21 | class | all group | Design evaluation | 
