@@ -1,4 +1,4 @@
-# Lab 4 Description
+# Lab 6 Description
 In this lab we make the weapons and attachments for the weapons. Different weapons and attachments have differnt properties.
 
 # Team Contract
@@ -54,6 +54,9 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
+| Turn & Movement | Bader | 11/16/21 | 11/3/21|
+| Commands | Austin | 11/16/21 | 11/3/21|
+| GameUI | Chris | 11/16/21 | 11/3/21|
 | edit README | Bader | 11/16/21 | 11/3/21 |
 
 
