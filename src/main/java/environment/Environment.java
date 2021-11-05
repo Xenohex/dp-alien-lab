@@ -183,23 +183,11 @@ public class Environment {
    * @throws EnvironmentException
    */
   public double getDistance(LifeForm lf1, LifeForm lf2) throws EnvironmentException {
-    double displace = 0;
     int row1 = lf1.getCurrentRow();
     int col1 = lf1.getCurrentCol();
     int row2 = lf2.getCurrentRow();
     int col2 = lf2.getCurrentCol();
-    if (row1 < 0 || row1 > getNumRows() || row2 < 0 || row2 > getNumRows() || 
-        col1 < 0 || col1 > getNumCols() || col2 < 0 || col2 > getNumCols()) {
-      throw new EnvironmentException("Coordinates are invalid!");
-    }
-    if (row1 == row2) {
-      displace = col2 - col1;
-    } else if (col1 == col2) {
-      displace = row2 - row1;
-    } else {
-      displace = Math.sqrt(Math.pow(row2 - row1, 2) + Math.pow(col2 - col1, 2));
-    }
-    return Math.abs(displace * 5);
+    return getDistance(row1, col1, row2, col2);
   }
   
 }
