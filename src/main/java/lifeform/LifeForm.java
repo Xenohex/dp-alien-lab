@@ -18,7 +18,8 @@ public abstract class LifeForm extends Object {
   
   protected int row;
   protected int col;
-
+  protected String currentDirection;
+  protected int maxSpeed;
   
   /**
    * Create an instance
@@ -42,6 +43,7 @@ public abstract class LifeForm extends Object {
     myName = name;
     currentLifePoints = points;
     attackStrength = attack;
+    currentDirection = "north";
     this.row = -1;
     this.col = -1;
   }
@@ -171,5 +173,27 @@ public abstract class LifeForm extends Object {
     }
     this.row = row;
     this.col = col;
+  }
+  
+  /**
+   * Change the currentDirection to the direction given
+   * @param direction
+   */
+  public void changeDirection(String direction) {
+    currentDirection = direction;
+  }
+  
+  /**
+   * @return the maxSpeed
+   */
+  public int getMaxSpeed() {
+    return maxSpeed;
+  }
+  
+  /**
+   * @return the currentDirection
+   */
+  public String getCurrentDirection() {
+    return currentDirection;
   }
 }

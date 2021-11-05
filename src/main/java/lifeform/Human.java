@@ -20,6 +20,7 @@ public class Human extends LifeForm {
     armorPoints = Math.max(0, armor);
     currentLifePoints = Math.max(0, life);
     attackStrength = 5;
+    maxSpeed = 3;
   }
 
   /**

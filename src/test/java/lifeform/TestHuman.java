@@ -4,11 +4,28 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import exceptions.RecoveryRateException;
+
 /**
  * test all cases for human class
  *
  */
 public class TestHuman {
+  
+  //-----------------------Lab6 tests-----------------------------------------------
+  /**
+   * Test the maxSpeed of an Alien
+   * @throws RecoveryRateException
+   */
+  @Test
+  public void testMaxSpeed(){
+    Human entity = new Human("Bob", 100, 0);
+    assertEquals(3, entity.getMaxSpeed());
+  }
+  
+  
+  
+  //---------------------- preLab6 tests---------------------------------
   /**
    * test to make sure that each human is successfully initialized with the right
    * name, LifePoints, and armor value

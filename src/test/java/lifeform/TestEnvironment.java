@@ -22,9 +22,6 @@ import weapon.Weapon;
  *
  */
 public class TestEnvironment {
-  private int rows;
-  private int cols;
-  private Environment e;
   //-------lab5 tests -------------------------
   
   /**
@@ -33,20 +30,9 @@ public class TestEnvironment {
   @Before 
   public void resetEnvironment() {
     Environment e = Environment.getEnvironment(6, 6);
-    rows = 6;
-    cols = 6;
     e.clearBoard();
   }
-  @Test
-  public void test()
-  {
-    assertEquals(rows, e.getNumRows());
-    assertEquals(cols, e.getNumCols());
-    
-    Environment f = Environment.getEnvironment(2, 3);
-    assertEquals(rows, f.getNumRows());
-    assertEquals(cols, f.getNumCols());
-  }
+  
   @Test
   public void testEnvironmentInitializationSingle() throws EnvironmentException {
     Environment environment = Environment.getEnvironment(6, 6);

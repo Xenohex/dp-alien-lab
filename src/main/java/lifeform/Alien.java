@@ -51,6 +51,7 @@ public class Alien extends LifeForm implements TimerObserver {
       int recoveryRate) throws RecoveryRateException {
     super(name, life);
     attackStrength = 10;
+    maxSpeed = 2;
     maxLifePoints = life;
     this.rb = rb;
     this.recoveryRate = recoveryRate;

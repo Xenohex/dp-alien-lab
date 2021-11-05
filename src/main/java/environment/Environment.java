@@ -197,17 +197,10 @@ public class Environment {
    * @throws EnvironmentException
    */
   public double getDistance(LifeForm lf1, LifeForm lf2) throws EnvironmentException {
-<<<<<<< HEAD
-    int row1 = lf1.getCurrentRow();
-    int col1 = lf1.getCurrentCol();
-    int row2 = lf2.getCurrentRow();
-    int col2 = lf2.getCurrentCol();
-=======
     int row1 = lf1.getRow();
     int col1 = lf1.getCol();
     int row2 = lf2.getRow();
     int col2 = lf2.getCol();
->>>>>>> 03e96488eb58896463395fdacf24de4e301e65b6
     return getDistance(row1, col1, row2, col2);
   }
   

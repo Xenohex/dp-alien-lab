@@ -18,6 +18,26 @@ import weapon.Weapon;
  */
 public class TestLifeForm {
   
+  //-------lab6 tests---------------------------
+  /**
+   * Test the default direction of a LifeForm
+   */
+  @Test 
+  public void testDefaultDirection() {
+    LifeForm entity = new MockLifeForm("Bob", 40);
+    assertEquals("north", entity.getCurrentDirection());
+  }
+  
+  /**
+   *  Test changeDirection for a LifeForm
+   */
+  @Test 
+  public void testChangeDirection() {
+    LifeForm entity = new MockLifeForm("Bob", 40);
+    entity.changeDirection("south");
+    assertEquals("south", entity.getCurrentDirection());
+  }
+  
   //-------lab5 tests ---------------------------
   
   /**

@@ -16,6 +16,20 @@ import recovery.RecoveryLinear;
  */
 public class TestAlien {
 
+  //-----------------------Lab6 tests-----------------------------------------------
+  /**
+   * Test the maxSpeed of an Alien
+   * @throws RecoveryRateException
+   */
+  @Test
+  public void testMaxSpeed() throws RecoveryRateException {
+    Alien entity = new Alien("bob", 100);
+    assertEquals(2, entity.getMaxSpeed());
+  }
+  
+  
+  
+  //---------------------- preLab6 tests---------------------------------
   /**
    * This is to ensure the name and life points is set correctly when initializing
    * 
