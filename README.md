@@ -1,4 +1,4 @@
-# Lab 4 Description
+# Lab 6 Description
 In this lab we make the weapons and attachments for the weapons. Different weapons and attachments have differnt properties.
 
 # Team Contract
@@ -54,14 +54,16 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Singleton for environmet | Chris | 10/27/21 | 10/23/21 |
-| Creating Range part 1 | Bader | 10/27/21 | 10/24/21 |
-| Creating Range part 2 | Austin | 10/27/21 | 10/25/21 |
-| edit README | Bader | 10/27/21 | 10/25/21 |
+| Turn & Movement | Bader | 11/16/21 | 11/3/21|
+| Commands | Austin | 11/16/21 | 11/3/21|
+| GameUI | Chris | 11/16/21 | 11/3/21|
+| edit README | Bader | 11/16/21 | 11/3/21 |
 
 
 # Team Meeting Log
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 01 | 10/25/ 21 | class | all group | get things done by 10/25/21 |
+| 01 | 10/27/21 | class | all group | get Activity 4 done first |
+| 02 | 10/28/21 | Zoom | all group | work on the design |
+| 03 | 10/3/21 | class | all group | Design evaluation | 

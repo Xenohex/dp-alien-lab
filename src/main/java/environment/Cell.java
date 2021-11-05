@@ -55,8 +55,9 @@ public class Cell {
     } else if (weapon2 == null) {
       weapon2 = weapon;
       return true;
-    } else
+    } else {
       return false;
+    }
   }
   
   /**
@@ -91,6 +92,10 @@ public class Cell {
     return weapon2;
   }
   
+  /**
+   * 
+   * @return number of weapons in a cell
+   */
   public int getWeaponsCount() {
     int count = 0;
     if (weapon1 != null) {

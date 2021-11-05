@@ -11,8 +11,7 @@ import weapon.Weapon;
  */
 public class Environment {
   
-  private volatile static Environment theEnvironment;
-  
+  private static volatile Environment theEnvironment;
   
   /**
    * A 2-Dimensional array of the individual Cells.
@@ -40,7 +39,7 @@ public class Environment {
    * of environment already exists, this returns that instance.
    */
   public static synchronized Environment getEnvironment(int rows, int cols) {
-    if(theEnvironment == null) {
+    if (theEnvironment == null) {
       theEnvironment = new Environment(rows, cols);
     }
     return theEnvironment;
@@ -61,8 +60,8 @@ public class Environment {
     }
     if (row < cells.length && col < cells[0].length && (cells[row][col].addLifeForm(lf) == true)) {
       cells[row][col].addLifeForm(lf);
-      lf.setLocation(row, col); // added this so the lifeforms can store their own coordinates, made me add EnvironmentException
-      return true;              // as well as an EnvironmentException to most tests in TestEnvironment
+      lf.setLocation(row, col);
+      return true;
     }
     return false;
   }
@@ -90,9 +89,9 @@ public class Environment {
    * @param weapon
    * @param row
    * @param col
-   * @return true if the weapon was aded, false if the weapon
+   * @return true if the weapon was added, false if the weapon
    * could not be added. There are several reasons for failure:
-   * There are no spots availabe. the weapon instance is already in the cell.
+   * There are no spots available. the weapon instance is already in the cell.
    * OR the cell was off the board.
    */
   public boolean addWeapon(Weapon weapon, int row, int col) {
@@ -110,6 +109,12 @@ public class Environment {
     return cells[row][col].removeWeapon(weapon);
   }
   
+  /**
+   * 
+   * @param row
+   * @param col
+   * @return number of weapons in a cell
+   */
   public Weapon[] getWeapons(int row, int col) {
     Weapon[] arr = new Weapon[2];
     Weapon w = cells[row][col].getWeapon1();
@@ -123,8 +128,9 @@ public class Environment {
       arr = new Weapon[1];
       if (w == null) {
         arr[0] = w2;
-      } else
+      } else {
         arr[0] = w;
+      }
     }
     return arr;
   }
@@ -133,7 +139,15 @@ public class Environment {
    * Reset the Singleton environment for tests
    */
   public void clearBoard() {
-    theEnvironment = null;
+    for (int i = 0; i < cells.length; i++) {
+      for (int j = 0; j < cells[i].length; j++) {
+        cells[i][j].removeLifeForm();
+        Weapon[] arr = getWeapons(i,j);
+        for (int w = 0; w < arr.length; w++) {
+          removeWeapon(arr[w],i,j);
+        }
+      }
+    }
   }
   
   /**
@@ -161,8 +175,8 @@ public class Environment {
    */
   public double getDistance(int row1, int col1, int row2, int col2) throws EnvironmentException {
     double displace = 0;
-    if (row1 < 0 || row1 > getNumRows() || row2 < 0 || row2 > getNumRows() || 
-        col1 < 0 || col1 > getNumCols() || col2 < 0 || col2 > getNumCols()) {
+    if (row1 < 0 || row1 > getNumRows() || row2 < 0 || row2 > getNumRows() 
+        || col1 < 0 || col1 > getNumCols() || col2 < 0 || col2 > getNumCols()) {
       throw new EnvironmentException("Coordinates are invalid!");
     }
     if (row1 == row2) {
@@ -183,10 +197,17 @@ public class Environment {
    * @throws EnvironmentException
    */
   public double getDistance(LifeForm lf1, LifeForm lf2) throws EnvironmentException {
+<<<<<<< HEAD
     int row1 = lf1.getCurrentRow();
     int col1 = lf1.getCurrentCol();
     int row2 = lf2.getCurrentRow();
     int col2 = lf2.getCurrentCol();
+=======
+    int row1 = lf1.getRow();
+    int col1 = lf1.getCol();
+    int row2 = lf2.getRow();
+    int col2 = lf2.getCol();
+>>>>>>> 03e96488eb58896463395fdacf24de4e301e65b6
     return getDistance(row1, col1, row2, col2);
   }
   
