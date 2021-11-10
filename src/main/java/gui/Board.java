@@ -17,14 +17,22 @@ import javax.swing.SwingUtilities;
 
 import environment.Cell;
 import environment.Environment;
+import exceptions.AttachmentException;
 import exceptions.EnvironmentException;
 import exceptions.RecoveryRateException;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
-import weapon.Pistol;
-import weapon.Weapon;
+import weapon.*;
 
+
+/**
+ * @author chris
+ * This is the GUI. The GUI will display the environment and will 
+ * get updated by observing the environment. The GUI will then 
+ * redraw the affected cells. There is also a legend displayed to aid the 
+ * user in determining what is displayed in each cell.
+ */
 public class Board extends JFrame implements ActionListener {
 
   
@@ -34,6 +42,7 @@ public class Board extends JFrame implements ActionListener {
   JLabel textLabel, imageLabel;
   int[] x  = new int[3];
   int[] y = new int[3];
+  
   /**
    * This constructor takes in the environment variable 
    * and will also draw the gameBoard based on the Environment's
@@ -55,32 +64,15 @@ public class Board extends JFrame implements ActionListener {
     
     JButton[][] buttonArray = new JButton[r][c];
     JPanel centerPanel = new JPanel(new GridLayout(r,c));
-    //JLabel[][] labelArray = new JLabel[r][c];
     for (int i=0;i<r;i++)
     {
      for (int j=0;j<c;j++)
      {
        
-       buttonArray[i][j] = new JButton(createImage(e, i, j));
+       buttonArray[i][j] = new JButton(createCell(i, j));
        centerPanel.add(buttonArray[i][j]);
-     //labelArray[i][j] = new JLabel(" ("+i+":"+j+") ");
-     //centerPanel.add(labelArray[i][j]);
      }
     }
-    
-    //textLabel = new JLabel("North");
-    //add("North",textLabel);
-     
-    //imageButton = new JButton(createImage());
-    //imageButton.addActionListener(this);
-    //add("West",imageButton);
-     
-    //imageLabel = new JLabel(createImage());
-    //add("South",imageLabel);
-     
-    //textButton = new JButton("A Button");
-    //add("East",textButton);
-    
     
     add("Center",centerPanel);
     
@@ -89,12 +81,12 @@ public class Board extends JFrame implements ActionListener {
   }
   
   /**
-   * @param e
+   * 
    * @param row
    * @param col
-   * @return
+   * @return the image that will go into each cell.
    */
-  public ImageIcon createImage(Environment e, int row, int col) {
+  public ImageIcon createCell(int row, int col) {
     
     BufferedImage exampleImage = new 
         BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
@@ -103,60 +95,103 @@ public class Board extends JFrame implements ActionListener {
     drawer.setColor(new Color(160,160,160));
     drawer.fillRect(0, 0, 50, 50);
     
-    if(e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Human.class) {
-      drawHuman(drawer);
-      if(e.getLifeForm(row, col).hasWeapon() == true) {
-        drawWeapon(drawer);
-      }
-    } else if (e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Alien.class) {
-      drawAlien(drawer);
-      if(e.getLifeForm(row, col).hasWeapon() == true) {
-        drawWeapon(drawer);
-      }
-    }
-    
-    
-    
-    
-   
-    
-    
-    
+    determineLifeForm(drawer, row, col);
+    drawCellWeapons(drawer, row, col);
+
     return new ImageIcon(exampleImage);
   }
   
-  public void drawHuman(Graphics drawer) {
-    
+  
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * Draws a human.
+   */
+  public void drawHuman(Graphics drawer, int row, int col) { 
     drawer.setColor(new Color(230,180,140));
+    direct(row, col);
     drawer.fillPolygon(x, y, 3);
-    
   }
   
-  public void drawAlien(Graphics drawer) {
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * Draws an alien.
+   */
+  public void drawAlien(Graphics drawer, int row, int col) {
     drawer.setColor(new Color(0,200,0));
+    direct(row, col);
     drawer.fillPolygon(x,y,3);
   }
   
-  public void drawWeapon(Graphics drawer) {
-    drawer.setColor(new Color(255,0,0));
-    int[] newx  = new int[4];
-    int[] newy = new int[4];
-    for(int i = 0; i < newx.length; i++) {
-      newx[i] = x[i % 3];
-      newy[i] = y[i % 3];
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * Draws a Weapon if the lifeForm has it. Draws attachments on 
+   * the weapon when applicable.
+   */
+  public void drawWeapon(Graphics drawer, int row, int col) {
+    if (e.getLifeForm(row, col).hasWeapon() == true) {
+      drawer.setColor(new Color(255,0,0));
+      int[] newx  = new int[4];
+      int[] newy = new int[4];
+      for(int i = 0; i < newx.length; i++) {
+        newx[i] = x[i % 3];
+        newy[i] = y[i % 3];
+      }
+      drawer.drawPolyline(newx, newy, 4);
+      int attachments = e.getLifeForm(row, col).getWeapon().getNumAttachments();
+      switch(attachments) {
+      case 2:
+        drawer.setColor(new Color(95,0,135));
+        drawer.fillRect(0, 0, 10, 20);
+        break;
+      case 1:
+        drawer.setColor(new Color(150,0,175));
+        drawer.fillRect(0, 0, 10, 10);
+        break;
+      case 0:
+        break;
+      }
+    }
+  }
+    
+    
+  
+  
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * Draws weapons in the cell for display.
+   */
+  public void drawCellWeapons(Graphics drawer, int row, int col) {
+    if (e.getWeapons(row, col).length != 0) {
+      int weapons = e.getWeapons(row, col).length;
+    switch(weapons) {
+    case 2:
+      drawer.setColor(new Color(255,0,0));
+      drawer.fillRect(40, 0, 10, 10);
+      drawer.fillRect(40, 40, 10, 10);
+      break;
+    case 1:
+      drawer.setColor(new Color(255,0,0));
+      drawer.fillRect(40, 40, 10, 10);
+      break;
+    case 0:
+      break;
     }
     
-    drawer.drawPolyline(newx, newy, 4);
-      //drawer.drawImage(pisol.jpg, 45, 0, 5, 5, null);
+    }
     
   }
   
-  public void drawCellWeapons(Graphics drawer) {
-    
-  }
-  
+  /**
+   * Sets coordinates so a lifeform can be drawn pointing North.
+   */
   public void turnNorth() {
     x[0] = 25;
     x[1] = 15;
@@ -166,6 +201,9 @@ public class Board extends JFrame implements ActionListener {
     y[2] = 35;
   }
   
+  /**
+   * Sets coordinates so a lifeform can be drawn pointing South.
+   */
   public void turnSouth() {
     x[0] = 25;
     x[1] = 15;
@@ -175,36 +213,101 @@ public class Board extends JFrame implements ActionListener {
     y[2] = 15;
   }
   
+  /**
+   * Sets coordinates so a lifeform can be drawn pointing West.
+   */
   public void turnWest() {
-    
+    x[0] = 15;
+    x[1] = 35;
+    x[2] = 35;
+    y[0] = 25;
+    y[1] = 15;
+    y[2] = 35;
   }
   
+  /**
+   * Sets coordinates so a lifeform can be drawn pointing East.
+   */
   public void turnEast() {
-    
-  }
-  
-  public void move() {
-    
-  }
-  
-  public void drop() {
-    
-  }
-  
-  public void acquire() {
-    
+    x[0] = 35;
+    x[1] = 15;
+    x[2] = 15;
+    y[0] = 25;
+    y[1] = 15;
+    y[2] = 35;
   }
   
   
+  /**
+   * @param row
+   * @param col
+   * will display all information regarding the lifeform 
+   * (its weapon, name, health, ammo, etc...)
+   *  and the available weapons in the cell. 
+   */
+  public void highlighted(int row, int col) {
+    //returns attachment info, weapon, lifeform, health
+    //returns weapons in cell
+    //ammo left
+  }
   
-  public static void main(String args[]) throws EnvironmentException, RecoveryRateException {
+  /**
+   * @param row
+   * @param col
+   * This will set the direction based on the LifeForm's 
+   * current direction so they can be drawn properly.
+   */
+  public void direct(int row, int col) {
+    if (e.getLifeForm(row, col).getCurrentDirection() == "North") {
+      turnNorth();
+    } else if (e.getLifeForm(row, col).getCurrentDirection() == "South") {
+      turnSouth();
+    } else if (e.getLifeForm(row, col).getCurrentDirection() == "West") {
+      turnWest();
+    } else if (e.getLifeForm(row, col).getCurrentDirection() == "East") {
+      turnEast();
+    }
+  }
+  
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * This function determines what lifeform should be drawn and then
+   * calls for a the appropriate function as well as for drawWeapon
+   */
+  public void determineLifeForm(Graphics drawer, int row, int col) {
+    if(e.getLifeForm(row, col) != null && 
+        e.getLifeForm(row, col).getClass() == Human.class) {
+      drawHuman(drawer, row, col);
+      drawWeapon(drawer, row, col);
+      
+    } else if (e.getLifeForm(row, col) != null && 
+        e.getLifeForm(row, col).getClass() == Alien.class) {
+      drawAlien(drawer, row, col);
+      drawWeapon(drawer, row, col);
+    }
+  }
+      
+    
+
+  
+  
+  
+  public static void main(String args[]) throws EnvironmentException, RecoveryRateException, AttachmentException {
     Environment e = Environment.getEnvironment(7, 10);
     LifeForm bob = new Human("bob", 10, 2);
     e.addLifeForm(bob, 2, 3);
     LifeForm al = new Alien("Al", 10);
     e.addLifeForm(al, 6, 3);
-    Weapon w = new Pistol();
+    al.changeDirection("West");
+    bob.changeDirection("East");
+    Weapon w = new Scope(new Stabilizer(new Pistol()));
+    Weapon w1 = new Pistol();
     al.pickUpWeapon(w);
+    e.addWeapon(w, 3, 5);
+    e.addWeapon(w, 3, 3);
+    e.addWeapon(w1, 3, 3);
     Board board = new Board(e);
     //Board board;
   }
