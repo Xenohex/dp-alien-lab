@@ -116,7 +116,7 @@ public class Environment {
    * @return number of weapons in a cell
    */
   public Weapon[] getWeapons(int row, int col) {
-    Weapon[] arr = new Weapon[2];
+    Weapon[] arr;
     Weapon w = cells[row][col].getWeapon1();
     Weapon w2 = cells[row][col].getWeapon2();
     
@@ -131,6 +131,8 @@ public class Environment {
       } else {
         arr[0] = w;
       }
+    } else {
+      arr = new Weapon[0];
     }
     return arr;
   }

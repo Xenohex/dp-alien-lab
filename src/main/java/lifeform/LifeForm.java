@@ -43,7 +43,7 @@ public abstract class LifeForm extends Object {
     myName = name;
     currentLifePoints = points;
     attackStrength = attack;
-    currentDirection = "north";
+    currentDirection = "North";
     this.row = -1;
     this.col = -1;
   }
@@ -195,5 +195,12 @@ public abstract class LifeForm extends Object {
    */
   public String getCurrentDirection() {
     return currentDirection;
+  }
+  
+  /**
+   * @return the weapon of the lifeform
+   */
+  public Weapon getWeapon() {
+    return weapon;
   }
 }
