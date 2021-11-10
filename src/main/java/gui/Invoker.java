@@ -91,24 +91,33 @@ public class Invoker extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == eastButton) {
-      System.out.println("east pressed");
+      //TODO: get selected lifeform and make it face east
+      System.out.println("east");
     } else if (e.getSource() == westButton) {
-      System.out.println("west pressed");
+      //TODO: get selected lifeform and make it face west
+      System.out.println("west");
     } else if (e.getSource() == northButton) {
-      System.out.println("north pressed");
+      //TODO: get selected lifeform and make it face north
+      System.out.println("north");
     } else if (e.getSource() == southButton) {
-      System.out.println("south pressed");
+      //TODO: get selected lifeform and make it face south
+      System.out.println("south");
     } else if (e.getSource() == moveButton) {
-      System.out.println("move pressed");
+      //TODO: get selected lifeform and direction its facing and make it move that direction
+      System.out.println("move");
     }
     
     else if (e.getSource() == attackButton) {
+      //TODO: get selected lifeform and attack the closest lifeform it is looking at
       System.out.println("attack");
     } else if (e.getSource() == pickUpWeaponButton) {
+      //TODO: get selected lifeform and pickup a dropped weapon in its cell
       System.out.println("pick up weapon");
     } else if (e.getSource() == dropWeaponButton) {
+      //TODO: get selected lifeform and drop its weapon
       System.out.println("drop weapon");
     } else if (e.getSource() == reloadButton) {
+      // TODO: get selected lifeform and reload its weapon
       System.out.println("reload");
     }
   }
