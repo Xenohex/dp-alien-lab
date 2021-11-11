@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,8 +39,14 @@ public class Board extends JFrame implements ActionListener {
   
   //Cell selectedCell;
   static Environment e;
-  JButton textButton, imageButton;
-  JLabel textLabel, imageLabel;
+  //JButton textButton, imageButton;
+  JButton[][] buttonArray;
+  
+  JLabel[][] textLabel, imageLabel;
+  JButton btn;
+  JLabel blank ;
+  JPanel centerPanel;
+  Cell[][] selectedCell;
   int[] x  = new int[3];
   int[] y = new int[3];
   
@@ -57,19 +64,27 @@ public class Board extends JFrame implements ActionListener {
     y[0] = 15;
     y[1] = 35;
     y[2] = 35;
-    this.e = e;
+    
+    
+    Board.e = e;
     int r = e.getNumRows();
     int c = e.getNumCols();
     setLayout(new BorderLayout());
     
-    JButton[][] buttonArray = new JButton[r][c];
-    JPanel centerPanel = new JPanel(new GridLayout(r,c));
+    
+    buttonArray = new JButton[r][c];
+    imageLabel = new JLabel[r][c];
+    centerPanel = new JPanel(new GridLayout(r,c));
     for (int i=0;i<r;i++)
     {
      for (int j=0;j<c;j++)
      {
        
-       buttonArray[i][j] = new JButton(createCell(i, j));
+       imageLabel[i][j] = new JLabel(createCell(i, j));
+       buttonArray[i][j] = new JButton(""+ i + "," + j);
+       buttonArray[i][j].add(imageLabel[i][j]);
+       buttonArray[i][j].addActionListener(this);
+       
        centerPanel.add(buttonArray[i][j]);
      }
     }
@@ -97,6 +112,19 @@ public class Board extends JFrame implements ActionListener {
     
     determineLifeForm(drawer, row, col);
     drawCellWeapons(drawer, row, col);
+
+    return new ImageIcon(exampleImage);
+  }
+  
+  public ImageIcon clearCell() {
+    BufferedImage exampleImage = new 
+        BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
+    Graphics drawer = exampleImage.getGraphics();
+    
+    drawer.setColor(new Color(160,160,160));
+    drawer.fillRect(0, 0, 50, 50);
+    
+    
 
     return new ImageIcon(exampleImage);
   }
@@ -245,7 +273,8 @@ public class Board extends JFrame implements ActionListener {
    * (its weapon, name, health, ammo, etc...)
    *  and the available weapons in the cell. 
    */
-  public void highlighted(int row, int col) {
+  public void highlighted() {
+    
     //returns attachment info, weapon, lifeform, health
     //returns weapons in cell
     //ammo left
@@ -314,9 +343,42 @@ public class Board extends JFrame implements ActionListener {
  
   @Override
   public void actionPerformed(ActionEvent event) {
-    if (event.getSource() == imageButton) {
-      //imageButton.repaint();
-    } 
+    if(btn != null) {
+      String[] rowCol = btn.getText().split(",");
+      //buttonArray[][4].setBackground(new Color(255,0,0));
+      //buttonArray[btn.getX()][btn.getY()].setBackground(new JButton().getBackground());
+     /** for(int i = 0; i < e.getNumRows(); i++) {
+        for (int j = 0; j < e.getNumCols(); j++) {
+          if (buttonArray[i][j] == btn) {
+            int row = i;
+            int col = j;
+          }
+        }
+      } **/
+      //String a = btn.getText();
+      
+      int x = Integer.parseInt(rowCol[0]);
+      int y = Integer.parseInt(rowCol[1]);
+      selectedCell = new Cell[x][y];
+      
+      /** This proves that I can remove and add an imageLabel
+      buttonArray[x][y].remove(imageLabel[x][y]);
+      buttonArray[x][y].add(imageLabel[x][y]);
+      **/
+      
+      blank = new JLabel(clearCell());
+      //buttonArray[x][y].add(blank);
+      //buttonArray[x][y].add(imageLabel[x][y]);
+      //add("West",btn);
+      //buttonArray[x][y].remove(imageLabel[x][y]);
+      //buttonArray[x][y].add(blank);
+      buttonArray[x][y].setBackground(new JButton().getBackground()); 
+      
+      
+    }
+    
+    btn = (JButton) event.getSource();
+    btn.setBackground(new Color(0,0,255));
     
   }
 }
