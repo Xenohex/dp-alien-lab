@@ -41,10 +41,10 @@ public class Board extends JFrame implements ActionListener {
   //Cell selectedCell;
   static Environment e;
   //JButton textButton, imageButton;
-  String[] legendList = {"             Human","              Alien","Human with weapon","   1 Weapon in cell",
+  private String[] legendList = {"             Human","              Alien","Human with weapon","   1 Weapon in cell",
       "   2 weapons in cell", "LifeForm pointed East","     Highlighted cell",
       "<html>Human with <br>weapon  with <br>2 attachments</html>","<html>Alien with <br>weapon with <br>1 attachment</html>"};
-  boolean[][] fun = { {false, false, true, false, false, false, false, false, false}, 
+  private boolean[][] fun = { {false, false, true, false, false, false, false, false, false}, 
       {false, false, false, true, false, false, false, false, false},
       {false, false, true, false, true, false, false, false, false},
       {false, false, false, false, false, false, false, true, false},
@@ -55,18 +55,18 @@ public class Board extends JFrame implements ActionListener {
       {false, false, true, false, false, false, true, false, false},
       {false, false, false, true, false, true, false, false, false},
   };
-  JButton[][] buttonArray;
-  JLabel[][] imageLabel;
-  JLabel[][] legend = new JLabel[2][9];
-  JButton btn;
-  JLabel initial;
-  JPanel centerPanel, bottomPanel;
-  Cell selectedCell;
+  private JButton[][] buttonArray;
+  private JLabel[][] imageLabel;
+  private JLabel[][] legend = new JLabel[2][9];
+  private JButton btn;
+  private JLabel initial;
+  private JPanel centerPanel, bottomPanel;
+  private Cell selectedCell;
   //Cell[][] selectedCell;
-  int selectedRow;
-  int selectedCol;
-  int[] x  = new int[3];
-  int[] y = new int[3];
+  private int selectedRow;
+  private int selectedCol;
+  private int[] x  = new int[3];
+  private int[] y = new int[3];
   
   /**
    * This constructor takes in the environment variable 
@@ -136,7 +136,7 @@ public class Board extends JFrame implements ActionListener {
    * @param fun
    * @return
    */
-  public ImageIcon createLegendCell(boolean[] fun) {
+  private ImageIcon createLegendCell(boolean[] fun) {
     BufferedImage exampleImage = new 
         BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = exampleImage.getGraphics();
@@ -197,7 +197,7 @@ public class Board extends JFrame implements ActionListener {
    * @param col
    * @return the image that will go into each cell.
    */
-  public ImageIcon createCell(int row, int col) {
+  private ImageIcon createCell(int row, int col) {
     
     BufferedImage exampleImage = new 
         BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
@@ -215,7 +215,7 @@ public class Board extends JFrame implements ActionListener {
   /**
    * @return an empty cell
    */
-  public ImageIcon clearCell() {
+  private ImageIcon clearCell() {
     BufferedImage exampleImage = new 
         BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = exampleImage.getGraphics();
@@ -235,7 +235,7 @@ public class Board extends JFrame implements ActionListener {
    * This function determines what lifeform should be drawn and then
    * calls for a the appropriate function as well as for drawWeapon
    */
-  public void determineLifeForm(Graphics drawer, int row, int col) {
+  private void determineLifeForm(Graphics drawer, int row, int col) {
     if(e.getLifeForm(row, col) != null && 
         e.getLifeForm(row, col).getClass() == Human.class) {
       drawHuman(drawer, row, col);
@@ -254,7 +254,7 @@ public class Board extends JFrame implements ActionListener {
    * @param col
    * Draws a human.
    */
-  public void drawHuman(Graphics drawer, int row, int col) { 
+  private void drawHuman(Graphics drawer, int row, int col) { 
     drawer.setColor(new Color(230,180,140));
     direct(row, col);
     drawer.fillPolygon(x, y, 3);
@@ -266,7 +266,7 @@ public class Board extends JFrame implements ActionListener {
    * @param col
    * Draws an alien.
    */
-  public void drawAlien(Graphics drawer, int row, int col) {
+  private void drawAlien(Graphics drawer, int row, int col) {
     drawer.setColor(new Color(0,200,0));
     direct(row, col);
     drawer.fillPolygon(x,y,3);
@@ -279,7 +279,7 @@ public class Board extends JFrame implements ActionListener {
    * Draws a Weapon if the lifeForm has it. Draws attachments on 
    * the weapon when applicable.
    */
-  public void drawWeapon(Graphics drawer, int row, int col) {
+  private void drawWeapon(Graphics drawer, int row, int col) {
     if (e.getLifeForm(row, col).hasWeapon() == true) {
       drawer.setColor(new Color(255,0,0));
       int[] newx  = new int[4];
@@ -315,7 +315,7 @@ public class Board extends JFrame implements ActionListener {
    * @param col
    * Draws weapons in the cell for display.
    */
-  public void drawCellWeapons(Graphics drawer, int row, int col) {
+  private void drawCellWeapons(Graphics drawer, int row, int col) {
     if (e.getWeapons(row, col).length != 0) {
       int weapons = e.getWeapons(row, col).length;
     switch(weapons) {
@@ -339,7 +339,7 @@ public class Board extends JFrame implements ActionListener {
   /**
    * Sets coordinates so a lifeform can be drawn pointing North.
    */
-  public void turnNorth() {
+  private void turnNorth() {
     x[0] = 25;
     x[1] = 15;
     x[2] = 35;
@@ -351,7 +351,7 @@ public class Board extends JFrame implements ActionListener {
   /**
    * Sets coordinates so a lifeform can be drawn pointing South.
    */
-  public void turnSouth() {
+  private void turnSouth() {
     x[0] = 25;
     x[1] = 15;
     x[2] = 35;
@@ -363,7 +363,7 @@ public class Board extends JFrame implements ActionListener {
   /**
    * Sets coordinates so a lifeform can be drawn pointing West.
    */
-  public void turnWest() {
+  private void turnWest() {
     x[0] = 15;
     x[1] = 35;
     x[2] = 35;
@@ -375,7 +375,7 @@ public class Board extends JFrame implements ActionListener {
   /**
    * Sets coordinates so a lifeform can be drawn pointing East.
    */
-  public void turnEast() {
+  private void turnEast() {
     x[0] = 35;
     x[1] = 15;
     x[2] = 15;
@@ -391,7 +391,7 @@ public class Board extends JFrame implements ActionListener {
    * This will set the direction based on the LifeForm's 
    * current direction so they can be drawn properly.
    */
-  public void direct(int row, int col) {
+  private void direct(int row, int col) {
     if (e.getLifeForm(row, col).getCurrentDirection() == "North") {
       turnNorth();
     } else if (e.getLifeForm(row, col).getCurrentDirection() == "South") {
@@ -404,14 +404,36 @@ public class Board extends JFrame implements ActionListener {
   }
   
   
+  /**
+   * @param row
+   * @param col
+   * will be called when environment notifies the observer(board)
+   * Will redraw the previously selected Cell and the new coordinates
+   * of the newly affected Cell.
+   */
   public void update(int row, int col) {
     
+  }
+  
+  /**
+   * @return
+   * this is a getter so Environment can know which cell is selected
+   */
+  public Cell getSelectedCell() {
+    return selectedCell;
   }
     
 
   
   
   
+  /**
+   * @param args
+   * @throws EnvironmentException
+   * @throws RecoveryRateException
+   * @throws AttachmentException
+   * For testing purposes.
+   */
   public static void main(String args[]) throws EnvironmentException, RecoveryRateException, AttachmentException {
     Environment e = Environment.getEnvironment(7, 10);
     LifeForm bob = new Human("bob", 10, 2);
