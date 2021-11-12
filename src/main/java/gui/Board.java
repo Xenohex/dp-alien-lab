@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import environment.Cell;
@@ -40,13 +41,30 @@ public class Board extends JFrame implements ActionListener {
   //Cell selectedCell;
   static Environment e;
   //JButton textButton, imageButton;
+  String[] legendList = {"             Human","              Alien","Human with weapon","   1 Weapon in cell",
+      "   2 weapons in cell", "LifeForm pointed East","     Highlighted cell",
+      "<html>Human with <br>weapon  with <br>2 attachments</html>","<html>Alien with <br>weapon with <br>1 attachment</html>"};
+  boolean[][] fun = { {false, false, true, false, false, false, false, false, false}, 
+      {false, false, false, true, false, false, false, false, false},
+      {false, false, true, false, true, false, false, false, false},
+      {false, false, false, false, false, false, false, true, false},
+      {false, false, false, false, false, false, false, false, true},
+      //{false, false, false, false, false, false, false, false},
+      {false, true, false, true, false, false, false, false, false},
+      {true, false, false, false, false, false, false, false, false},
+      {false, false, true, false, false, false, true, false, false},
+      {false, false, false, true, false, true, false, false, false},
+  };
   JButton[][] buttonArray;
-  
-  JLabel[][] textLabel, imageLabel;
+  JLabel[][] imageLabel;
+  JLabel[][] legend = new JLabel[2][9];
   JButton btn;
-  JLabel blank ;
-  JPanel centerPanel;
-  Cell[][] selectedCell;
+  JLabel initial;
+  JPanel centerPanel, bottomPanel;
+  Cell selectedCell;
+  //Cell[][] selectedCell;
+  int selectedRow;
+  int selectedCol;
   int[] x  = new int[3];
   int[] y = new int[3];
   
@@ -57,42 +75,120 @@ public class Board extends JFrame implements ActionListener {
    * @param e
    */
   public Board(Environment e) {
-    
-    x[0] = 25;
-    x[1] = 15;
-    x[2] = 35;
-    y[0] = 15;
-    y[1] = 35;
-    y[2] = 35;
-    
-    
+   
+    //instance of Environment initialized
     Board.e = e;
+    
+    //rows and columns of environment allocated
     int r = e.getNumRows();
     int c = e.getNumCols();
-    setLayout(new BorderLayout());
-    
-    
     buttonArray = new JButton[r][c];
     imageLabel = new JLabel[r][c];
+    
+    //sets up GUI aas well as the centerPanel to hold the board
+    setLayout(new BorderLayout());
     centerPanel = new JPanel(new GridLayout(r,c));
+    
+    //Initializes the board with appropriate entities
     for (int i=0;i<r;i++)
     {
      for (int j=0;j<c;j++)
      {
        
        imageLabel[i][j] = new JLabel(createCell(i, j));
-       buttonArray[i][j] = new JButton(""+ i + "," + j);
+       buttonArray[i][j] = new JButton();
+       
+       //sets each button with row,col as its name
+       // this allows for easier row and column retrieval
+       // once a button is pressed.
+       buttonArray[i][j].setName(""+ i + "," + j);
        buttonArray[i][j].add(imageLabel[i][j]);
        buttonArray[i][j].addActionListener(this);
-       
        centerPanel.add(buttonArray[i][j]);
      }
     }
-    
+
+    //sets text on West which will be filled with Cell info when 
+    // a cell is clicked on. Adds the Board to the GUI
+    initial = new JLabel();
+    initial.setText("<html>------------------------------------------------------</html>");
     add("Center",centerPanel);
+    add("West", initial);
     
+    //will create and set the legend
+    bottomPanel = new JPanel(new GridLayout(2,9));
+    for (int i = 0; i < 9; i++) {
+      legend[1][i] = new JLabel();
+      legend[1][i].setText(legendList[i]);
+      bottomPanel.add(legend[1][i]);
+    }
+    for (int i = 0; i < 9; i++) {
+      legend[0][i] = new JLabel(createLegendCell(fun[i]));
+      bottomPanel.add(legend[0][i]);
+    }
+    //legend[0][0] = ;
+    add("South",bottomPanel);
     pack();
     setVisible(true);
+  }
+  
+  /**
+   * @param fun
+   * @return
+   */
+  public ImageIcon createLegendCell(boolean[] fun) {
+    BufferedImage exampleImage = new 
+        BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
+    Graphics drawer = exampleImage.getGraphics();
+    
+    if (fun[0]) {
+      drawer.setColor(new Color(0,0,255));
+    } else {
+      drawer.setColor(new Color(160,160,160));
+    }
+    drawer.fillRect(0, 0, 50, 50);
+    turnNorth();
+    if (fun[1]) {
+      turnEast();
+    }
+    if (fun[2]) {
+      drawer.setColor(new Color(230,180,140));
+      drawer.fillPolygon(x, y, 3);
+    }
+    if (fun[3]) {
+      drawer.setColor(new Color(0,200,0));
+      drawer.fillPolygon(x,y,3);
+    }
+    if (fun[4]) {
+      drawer.setColor(new Color(255,0,0));
+      int[] newx  = new int[4];
+      int[] newy = new int[4];
+      for(int i = 0; i < newx.length; i++) {
+        newx[i] = x[i % 3];
+        newy[i] = y[i % 3];
+      }
+      drawer.drawPolyline(newx, newy, 4);
+    }
+    if (fun[5]) {
+      drawer.setColor(new Color(150,0,175));
+      drawer.fillRect(0, 0, 10, 10);
+    }
+    if (fun[6]) {
+      drawer.setColor(new Color(95,0,135));
+      drawer.fillRect(0, 0, 10, 20);
+    }
+    if (fun[7]) {
+      drawer.setColor(new Color(255,0,0));
+      drawer.fillRect(40, 0, 10, 10);
+    }
+    if (fun[8]) {
+      drawer.setColor(new Color(255,0,0));
+      drawer.fillRect(40, 0, 10, 10);
+      drawer.fillRect(40, 40, 10, 10);
+    }
+    
+    
+    return new ImageIcon(exampleImage);
   }
   
   /**
@@ -116,6 +212,9 @@ public class Board extends JFrame implements ActionListener {
     return new ImageIcon(exampleImage);
   }
   
+  /**
+   * @return an empty cell
+   */
   public ImageIcon clearCell() {
     BufferedImage exampleImage = new 
         BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
@@ -129,6 +228,25 @@ public class Board extends JFrame implements ActionListener {
     return new ImageIcon(exampleImage);
   }
   
+  /**
+   * @param drawer
+   * @param row
+   * @param col
+   * This function determines what lifeform should be drawn and then
+   * calls for a the appropriate function as well as for drawWeapon
+   */
+  public void determineLifeForm(Graphics drawer, int row, int col) {
+    if(e.getLifeForm(row, col) != null && 
+        e.getLifeForm(row, col).getClass() == Human.class) {
+      drawHuman(drawer, row, col);
+      drawWeapon(drawer, row, col);
+      
+    } else if (e.getLifeForm(row, col) != null && 
+        e.getLifeForm(row, col).getClass() == Alien.class) {
+      drawAlien(drawer, row, col);
+      drawWeapon(drawer, row, col);
+    }
+  }
   
   /**
    * @param drawer
@@ -171,6 +289,7 @@ public class Board extends JFrame implements ActionListener {
         newy[i] = y[i % 3];
       }
       drawer.drawPolyline(newx, newy, 4);
+      
       int attachments = e.getLifeForm(row, col).getWeapon().getNumAttachments();
       switch(attachments) {
       case 2:
@@ -269,20 +388,6 @@ public class Board extends JFrame implements ActionListener {
   /**
    * @param row
    * @param col
-   * will display all information regarding the lifeform 
-   * (its weapon, name, health, ammo, etc...)
-   *  and the available weapons in the cell. 
-   */
-  public void highlighted() {
-    
-    //returns attachment info, weapon, lifeform, health
-    //returns weapons in cell
-    //ammo left
-  }
-  
-  /**
-   * @param row
-   * @param col
    * This will set the direction based on the LifeForm's 
    * current direction so they can be drawn properly.
    */
@@ -298,26 +403,10 @@ public class Board extends JFrame implements ActionListener {
     }
   }
   
-  /**
-   * @param drawer
-   * @param row
-   * @param col
-   * This function determines what lifeform should be drawn and then
-   * calls for a the appropriate function as well as for drawWeapon
-   */
-  public void determineLifeForm(Graphics drawer, int row, int col) {
-    if(e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Human.class) {
-      drawHuman(drawer, row, col);
-      drawWeapon(drawer, row, col);
-      
-    } else if (e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Alien.class) {
-      drawAlien(drawer, row, col);
-      drawWeapon(drawer, row, col);
-    }
+  
+  public void update(int row, int col) {
+    
   }
-      
     
 
   
@@ -338,47 +427,87 @@ public class Board extends JFrame implements ActionListener {
     e.addWeapon(w, 3, 3);
     e.addWeapon(w1, 3, 3);
     Board board = new Board(e);
-    //Board board;
   }
  
+  /**
+   * will display all information regarding the lifeform 
+   * (its weapon, name, health, ammo, etc...)
+   *  and the available weapons in the cell. 
+   *  Will also highlight the selected cell
+   */
   @Override
   public void actionPerformed(ActionEvent event) {
     if(btn != null) {
-      String[] rowCol = btn.getText().split(",");
-      //buttonArray[][4].setBackground(new Color(255,0,0));
-      //buttonArray[btn.getX()][btn.getY()].setBackground(new JButton().getBackground());
-     /** for(int i = 0; i < e.getNumRows(); i++) {
-        for (int j = 0; j < e.getNumCols(); j++) {
-          if (buttonArray[i][j] == btn) {
-            int row = i;
-            int col = j;
-          }
-        }
-      } **/
-      //String a = btn.getText();
       
-      int x = Integer.parseInt(rowCol[0]);
-      int y = Integer.parseInt(rowCol[1]);
-      selectedCell = new Cell[x][y];
-      
-      /** This proves that I can remove and add an imageLabel
-      buttonArray[x][y].remove(imageLabel[x][y]);
-      buttonArray[x][y].add(imageLabel[x][y]);
-      **/
-      
-      blank = new JLabel(clearCell());
-      //buttonArray[x][y].add(blank);
-      //buttonArray[x][y].add(imageLabel[x][y]);
-      //add("West",btn);
-      //buttonArray[x][y].remove(imageLabel[x][y]);
-      //buttonArray[x][y].add(blank);
-      buttonArray[x][y].setBackground(new JButton().getBackground()); 
-      
-      
+      //sets background of previously clicked button to default background
+      btn.setBackground(new JButton().getBackground()); 
     }
     
+    //intakes the new source of the button click and highlights it
     btn = (JButton) event.getSource();
     btn.setBackground(new Color(0,0,255));
+    
+    //This takes the buttons name (row,col) and splits it to get the 
+    // cells row and column. 
+    String[] rowCol = btn.getName().split(",");
+    selectedRow = Integer.parseInt(rowCol[0]);
+    selectedCol = Integer.parseInt(rowCol[1]);
+    
+    //selectedCell is made from row and col for easier operations
+    // and to be passed into the commands
+    selectedCell = e.getCell(selectedRow, selectedCol);
+    
+    //This has initializes the strings for cell information like the weapons
+    // It also initialized the starting header which will be concatenated
+    // with the other information on the lifeform in the cell
+    String lfInfo = "<html> ------------------------------------------------------ " + "<br>";
+    String cellInfo = "";
+    
+    //Creates lifeForm info if there is a lifeForm
+    if (selectedCell.getLifeForm() != null) {
+      lfInfo += "Name: " + selectedCell.getName() + "<br>" +
+        "Health Points: " + selectedCell.getLifeForm().getCurrentLifePoints() + "<br>"; 
+      /**
+      if (selectedCell.getLifeForm().getClass() == Human.class) {
+        lfInfo += selectedCell.getLifeForm().getArmor();
+      } 
+      
+      //this would give humans armor points displayed, but I do not know how to do this
+      **/
+      
+      //This will give weapon information if lifeForm is holding a weapon
+      if (selectedCell.getLifeForm().getWeapon() != null) {
+        lfInfo += selectedCell.getLifeForm().getWeapon().toString() + "<br>" 
+            + "Ammo:  " + selectedCell.getLifeForm().getWeapon().getCurrentAmmo() 
+            + "/" + selectedCell.getLifeForm().getWeapon().getMaxAmmo() + "<br>";
+      }
+    }
+    
+    //This will give the names of the weapons in the cell
+    for (int i = 0; i < selectedCell.getWeaponsCount(); i++) {
+      Weapon[] arr = e.getWeapons(selectedRow, selectedCol);
+      cellInfo += "Weapon " + (i + 1) + ": " + arr[i].toString() + "<br>";
+    }
+    
+    //ends the html block which was added because \n did not work
+    cellInfo += "</html>";
+    initial.setText(lfInfo.concat(cellInfo));
+    
+    
+    
+    //pack();
+    
+    //add("West", blank);
+    
+    //
+    //area = new JTextArea(cellInfo);
+    //infoPanel = new JPanel();
+    //infoPanel.add("HI");
+   // 
+    //add("West", blank);
+    //setVisible(true);
+    // add stuff to the west panel and display it,
+    // then setvisible to true
     
   }
 }

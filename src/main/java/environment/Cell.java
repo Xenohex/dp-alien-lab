@@ -106,4 +106,12 @@ public class Cell {
     }
     return count;
   }
+  
+  public String getName() {
+    if (lifeForm != null) {
+      return lifeForm.getName();
+    } else {
+      return "";
+    }
+  }
 }

@@ -206,4 +206,8 @@ public class Environment {
     return getDistance(row1, col1, row2, col2);
   }
   
+  public Cell getCell(int row, int col) {
+    return cells[row][col];
+  }
+  
 }
