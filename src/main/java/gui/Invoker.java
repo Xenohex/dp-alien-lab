@@ -25,8 +25,13 @@ public class Invoker extends JFrame implements ActionListener {
   
   JButton eastButton, westButton, northButton, southButton, moveButton;
   JButton attackButton, dropWeaponButton, pickUpWeaponButton, reloadButton;
-
-  public Invoker() {
+  Environment e;
+  Board b;
+  
+  public Invoker(Environment e, Board b) {
+    
+    this.e = e;
+    this.b = b;
     
     setLayout(new BorderLayout());
     
@@ -84,7 +89,9 @@ public class Invoker extends JFrame implements ActionListener {
   }
   
   public static void main(String[] args) {
-    Invoker gui = new Invoker();
+    Environment e = Environment.getEnvironment(7, 10);
+    Board b = new Board(e);
+    Invoker gui = new Invoker(e, b);
   }
 
 
@@ -92,6 +99,8 @@ public class Invoker extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     
     if (e.getSource() == eastButton) {
+      // make getx and gety in board
+      //this.e.getLifeForm(b.getx(), b.gety()).changeDirection("East");
       //TODO: get selected lifeform and make it face east
       
       System.out.println("east");

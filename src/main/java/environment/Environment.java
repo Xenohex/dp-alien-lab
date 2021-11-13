@@ -1,6 +1,7 @@
 package environment;
 
 import exceptions.EnvironmentException;
+import gui.Board;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -12,7 +13,7 @@ import weapon.Weapon;
 public class Environment {
   
   private static volatile Environment theEnvironment;
-  
+  private static volatile Board board;
   /**
    * A 2-Dimensional array of the individual Cells.
    */
@@ -204,6 +205,28 @@ public class Environment {
     int row2 = lf2.getRow();
     int col2 = lf2.getCol();
     return getDistance(row1, col1, row2, col2);
+  }
+  
+  /**
+   * @param row
+   * @param col
+   * @return the cell at row and column
+   */
+  public Cell getCell(int row, int col) {
+    return cells[row][col];
+  }
+  
+  /**
+   * @param b
+   */
+  public void setBoard(Board b) {
+    board = b;
+  }
+  
+  
+  
+  public void getSelectedCell() {
+    //selectedCell = board.getSelectedCell();
   }
   
 }
