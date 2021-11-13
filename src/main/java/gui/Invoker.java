@@ -52,7 +52,7 @@ public class Invoker extends JFrame implements ActionListener {
     moveButton.addActionListener(this);
     movementPanel.add("Center", moveButton);
     
-    JPanel actionPanel = new JPanel(new GridLayout(1,4));
+    JPanel actionPanel = new JPanel(new GridLayout(4,1));
     JButton[][] buttonArray = new JButton[4][1];
     
     attackButton = new JButton("attack");
@@ -75,9 +75,9 @@ public class Invoker extends JFrame implements ActionListener {
       actionPanel.add(buttonArray[i][0]);
     }
     
-    
     add("West", movementPanel);
     add("East", actionPanel);
+    
     pack();
     setVisible(true);
     
@@ -90,8 +90,10 @@ public class Invoker extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    
     if (e.getSource() == eastButton) {
       //TODO: get selected lifeform and make it face east
+      
       System.out.println("east");
     } else if (e.getSource() == westButton) {
       //TODO: get selected lifeform and make it face west
@@ -107,7 +109,7 @@ public class Invoker extends JFrame implements ActionListener {
       System.out.println("move");
     }
     
-    else if (e.getSource() == attackButton) {
+      else if (e.getSource() == attackButton) {
       //TODO: get selected lifeform and attack the closest lifeform it is looking at
       System.out.println("attack");
     } else if (e.getSource() == pickUpWeaponButton) {
@@ -119,6 +121,10 @@ public class Invoker extends JFrame implements ActionListener {
     } else if (e.getSource() == reloadButton) {
       // TODO: get selected lifeform and reload its weapon
       System.out.println("reload");
+    }
+    
+      else {
+      System.out.println("unknown command");
     }
   }
   
