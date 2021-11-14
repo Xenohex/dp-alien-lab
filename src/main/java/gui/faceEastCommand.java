@@ -1,21 +1,22 @@
 package gui;
 
-import lifeform.*;
+import lifeform.LifeForm;
 
-public class reloadCommand implements Command {
+public class faceEastCommand implements Command {
 
   LifeForm lifeform;
 
-  public reloadCommand(LifeForm lf) {
+  public faceEastCommand(LifeForm lf) {
     lifeform = lf;
   }
+  
   public void execute() {
     
     if (lifeform == null) {
       System.out.println("Error: no lifeform selected");
     } else {
-      lifeform.reload();
+    lifeform.changeDirection("East");
     }
   }
-
+  
 }

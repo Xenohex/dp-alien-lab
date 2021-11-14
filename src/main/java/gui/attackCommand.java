@@ -1,0 +1,82 @@
+package gui;
+
+import environment.Environment;
+import exceptions.WeaponException;
+import lifeform.LifeForm;
+
+public class attackCommand implements Command {
+  
+  LifeForm lifeform;
+  String direction;
+  Environment e;
+  
+  public attackCommand(LifeForm lf, Environment ee) {
+    lifeform = lf;
+    direction = lifeform.getCurrentDirection();
+    e = ee;
+  }
+  
+  public void execute() {
+    
+    int row = lifeform.getRow();
+    int col = lifeform.getCol();
+    int distance = 0;
+    
+    if (lifeform == null) {
+      System.out.println("Error: no lifeform selected");
+    } else {
+      try {
+        if (direction == "North") {
+          for (int i = row; i >= 0; i--) {
+            distance += 5;
+            if (i == 0 && e.getLifeForm(i, col) == null) {
+              lifeform.getWeapon().fire(distance);
+            } else if (e.getLifeForm(i, col) != null) {
+              lifeform.attack(e.getLifeForm(i, col), distance);
+            } else {
+              System.out.println("Error in attackCommand: north");
+            }
+          }
+        } else if (direction == "South") {
+          for (int i = row; i <= e.getNumRows() - 1; i++) {
+            distance += 5;
+            if (i == (e.getNumRows() - 1) && e.getLifeForm(i, col) == null) {
+              lifeform.getWeapon().fire(distance);
+            } else if (e.getLifeForm(i, col) != null) {
+              lifeform.attack(e.getLifeForm(i, col), distance);
+            } else {
+              System.out.println("Error in attackCommand: south");
+            }
+          }
+        } else if (direction == "East") {
+          for (int i = col; i <= e.getNumCols() - 1; i++) {
+            distance += 5;
+            if (i == (e.getNumCols() - 1) && e.getLifeForm(row, i) == null) {
+              lifeform.getWeapon().fire(distance);
+            } else if (e.getLifeForm(row, i) != null) {
+              lifeform.attack(e.getLifeForm(row, i), distance);
+            } else {
+              System.out.println("Error in attackCommand: east");
+            }
+          }
+        } else if (direction == "West") {
+          for (int i = col; i >= 0; i--) {
+            distance += 5;
+            if (i == 0 && e.getLifeForm(row, i) == null) {
+              lifeform.getWeapon().fire(distance);
+            } else if (e.getLifeForm(row, i) != null) {
+              lifeform.attack(e.getLifeForm(row, i), distance);
+            } else {
+              System.out.println("Error in attackCommand: west");
+            }
+          }
+        }
+      
+      } catch (WeaponException exception) {
+        System.out.println("Error: WeaponException thrown in attack command");
+      }
+    }
+    
+  }
+
+}
