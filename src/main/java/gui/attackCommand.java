@@ -24,53 +24,49 @@ public class attackCommand implements Command {
     
     if (lifeform == null) {
       System.out.println("Error: no lifeform selected");
+    } else if (lifeform.getWeapon().getCurrentAmmo() == 0) {
+      System.out.println("Error: no ammo");
     } else {
       try {
         if (direction == "North") {
-          for (int i = row; i >= 0; i--) {
+          for (int i = row - 1; i >= 0; i--) {
             distance += 5;
             if (i == 0 && e.getLifeForm(i, col) == null) {
               lifeform.getWeapon().fire(distance);
             } else if (e.getLifeForm(i, col) != null) {
               lifeform.attack(e.getLifeForm(i, col), distance);
-            } else {
-              System.out.println("Error in attackCommand: north");
             }
           }
         } else if (direction == "South") {
-          for (int i = row; i <= e.getNumRows() - 1; i++) {
+          for (int i = row + 1; i <= e.getNumRows() - 1; i++) {
             distance += 5;
             if (i == (e.getNumRows() - 1) && e.getLifeForm(i, col) == null) {
               lifeform.getWeapon().fire(distance);
             } else if (e.getLifeForm(i, col) != null) {
               lifeform.attack(e.getLifeForm(i, col), distance);
-            } else {
-              System.out.println("Error in attackCommand: south");
             }
           }
         } else if (direction == "East") {
-          for (int i = col; i <= e.getNumCols() - 1; i++) {
+          for (int i = col + 1; i <= e.getNumCols() - 1; i++) {
             distance += 5;
             if (i == (e.getNumCols() - 1) && e.getLifeForm(row, i) == null) {
               lifeform.getWeapon().fire(distance);
             } else if (e.getLifeForm(row, i) != null) {
               lifeform.attack(e.getLifeForm(row, i), distance);
-            } else {
-              System.out.println("Error in attackCommand: east");
             }
           }
         } else if (direction == "West") {
-          for (int i = col; i >= 0; i--) {
+          for (int i = col - 1; i >= 0; i--) {
             distance += 5;
             if (i == 0 && e.getLifeForm(row, i) == null) {
               lifeform.getWeapon().fire(distance);
             } else if (e.getLifeForm(row, i) != null) {
               lifeform.attack(e.getLifeForm(row, i), distance);
-            } else {
-              System.out.println("Error in attackCommand: west");
             }
           }
         }
+        
+        System.out.println("Ammo: " + lifeform.getWeapon().getCurrentAmmo());
       
       } catch (WeaponException exception) {
         System.out.println("Error: WeaponException thrown in attack command");

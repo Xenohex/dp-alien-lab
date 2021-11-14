@@ -21,6 +21,7 @@ public class acquireCommand implements Command {
       System.out.println("Error: no weapon in cell");
     } else {
       lifeform.pickUpWeapon(e.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1());
+      System.out.println("acquire weapon executed");
     }
   }
 

@@ -18,10 +18,11 @@ public class dropCommand implements Command {
     
     if (lifeform == null) {
       System.out.println("Error: no lifeform selected");
-    } else if (lifeform.getWeapon() == null) {
+    } else if (lifeform.hasWeapon() == false) {
       System.out.println("Error: lifeform has no weapon to drop");
     } else {
-      lifeform.dropWeapon();
+      e.addWeapon(lifeform.dropWeapon(), lifeform.getRow(), lifeform.getCol());
+      System.out.println("Drop executed");
     }
   }
   

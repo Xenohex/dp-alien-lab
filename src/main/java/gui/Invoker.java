@@ -92,8 +92,18 @@ public class Invoker extends JFrame implements ActionListener {
     
     LifeForm bob = new Human("bob", 10, 2);
     e.addLifeForm(bob, 0, 0);
-    Weapon w1 = new Pistol();
+    var w1 = new Pistol();
     bob.pickUpWeapon(w1);
+    
+    LifeForm joe = new Human("joe", 10, 2);
+    e.addLifeForm(joe, 0, 1);
+    var w2 = new ChainGun();
+    joe.pickUpWeapon(w2);
+    
+    LifeForm bran = new Human("bran", 10, 2);
+    e.addLifeForm(bran, 0, 2);
+    var w3 = new PlasmaCannon();
+    bran.pickUpWeapon(w3);
   }
 
 
@@ -135,7 +145,7 @@ public class Invoker extends JFrame implements ActionListener {
         System.out.println("south");
       } else if (event.getSource() == moveButton) {
         //TODO: get selected lifeform and direction its facing and make it move that direction
-        var move = new moveCommand(lifeform, e);
+        var move = new moveCommand(lifeform, e, b);
         remote.setCommand(move);
         remote.buttonPressed();
         System.out.println("move");
@@ -155,7 +165,7 @@ public class Invoker extends JFrame implements ActionListener {
         System.out.println("pick up weapon");
       } else if (event.getSource() == dropWeaponButton) {
         //TODO: get selected lifeform and drop its weapon
-        var drop = new dropCommand(lifeform);
+        var drop = new dropCommand(lifeform, e);
         remote.setCommand(drop);
         remote.buttonPressed();
         System.out.println("drop weapon");

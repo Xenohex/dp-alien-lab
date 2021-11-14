@@ -15,7 +15,8 @@ public class faceNorthCommand implements Command {
     if (lifeform == null) {
       System.out.println("Error: no lifeform selected");
     } else {
-    lifeform.changeDirection("North");
+      lifeform.changeDirection("North");
+      System.out.println(lifeform.getName() + " facing North");
     }
   }
   

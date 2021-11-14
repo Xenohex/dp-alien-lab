@@ -10,12 +10,14 @@ public class moveCommand implements Command {
   String direction;
   int speed;
   Environment e;
+  Board b;
   
-  public moveCommand(LifeForm lf, Environment ee) {
+  public moveCommand(LifeForm lf, Environment ee, Board bb) {
     lifeform = lf;
     direction = lifeform.getCurrentDirection();
     speed = lifeform.getMaxSpeed();
     e = ee;
+    b = bb;
   }
   
   public void execute() {
@@ -62,6 +64,14 @@ public class moveCommand implements Command {
             lifeform.setLocation(row, col - speed);
           }
         }
+        
+        e.removeLifeForm(row, col);
+        e.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
+        // b.setSelectedCell(lifeform.getRow(), lifeform.getCol()); ??
+        
+        System.out.println(lifeform.getName()
+            + " moved to " + lifeform.getRow()
+            + ", " + lifeform.getCol());
       
       } catch (EnvironmentException exception) {
         System.out.println("Error: EnvironmentException in move command");
@@ -69,12 +79,5 @@ public class moveCommand implements Command {
     }
     
   }
-  
-  /*
-   * move lifeform no matter what
-   * THEN check if lifeform is out of bounds and if they are, move them back in
-   * by taking the difference between the lifeform's new position and the 
-   * edge of the environment and move it back that many positions
-   */
 
 }
