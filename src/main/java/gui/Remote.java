@@ -11,24 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import environment.Cell;
-import environment.Environment;
-import exceptions.EnvironmentException;
-import exceptions.RecoveryRateException;
-import lifeform.Alien;
-import lifeform.Human;
-import lifeform.LifeForm;
-import weapon.Pistol;
-import weapon.Weapon;
+import environment.*;
+import exceptions.*;
+import lifeform.*;
+import weapon.*;
 
-public class Invoker extends JFrame implements ActionListener {
+
+public class Remote extends JFrame implements ActionListener {
   
   JButton eastButton, westButton, northButton, southButton, moveButton;
   JButton attackButton, dropWeaponButton, pickUpWeaponButton, reloadButton;
   Environment e;
   Board b;
   
-  public Invoker(Environment e, Board b) {
+  public Remote(Environment e, Board b) {
     
     this.e = e;
     this.b = b;
@@ -91,7 +87,7 @@ public class Invoker extends JFrame implements ActionListener {
   public static void main(String[] args) {
     Environment e = Environment.getEnvironment(7, 10);
     Board b = new Board(e);
-    Invoker gui = new Invoker(e, b);
+    Remote gui = new Remote(e, b);
   }
 
 
