@@ -69,3 +69,4 @@ Using the following table
 | 03 | 11/3/21 | class | all group | Design evaluation | 
 | 04 | 11/11/21 | Zoom | Bader & Chris | Talk about GUI |
 | 05 | 11/14/21 | Zoom | Austin & Bader | Talk about the Commands |  
+| 06 | 11/15/21 | Zoom | All group | Cleaning up the lab |
