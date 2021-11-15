@@ -22,6 +22,22 @@ public class Human extends LifeForm {
     attackStrength = 5;
     maxSpeed = 3;
   }
+  
+  /*
+   * Temporary constructor to change speed value
+   * 
+   * @param name  of human
+   * @param life starting hp
+   * @param armor  armor value
+   * @param speed  starting max speed
+   */
+  public Human(String name, int life, int armor, int speed) {
+    super(name, life);
+    armorPoints = Math.max(0, armor);
+    currentLifePoints = Math.max(0, life);
+    attackStrength = 5;
+    maxSpeed = speed;
+  }
 
   /**
    * 
