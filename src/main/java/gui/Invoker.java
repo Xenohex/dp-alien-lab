@@ -87,8 +87,6 @@ public class Invoker extends JFrame implements ActionListener {
   public static void main(String[] args) 
       throws EnvironmentException, RecoveryRateException, AttachmentException {
     Environment e = Environment.getEnvironment(7, 10);
-    Board b = new Board(e);
-    Invoker gui = new Invoker(e, b);
     
     LifeForm bob = new Human("bob", 100, 0, 2);
     e.addLifeForm(bob, 0, 0);
@@ -106,6 +104,8 @@ public class Invoker extends JFrame implements ActionListener {
     var w3 = new PlasmaCannon();
     bran.pickUpWeapon(w3);
     
+    Board b = new Board(e);
+    Invoker gui = new Invoker(e, b);
   }
 
 
