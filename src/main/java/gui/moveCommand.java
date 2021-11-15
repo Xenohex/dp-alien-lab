@@ -34,7 +34,7 @@ public class moveCommand implements Command {
             if (i == 0) {
               System.out.println(lifeform.getName() + " could not move");
               break;
-            } else if (e.getLifeForm(i, col) == null) {
+            } else if (e.getLifeForm(i, col) == null) { // if no obstacles in target space
                 lifeform.setLocation(row - i, col);
                 break;
             }
