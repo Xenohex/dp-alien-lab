@@ -22,9 +22,7 @@ public class attackCommand implements Command {
     int col = lifeform.getCol();
     int distance = 0;
     
-    if (lifeform == null) {
-      System.out.println("Error: no lifeform selected");
-    } else if (lifeform.getWeapon().getCurrentAmmo() == 0) {
+    if (lifeform.getWeapon().getCurrentAmmo() == 0) {
       System.out.println("Error: no ammo");
     } else {
       try {
@@ -41,7 +39,7 @@ public class attackCommand implements Command {
             } 
             if (e.getLifeForm(i, col) != null) {
               lifeform.attack(e.getLifeForm(i, col), distance);
-              System.out.println(lifeform.getName() + " did " + lifeform.getWeapon().fire(distance) + " damage to " + e.getLifeForm(i, col).getName());
+              System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(i, col).getName());
               break;
             }
           }
@@ -58,7 +56,7 @@ public class attackCommand implements Command {
             } 
             if (e.getLifeForm(i, col) != null) {
               lifeform.attack(e.getLifeForm(i, col), distance);
-              System.out.println(lifeform.getName() + " did " + lifeform.getWeapon().fire(distance) + " damage to " + e.getLifeForm(i, col).getName());
+              System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(i, col).getName());
               break;
             }
           }
@@ -75,12 +73,13 @@ public class attackCommand implements Command {
             } 
             if (e.getLifeForm(row, i) != null) {
               lifeform.attack(e.getLifeForm(row, i), distance);
-              System.out.println(lifeform.getName() + " did " + lifeform.getWeapon().fire(distance) + " damage to " + e.getLifeForm(row, i).getName());
+              System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(row, i).getName());
               break;
             }
           }
         } else if (direction == "West") {
           for (int i = col - 1; i >= -1; i--) {
+            
             distance += 5;
             if (i < 0) {
               lifeform.getWeapon().fire(distance);
@@ -92,7 +91,7 @@ public class attackCommand implements Command {
             } 
             if (e.getLifeForm(row, i) != null) {
               lifeform.attack(e.getLifeForm(row, i), distance);
-              System.out.println(lifeform.getName() + " did " + lifeform.getWeapon().fire(distance) + " damage to " + e.getLifeForm(row, i).getName());
+              System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(row, i).getName());
               break;
             }
           }

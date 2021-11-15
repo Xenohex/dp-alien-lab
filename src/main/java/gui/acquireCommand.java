@@ -15,9 +15,7 @@ public class acquireCommand implements Command {
   }
   public void execute() {
     
-    if (lifeform == null) {
-      System.out.println("Error: no lifeform selected");
-    } else if (e.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1() == null) {
+    if (e.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1() == null) {
       System.out.println("Error: no weapon in cell");
     } else {
       lifeform.pickUpWeapon(e.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1());

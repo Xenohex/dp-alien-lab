@@ -90,7 +90,7 @@ public class Invoker extends JFrame implements ActionListener {
     Board b = new Board(e);
     Invoker gui = new Invoker(e, b);
     
-    LifeForm bob = new Human("bob", 100, 0, 1);
+    LifeForm bob = new Human("bob", 100, 0, 2);
     e.addLifeForm(bob, 0, 0);
     var w1 = new Pistol();
     bob.pickUpWeapon(w1);
@@ -99,6 +99,13 @@ public class Invoker extends JFrame implements ActionListener {
     e.addLifeForm(joe, 0, 1);
     var w2 = new ChainGun();
     joe.pickUpWeapon(w2);
+    
+    
+    LifeForm bran = new Human("bran", 100, 0, 1);
+    e.addLifeForm(bran, 0, 2);
+    var w3 = new PlasmaCannon();
+    bran.pickUpWeapon(w3);
+    
   }
 
 
@@ -107,6 +114,8 @@ public class Invoker extends JFrame implements ActionListener {
     
     if (b.getSelectedCell() == null) {
       System.out.println("Error: no cell selected");
+    } else if (b.getSelectedCell().getLifeForm() == null) {
+        System.out.println("Error: no lifeform selected :p");
     } else {
     
       LifeForm lifeform = b.getSelectedCell().getLifeForm();

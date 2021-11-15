@@ -25,57 +25,53 @@ public class moveCommand implements Command {
     int row = lifeform.getRow();
     int col = lifeform.getCol();
     
-    if (lifeform == null) {
-      System.out.println("Error: no lifeform selected");
-    } else {
-      try {
-        if (direction == "North") {
-          if ((row - speed) <= 0) {
-            lifeform.setLocation(0, col);
-          } else if (e.getLifeForm((row - speed), col) != null) {
-            lifeform.setLocation(row - (speed - 1), col);
-          } else {
-            lifeform.setLocation(row - speed, col);
-          }
-        } else if (direction == "South") {
-          if ((row + speed) >= e.getNumRows()) {
-            lifeform.setLocation(e.getNumRows() - 1, col);
-          } else if (e.getLifeForm((row + speed), col) != null) {
-            lifeform.setLocation(row + (speed - 1), col);
-          } else {
-            lifeform.setLocation(row + speed, col);
-          }
-          
-        } else if (direction == "East") {
-          if ((col + speed) >= e.getNumCols() - 1) {
-            lifeform.setLocation(row, e.getNumCols() - 1);
-          } else if (e.getLifeForm(row, (col + speed)) != null) {
-            lifeform.setLocation(row, col + (speed - 1));
-          } else {
-            lifeform.setLocation(row, col + speed);
-          }
-          
-        } else if (direction == "West") {
-          if ((col - speed) <= 0) {
-            lifeform.setLocation(row, 0);
-          } else if (e.getLifeForm(row, (col - speed)) != null) {
-            lifeform.setLocation(row, col - (speed - 1));
-          } else {
-            lifeform.setLocation(row, col - speed);
-          }
+    try {
+      if (direction == "North") {
+        if ((row - speed) <= 0) {
+          lifeform.setLocation(0, col);
+        } else if (e.getLifeForm((row - speed), col) != null) {
+          lifeform.setLocation(row - (speed - 1), col);
+        } else {
+          lifeform.setLocation(row - speed, col);
+        }
+      } else if (direction == "South") {
+        if ((row + speed) >= e.getNumRows()) {
+          lifeform.setLocation(e.getNumRows() - 1, col);
+        } else if (e.getLifeForm((row + speed), col) != null) {
+          lifeform.setLocation(row + (speed - 1), col);
+        } else {
+          lifeform.setLocation(row + speed, col);
         }
         
-        e.removeLifeForm(row, col);
-        e.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
-        // b.setSelectedCell(lifeform.getRow(), lifeform.getCol()); ??
+      } else if (direction == "East") {
+        if ((col + speed) >= e.getNumCols() - 1) {
+          lifeform.setLocation(row, e.getNumCols() - 1);
+        } else if (e.getLifeForm(row, (col + speed)) != null) {
+          lifeform.setLocation(row, col + (speed - 1));
+        } else {
+          lifeform.setLocation(row, col + speed);
+        }
         
-        System.out.println(lifeform.getName()
-            + " moved to " + lifeform.getRow()
-            + ", " + lifeform.getCol());
-      
-      } catch (EnvironmentException exception) {
-        System.out.println("Error: EnvironmentException in move command");
+      } else if (direction == "West") {
+        if ((col - speed) <= 0) {
+          lifeform.setLocation(row, 0);
+        } else if (e.getLifeForm(row, (col - speed)) != null) {
+          lifeform.setLocation(row, col - (speed - 1));
+        } else {
+          lifeform.setLocation(row, col - speed);
+        }
       }
+      
+      e.removeLifeForm(row, col);
+      e.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
+      // b.setSelectedCell(lifeform.getRow(), lifeform.getCol()); ??
+      
+      System.out.println(lifeform.getName()
+          + " moved to " + lifeform.getRow()
+          + ", " + lifeform.getCol());
+    
+    } catch (EnvironmentException exception) {
+      System.out.println("Error: EnvironmentException in move command");
     }
     
   }

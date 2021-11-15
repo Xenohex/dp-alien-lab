@@ -11,9 +11,7 @@ public class reloadCommand implements Command {
   }
   public void execute() {
     
-    if (lifeform == null) {
-      System.out.println("Error: no lifeform selected");
-    } else if (lifeform.getWeapon() == null) {
+    if (lifeform.getWeapon() == null) {
       System.out.println("Error: lifeform has no weapon");
     } else {
       lifeform.reload();
