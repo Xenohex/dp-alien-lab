@@ -55,7 +55,7 @@ public class AttackCommand implements Command {
           if (env.getLifeForm(i, col) != null) {
             lifeform.attack(env.getLifeForm(i, col), distance);
             System.out.println(lifeform.getName() + " attacked " 
-            + env.getLifeForm(i, col).getName());
+                + env.getLifeForm(i, col).getName());
             break;
           }
         }
@@ -77,7 +77,7 @@ public class AttackCommand implements Command {
           if (env.getLifeForm(i, col) != null) {
             lifeform.attack(env.getLifeForm(i, col), distance);
             System.out.println(lifeform.getName() + " attacked " 
-            + env.getLifeForm(i, col).getName());
+                + env.getLifeForm(i, col).getName());
             break;
           }
         }
@@ -99,7 +99,7 @@ public class AttackCommand implements Command {
           if (env.getLifeForm(row, i) != null) {
             lifeform.attack(env.getLifeForm(row, i), distance);
             System.out.println(lifeform.getName() + " attacked " 
-            + env.getLifeForm(row, i).getName());
+                + env.getLifeForm(row, i).getName());
             break;
           }
         }
@@ -121,7 +121,7 @@ public class AttackCommand implements Command {
           if (env.getLifeForm(row, i) != null) {
             lifeform.attack(env.getLifeForm(row, i), distance);
             System.out.println(lifeform.getName() + " attacked " 
-            + env.getLifeForm(row, i).getName());
+                + env.getLifeForm(row, i).getName());
             break;
           }
         }
@@ -130,8 +130,8 @@ public class AttackCommand implements Command {
       if (lifeform.hasWeapon() == false || distance <= 5) {
         System.out.println(lifeform.getName() + " attacks with melee");
       } else {
-        System.out.println(lifeform.getName() + " Ammo: " + 
-      lifeform.getWeapon().getCurrentAmmo());
+        System.out.println(lifeform.getName() + " Ammo: " 
+            + lifeform.getWeapon().getCurrentAmmo());
       }
     
     } catch (WeaponException exception) {

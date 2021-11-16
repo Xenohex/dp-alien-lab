@@ -7,12 +7,13 @@ package gui;
  *
  */
 public class Remote {
-  Command c;
+  Command command;
+  
   public void setCommand(Command cc) {
-    c = cc;
+    command = cc;
   }
   
   public void buttonPressed() {
-    c.execute();
+    command.execute();
   }
 }

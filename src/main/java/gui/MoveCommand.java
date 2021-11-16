@@ -114,8 +114,8 @@ public class MoveCommand implements Command {
       env.removeLifeForm(row, col);
       env.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
       
-      System.out.println(lifeform.getName() + " moved to " + 
-      lifeform.getRow() + ", " + lifeform.getCol());
+      System.out.println(lifeform.getName() + " moved to " 
+          + lifeform.getRow() + ", " + lifeform.getCol());
     
     } catch (EnvironmentException exception) {
       System.out.println("Error: EnvironmentException in move command");

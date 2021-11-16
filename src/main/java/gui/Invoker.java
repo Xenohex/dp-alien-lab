@@ -207,8 +207,8 @@ public class Invoker extends JFrame implements ActionListener {
         remote.buttonPressed();
         
       } else {
-      System.out.println("unknown command");
-    }
+        System.out.println("unknown command");
+      }
       
       board.update(lifeform.getRow(), lifeform.getCol(),env);
     }
