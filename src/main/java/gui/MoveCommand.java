@@ -16,17 +16,15 @@ public class MoveCommand implements Command {
    * 
    * @param lf  lifeform
    * @param ee  environment
-   * @param bb  board
    * Uses lifeform to determine which lifeform to move
    * Uses environment to obtain which cell the lifeform is in and which cell to move it to
    * Uses board to actually move the lifeform on the board
    */
-  public MoveCommand(LifeForm lf, Environment ee, Board bb) {
+  public MoveCommand(LifeForm lf, Environment ee) {
     lifeform = lf;
     direction = lifeform.getCurrentDirection();
     speed = lifeform.getMaxSpeed();
     env = ee;
-    board = bb;
   }
   
   /**

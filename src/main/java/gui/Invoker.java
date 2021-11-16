@@ -182,7 +182,7 @@ public class Invoker extends JFrame implements ActionListener {
         remote.buttonPressed();
         
       } else if (event.getSource() == moveButton) { // Move
-        var move = new MoveCommand(lifeform, env, board);
+        var move = new MoveCommand(lifeform, env);
         remote.setCommand(move);
         remote.buttonPressed();
         
