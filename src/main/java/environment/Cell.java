@@ -109,6 +109,10 @@ public class Cell {
     return count;
   }
   
+  /**
+   * @return the name of the lifeform or an
+   * empty string if there isn't a lifeform
+   */
   public String getName() {
     if (lifeForm != null) {
       return lifeForm.getName();

@@ -25,7 +25,7 @@ import exceptions.RecoveryRateException;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
-import weapon.*;
+import weapon.Weapon;
 
 
 /**
@@ -41,9 +41,11 @@ public class Board extends JFrame implements ActionListener {
   //Cell selectedCell;
   static Environment e;
   //JButton textButton, imageButton;
-  private String[] legendList = {"             Human","              Alien","Human with weapon","   1 Weapon in cell",
+  private String[] legendList = {"             Human","              Alien",
+      "Human with weapon","   1 Weapon in cell",
       "   2 weapons in cell", "LifeForm pointed East","     Highlighted cell",
-      "<html>Human with <br>weapon  with <br>2 attachments</html>","<html>Alien with <br>weapon with <br>1 attachment</html>"};
+      "<html>Human with <br>weapon  with <br>2 attachments</html>",
+      "<html>Alien with <br>weapon with <br>1 attachment</html>"};
   private boolean[][] fun = { {false, false, true, false, false, false, false, false, false}, 
       {false, false, false, true, false, false, false, false, false},
       {false, false, true, false, true, false, false, false, false},
@@ -60,13 +62,14 @@ public class Board extends JFrame implements ActionListener {
   private JLabel[][] legend = new JLabel[2][9];
   private JButton btn;
   private JLabel initial;
-  private JPanel centerPanel, bottomPanel;
+  private JPanel centerPanel;
+  private JPanel bottomPanel;
   private Cell selectedCell;
   //Cell[][] selectedCell;
   private int selectedRow;
   private int selectedCol;
-  private int[] x  = new int[3];
-  private int[] y = new int[3];
+  private int[] xCoordinates  = new int[3];
+  private int[] yCoordinates = new int[3];
   
   /**
    * This constructor takes in the environment variable 
@@ -90,21 +93,19 @@ public class Board extends JFrame implements ActionListener {
     centerPanel = new JPanel(new GridLayout(r,c));
     
     //Initializes the board with appropriate entities
-    for (int i=0;i<r;i++)
-    {
-     for (int j=0;j<c;j++)
-     {
-       imageLabel[i][j] = new JLabel(createCell(i, j));
-       buttonArray[i][j] = new JButton();
+    for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c; j++) {
+        imageLabel[i][j] = new JLabel(createCell(i, j));
+        buttonArray[i][j] = new JButton();
        
-       //sets each button with row,col as its name
-       // this allows for easier row and column retrieval
-       // once a button is pressed.
-       buttonArray[i][j].setName(""+ i + "," + j);
-       buttonArray[i][j].add(imageLabel[i][j]);
-       buttonArray[i][j].addActionListener(this);
-       centerPanel.add(buttonArray[i][j]);
-     }
+        //sets each button with row,col as its name
+        // this allows for easier row and column retrieval
+        // once a button is pressed.
+        buttonArray[i][j].setName("" + i + "," + j);
+        buttonArray[i][j].add(imageLabel[i][j]);
+        buttonArray[i][j].addActionListener(this);
+        centerPanel.add(buttonArray[i][j]);
+      }
     }
 
     //sets text on West which will be filled with Cell info when 
@@ -152,19 +153,19 @@ public class Board extends JFrame implements ActionListener {
     }
     if (fun[2]) {
       drawer.setColor(new Color(230,180,140));
-      drawer.fillPolygon(x, y, 3);
+      drawer.fillPolygon(xCoordinates, yCoordinates, 3);
     }
     if (fun[3]) {
       drawer.setColor(new Color(0,200,0));
-      drawer.fillPolygon(x,y,3);
+      drawer.fillPolygon(xCoordinates,yCoordinates,3);
     }
     if (fun[4]) {
       drawer.setColor(new Color(255,0,0));
       int[] newx  = new int[4];
       int[] newy = new int[4];
-      for(int i = 0; i < newx.length; i++) {
-        newx[i] = x[i % 3];
-        newy[i] = y[i % 3];
+      for (int i = 0; i < newx.length; i++) {
+        newx[i] = xCoordinates[i % 3];
+        newy[i] = yCoordinates[i % 3];
       }
       drawer.drawPolyline(newx, newy, 4);
     }
@@ -205,10 +206,10 @@ public class Board extends JFrame implements ActionListener {
     drawer.setColor(new Color(160,160,160));
     drawer.fillRect(0, 0, 50, 50);
     
- /**   if (e.getLifeForm(row, col) != null) {
+    /**   if (e.getLifeForm(row, col) != null) {
       determineLifeForm(drawer, row, col);
-    } could be used to make lifeform not draw if dead
- **/   
+      } could be used to make lifeform not draw if dead
+    **/   
     determineLifeForm(drawer, row, col);
     drawCellWeapons(drawer, row, col);
 
@@ -239,12 +240,12 @@ public class Board extends JFrame implements ActionListener {
    * calls for a the appropriate function as well as for drawWeapon
    */
   private void determineLifeForm(Graphics drawer, int row, int col) {
-    if(e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Human.class) {
+    if (e.getLifeForm(row, col) != null 
+        && e.getLifeForm(row, col).getClass() == Human.class) {
       drawHuman(drawer, row, col);
       drawWeapon(drawer, row, col);
-    } else if (e.getLifeForm(row, col) != null && 
-        e.getLifeForm(row, col).getClass() == Alien.class) {
+    } else if (e.getLifeForm(row, col) != null 
+        && e.getLifeForm(row, col).getClass() == Alien.class) {
       drawAlien(drawer, row, col);
       drawWeapon(drawer, row, col);
     }
@@ -259,7 +260,7 @@ public class Board extends JFrame implements ActionListener {
   private void drawHuman(Graphics drawer, int row, int col) { 
     drawer.setColor(new Color(230,180,140));
     direct(row, col);
-    drawer.fillPolygon(x, y, 3);
+    drawer.fillPolygon(xCoordinates, yCoordinates, 3);
   }
   
   /**
@@ -271,7 +272,7 @@ public class Board extends JFrame implements ActionListener {
   private void drawAlien(Graphics drawer, int row, int col) {
     drawer.setColor(new Color(0,200,0));
     direct(row, col);
-    drawer.fillPolygon(x,y,3);
+    drawer.fillPolygon(xCoordinates,yCoordinates,3);
   }
   
   /**
@@ -286,24 +287,26 @@ public class Board extends JFrame implements ActionListener {
       drawer.setColor(new Color(255,0,0));
       int[] newx  = new int[4];
       int[] newy = new int[4];
-      for(int i = 0; i < newx.length; i++) {
-        newx[i] = x[i % 3];
-        newy[i] = y[i % 3];
+      for (int i = 0; i < newx.length; i++) {
+        newx[i] = xCoordinates[i % 3];
+        newy[i] = yCoordinates[i % 3];
       }
       drawer.drawPolyline(newx, newy, 4);
       
       int attachments = e.getLifeForm(row, col).getWeapon().getNumAttachments();
-      switch(attachments) {
-      case 2:
-        drawer.setColor(new Color(95,0,135));
-        drawer.fillRect(0, 0, 10, 20);
-        break;
-      case 1:
-        drawer.setColor(new Color(150,0,175));
-        drawer.fillRect(0, 0, 10, 10);
-        break;
-      case 0:
-        break;
+      switch (attachments) {
+        case 2:
+          drawer.setColor(new Color(95,0,135));
+          drawer.fillRect(0, 0, 10, 20);
+          break;
+        case 1:
+          drawer.setColor(new Color(150,0,175));
+          drawer.fillRect(0, 0, 10, 10);
+          break;
+        case 0:
+          break;
+        default:
+          break;
       }
     }
   }
@@ -320,19 +323,21 @@ public class Board extends JFrame implements ActionListener {
   private void drawCellWeapons(Graphics drawer, int row, int col) {
     if (e.getWeapons(row, col).length != 0) {
       int weapons = e.getWeapons(row, col).length;
-    switch(weapons) {
-    case 2:
-      drawer.setColor(new Color(255,0,0));
-      drawer.fillRect(40, 0, 10, 10);
-      drawer.fillRect(40, 40, 10, 10);
-      break;
-    case 1:
-      drawer.setColor(new Color(255,0,0));
-      drawer.fillRect(40, 40, 10, 10);
-      break;
-    case 0:
-      break;
-    }
+      switch (weapons) {
+        case 2:
+          drawer.setColor(new Color(255,0,0));
+          drawer.fillRect(40, 0, 10, 10);
+          drawer.fillRect(40, 40, 10, 10);
+          break;
+        case 1:
+          drawer.setColor(new Color(255,0,0));
+          drawer.fillRect(40, 40, 10, 10);
+          break;
+        case 0:
+          break;
+        default:
+          break;
+      }
     
     }
     
@@ -342,48 +347,48 @@ public class Board extends JFrame implements ActionListener {
    * Sets coordinates so a lifeform can be drawn pointing North.
    */
   private void turnNorth() {
-    x[0] = 25;
-    x[1] = 15;
-    x[2] = 35;
-    y[0] = 15;
-    y[1] = 35;
-    y[2] = 35;
+    xCoordinates[0] = 25;
+    xCoordinates[1] = 15;
+    xCoordinates[2] = 35;
+    yCoordinates[0] = 15;
+    yCoordinates[1] = 35;
+    yCoordinates[2] = 35;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing South.
    */
   private void turnSouth() {
-    x[0] = 25;
-    x[1] = 15;
-    x[2] = 35;
-    y[0] = 35;
-    y[1] = 15;
-    y[2] = 15;
+    xCoordinates[0] = 25;
+    xCoordinates[1] = 15;
+    xCoordinates[2] = 35;
+    yCoordinates[0] = 35;
+    yCoordinates[1] = 15;
+    yCoordinates[2] = 15;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing West.
    */
   private void turnWest() {
-    x[0] = 15;
-    x[1] = 35;
-    x[2] = 35;
-    y[0] = 25;
-    y[1] = 15;
-    y[2] = 35;
+    xCoordinates[0] = 15;
+    xCoordinates[1] = 35;
+    xCoordinates[2] = 35;
+    yCoordinates[0] = 25;
+    yCoordinates[1] = 15;
+    yCoordinates[2] = 35;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing East.
    */
   private void turnEast() {
-    x[0] = 35;
-    x[1] = 15;
-    x[2] = 15;
-    y[0] = 25;
-    y[1] = 15;
-    y[2] = 35;
+    xCoordinates[0] = 35;
+    xCoordinates[1] = 15;
+    xCoordinates[2] = 15;
+    yCoordinates[0] = 25;
+    yCoordinates[1] = 15;
+    yCoordinates[2] = 35;
   }
   
   
@@ -432,12 +437,8 @@ public class Board extends JFrame implements ActionListener {
   }
   
   private void highlightCell(int row, int col) {
-    if(btn != null) {
-     /** String[] rc = btn.getName().split(",");
-      int sRow = Integer.parseInt(rc[0]);
-      int sCol = Integer.parseInt(rc[1]);
-      createCell(sRow, sCol);
-   **/   //sets background of previously clicked button to default background
+    if (btn != null) {
+      //sets background of previously clicked button to default background
       btn.setBackground(new JButton().getBackground()); 
       
     }
@@ -453,8 +454,8 @@ public class Board extends JFrame implements ActionListener {
     
     //Creates lifeForm info if there is a lifeForm
     if (selectedCell.getLifeForm() != null) {
-      lfInfo += "Name: " + selectedCell.getName() + "<br>" +
-        "Health Points: " + selectedCell.getLifeForm().getCurrentLifePoints() + "<br>"; 
+      lfInfo += "Name: " + selectedCell.getName() + "<br>" 
+        + "Health Points: " + selectedCell.getLifeForm().getCurrentLifePoints() + "<br>"; 
       
       //This will give weapon information if lifeForm is holding a weapon
       if (selectedCell.getLifeForm().getWeapon() != null) {
@@ -467,8 +468,8 @@ public class Board extends JFrame implements ActionListener {
     //This will give the names of the weapons in the cell
     if (selectedCell.getWeaponsCount() != 0) {
       for (int i = 0; i < selectedCell.getWeaponsCount(); i++) {
-      Weapon[] arr = e.getWeapons(selectedRow, selectedCol);
-      cellInfo += "Weapon " + (i + 1) + ": " + arr[i].toString() + "<br>";
+        Weapon[] arr = e.getWeapons(selectedRow, selectedCol);
+        cellInfo += "Weapon " + (i + 1) + ": " + arr[i].toString() + "<br>";
       }
     }
     
@@ -487,18 +488,17 @@ public class Board extends JFrame implements ActionListener {
     return selectedCell;
   }
     
-
   
-  
-  
-  /**
+  /** For testing purposes only
    * @param args
    * @throws EnvironmentException
    * @throws RecoveryRateException
    * @throws AttachmentException
    * For testing purposes.
    */
-  public static void main(String args[]) throws EnvironmentException, RecoveryRateException, AttachmentException {
+  /**
+  public static void main(String args[]) throws EnvironmentException, 
+    RecoveryRateException, AttachmentException {
     Environment e = Environment.getEnvironment(7, 10);
     LifeForm bob = new Human("bob", 10, 2);
     e.addLifeForm(bob, 2, 3);
@@ -514,6 +514,7 @@ public class Board extends JFrame implements ActionListener {
     e.addWeapon(w1, 3, 3);
     Board board = new Board(e);
   }
+  **/
  
   /**
    * will display all information regarding the lifeform 
@@ -523,31 +524,9 @@ public class Board extends JFrame implements ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent event) {
-//    if(btn != null) {
-      
-      //sets background of previously clicked button to default background
-//      btn.setBackground(new JButton().getBackground()); 
-//    }
     String[] row = ((JButton) event.getSource()).getName().split(",");
-    //intakes the new source of the button click and highlights it
-//    btn = (JButton) event.getSource();
-//    btn.setBackground(new Color(0,0,255));
-    
-    //This takes the buttons name (row,col) and splits it to get the 
-    // cells row and column. 
-//    String[] rowCol = btn.getName().split(",");
     selectedRow = Integer.parseInt(row[0]);
     selectedCol = Integer.parseInt(row[1]);
-//    selectedRow = Integer.parseInt(rowCol[0]);
-//    selectedCol = Integer.parseInt(rowCol[1]);
     highlightCell(selectedRow,selectedCol);
-    //selectedCell is made from row and col for easier operations
-    // and to be passed into the commands
-//    selectedCell = e.getCell(selectedRow, selectedCol);
-    
-    //This has initializes the strings for cell information like the weapons
-    // It also initialized the starting header which will be concatenated
-    // with the other information on the lifeform in the cell
-    
   }
 }
