@@ -45,7 +45,7 @@ Remote r = new Remote();
     Alien bob = new Alien("bob", 30);
     Board b = new Board(e);
     e.addLifeForm(bob, 2, 0);
-    Command move = new MoveCommand(bob, e, b);
+    Command move = new MoveCommand(bob, e);
     r.setCommand(move);
     r.buttonPressed();
     assertEquals(0, bob.getRow());
