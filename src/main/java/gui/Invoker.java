@@ -175,6 +175,7 @@ public class Invoker extends JFrame implements ActionListener {
         else {
         System.out.println("unknown command");
       }
+      b.update(lifeform.getRow(), lifeform.getCol(),e);
     }
   }
   

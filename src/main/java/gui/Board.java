@@ -411,8 +411,29 @@ public class Board extends JFrame implements ActionListener {
    * Will redraw the previously selected Cell and the new coordinates
    * of the newly affected Cell.
    */
-  public void update(int row, int col) {
+  public void update(int row, int col, Environment e) {
+    Board.e = e;
     
+    
+    //buttonArray[row][col] = new JButton();
+    
+    //buttonArray[row][col].setName(""+ row + "," + col);
+    buttonArray[row][col].remove(imageLabel[row][col]);
+    imageLabel[row][col] = new JLabel(createCell(row, col));
+    buttonArray[row][col].add(imageLabel[row][col]);
+    //buttonArray[row][col].addActionListener(this);
+    //centerPanel.add(buttonArray[row][col]);
+    //arrayButton[row][col] = createCell(row, col);
+    buttonArray[selectedRow][selectedCol].remove(imageLabel[selectedRow][selectedCol]);
+    imageLabel[selectedRow][selectedCol] = new JLabel(createCell(selectedRow, selectedCol));
+    //buttonArray[selectedRow][selectedCol] = new JButton();
+    
+    //buttonArray[selectedRow][selectedCol].setName(""+ selectedRow + "," + selectedCol);
+    buttonArray[selectedRow][selectedCol].add(imageLabel[selectedRow][selectedCol]);
+    //buttonArray[selectedRow][selectedCol].addActionListener(this);
+    //centerPanel.add(buttonArray[selectedRow][selectedCol]);
+    setVisible(true);
+    //pack();
   }
   
   /**
