@@ -14,7 +14,6 @@ import exceptions.RecoveryRateException;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.Weapon;
-import gui.Board;
 import gui.Command;
 import gui.MoveCommand;
 import gui.Remote;
