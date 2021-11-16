@@ -43,7 +43,6 @@ Remote r = new Remote();
   @Test
   public void testMove() throws RecoveryRateException, EnvironmentException {
     Alien bob = new Alien("bob", 30);
-    Board b = new Board(e);
     e.addLifeForm(bob, 2, 0);
     Command move = new MoveCommand(bob, e);
     r.setCommand(move);
