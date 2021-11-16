@@ -47,20 +47,7 @@ public class Cell {
    * in the cell. false otherwise(when full).
    */
   public boolean addWeapon(Weapon weapon) {
-    if (weapon1 == null && weapon2 != null) {
-      weapon1 = weapon2;
-      weapon2 = weapon;
-      return true;
-    } else if (weapon1 != null && weapon2 == null) {
-      weapon2 = weapon;
-      return true;
-    } else if (weapon1 == null && weapon2 == null) {
-      weapon1 = weapon;
-      return true;
-    } else {
-      return false;
-    }
-    /**
+    
     if (weapon1 == weapon || weapon2 == weapon) {
       return false;
     } else if (weapon1 == null) {
@@ -71,7 +58,7 @@ public class Cell {
       return true;
     } else {
       return false;
-    } **/
+    } 
   }
   
   /**
@@ -83,7 +70,8 @@ public class Cell {
     Weapon val = null;
     if (weapon1 == weapon) {
       val = weapon1;
-      weapon1 = null;
+      weapon1 = weapon2;
+      weapon2 = null;
     } else if (weapon2 == weapon) {
       val = weapon2;
       weapon2 = null;
