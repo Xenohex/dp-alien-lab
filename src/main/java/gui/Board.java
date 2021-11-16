@@ -94,7 +94,6 @@ public class Board extends JFrame implements ActionListener {
     {
      for (int j=0;j<c;j++)
      {
-       
        imageLabel[i][j] = new JLabel(createCell(i, j));
        buttonArray[i][j] = new JButton();
        
@@ -206,6 +205,10 @@ public class Board extends JFrame implements ActionListener {
     drawer.setColor(new Color(160,160,160));
     drawer.fillRect(0, 0, 50, 50);
     
+ /**   if (e.getLifeForm(row, col) != null) {
+      determineLifeForm(drawer, row, col);
+    } could be used to make lifeform not draw if dead
+ **/   
     determineLifeForm(drawer, row, col);
     drawCellWeapons(drawer, row, col);
 
@@ -240,7 +243,6 @@ public class Board extends JFrame implements ActionListener {
         e.getLifeForm(row, col).getClass() == Human.class) {
       drawHuman(drawer, row, col);
       drawWeapon(drawer, row, col);
-      
     } else if (e.getLifeForm(row, col) != null && 
         e.getLifeForm(row, col).getClass() == Alien.class) {
       drawAlien(drawer, row, col);
@@ -415,25 +417,66 @@ public class Board extends JFrame implements ActionListener {
     Board.e = e;
     
     
-    //buttonArray[row][col] = new JButton();
-    
-    //buttonArray[row][col].setName(""+ row + "," + col);
     buttonArray[row][col].remove(imageLabel[row][col]);
     imageLabel[row][col] = new JLabel(createCell(row, col));
     buttonArray[row][col].add(imageLabel[row][col]);
-    //buttonArray[row][col].addActionListener(this);
-    //centerPanel.add(buttonArray[row][col]);
-    //arrayButton[row][col] = createCell(row, col);
+    
+    
     buttonArray[selectedRow][selectedCol].remove(imageLabel[selectedRow][selectedCol]);
     imageLabel[selectedRow][selectedCol] = new JLabel(createCell(selectedRow, selectedCol));
-    //buttonArray[selectedRow][selectedCol] = new JButton();
-    
-    //buttonArray[selectedRow][selectedCol].setName(""+ selectedRow + "," + selectedCol);
     buttonArray[selectedRow][selectedCol].add(imageLabel[selectedRow][selectedCol]);
-    //buttonArray[selectedRow][selectedCol].addActionListener(this);
-    //centerPanel.add(buttonArray[selectedRow][selectedCol]);
+    
+    highlightCell(row, col);
     setVisible(true);
-    //pack();
+    
+  }
+  
+  private void highlightCell(int row, int col) {
+    if(btn != null) {
+     /** String[] rc = btn.getName().split(",");
+      int sRow = Integer.parseInt(rc[0]);
+      int sCol = Integer.parseInt(rc[1]);
+      createCell(sRow, sCol);
+   **/   //sets background of previously clicked button to default background
+      btn.setBackground(new JButton().getBackground()); 
+      
+    }
+    
+    btn = buttonArray[row][col];
+    btn.setBackground(new Color(0, 0, 255));
+    selectedCell = e.getCell(row, col);
+    selectedRow = row;
+    selectedCol = col;
+    
+    String lfInfo = "<html> ------------------------------------------------------ " + "<br>";
+    String cellInfo = "";
+    
+    //Creates lifeForm info if there is a lifeForm
+    if (selectedCell.getLifeForm() != null) {
+      lfInfo += "Name: " + selectedCell.getName() + "<br>" +
+        "Health Points: " + selectedCell.getLifeForm().getCurrentLifePoints() + "<br>"; 
+      
+      //This will give weapon information if lifeForm is holding a weapon
+      if (selectedCell.getLifeForm().getWeapon() != null) {
+        lfInfo += selectedCell.getLifeForm().getWeapon().toString() + "<br>" 
+            + "Ammo:  " + selectedCell.getLifeForm().getWeapon().getCurrentAmmo() 
+            + "/" + selectedCell.getLifeForm().getWeapon().getMaxAmmo() + "<br>";
+      }
+    }
+    
+    //This will give the names of the weapons in the cell
+    if (selectedCell.getWeaponsCount() != 0) {
+      for (int i = 0; i < selectedCell.getWeaponsCount(); i++) {
+      Weapon[] arr = e.getWeapons(selectedRow, selectedCol);
+      cellInfo += "Weapon " + (i + 1) + ": " + arr[i].toString() + "<br>";
+      }
+    }
+    
+    
+    //ends the html block which was added because \n did not work
+    cellInfo += "</html>";
+    initial.setText(lfInfo.concat(cellInfo));
+    
   }
   
   /**
@@ -480,77 +523,31 @@ public class Board extends JFrame implements ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent event) {
-    if(btn != null) {
+//    if(btn != null) {
       
       //sets background of previously clicked button to default background
-      btn.setBackground(new JButton().getBackground()); 
-    }
-    
+//      btn.setBackground(new JButton().getBackground()); 
+//    }
+    String[] row = ((JButton) event.getSource()).getName().split(",");
     //intakes the new source of the button click and highlights it
-    btn = (JButton) event.getSource();
-    btn.setBackground(new Color(0,0,255));
+//    btn = (JButton) event.getSource();
+//    btn.setBackground(new Color(0,0,255));
     
     //This takes the buttons name (row,col) and splits it to get the 
     // cells row and column. 
-    String[] rowCol = btn.getName().split(",");
-    selectedRow = Integer.parseInt(rowCol[0]);
-    selectedCol = Integer.parseInt(rowCol[1]);
-    
+//    String[] rowCol = btn.getName().split(",");
+    selectedRow = Integer.parseInt(row[0]);
+    selectedCol = Integer.parseInt(row[1]);
+//    selectedRow = Integer.parseInt(rowCol[0]);
+//    selectedCol = Integer.parseInt(rowCol[1]);
+    highlightCell(selectedRow,selectedCol);
     //selectedCell is made from row and col for easier operations
     // and to be passed into the commands
-    selectedCell = e.getCell(selectedRow, selectedCol);
+//    selectedCell = e.getCell(selectedRow, selectedCol);
     
     //This has initializes the strings for cell information like the weapons
     // It also initialized the starting header which will be concatenated
     // with the other information on the lifeform in the cell
-    String lfInfo = "<html> ------------------------------------------------------ " + "<br>";
-    String cellInfo = "";
-    
-    //Creates lifeForm info if there is a lifeForm
-    if (selectedCell.getLifeForm() != null) {
-      lfInfo += "Name: " + selectedCell.getName() + "<br>" +
-        "Health Points: " + selectedCell.getLifeForm().getCurrentLifePoints() + "<br>"; 
-      /**
-      if (selectedCell.getLifeForm().getClass() == Human.class) {
-        lfInfo += selectedCell.getLifeForm().getArmor();
-      } 
-      
-      //this would give humans armor points displayed, but I do not know how to do this
-      **/
-      
-      //This will give weapon information if lifeForm is holding a weapon
-      if (selectedCell.getLifeForm().getWeapon() != null) {
-        lfInfo += selectedCell.getLifeForm().getWeapon().toString() + "<br>" 
-            + "Ammo:  " + selectedCell.getLifeForm().getWeapon().getCurrentAmmo() 
-            + "/" + selectedCell.getLifeForm().getWeapon().getMaxAmmo() + "<br>";
-      }
-    }
-    
-    //This will give the names of the weapons in the cell
-    for (int i = 0; i < selectedCell.getWeaponsCount(); i++) {
-      Weapon[] arr = e.getWeapons(selectedRow, selectedCol);
-      cellInfo += "Weapon " + (i + 1) + ": " + arr[i].toString() + "<br>";
-    }
-    
-    //ends the html block which was added because \n did not work
-    cellInfo += "</html>";
-    initial.setText(lfInfo.concat(cellInfo));
-    
-    
-    
-    //pack();
-    
-    //add("West", blank);
-    
-    //
-    //area = new JTextArea(cellInfo);
-    //infoPanel = new JPanel();
-    //infoPanel.add("HI");
-   // 
-    //add("West", blank);
-    //setVisible(true);
-    // add stuff to the west panel and display it,
-    // then setvisible to true
     
   }
 }
