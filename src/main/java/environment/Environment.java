@@ -223,7 +223,9 @@ public class Environment {
     board = b;
   }
   
-  
+  public void notifyBoard(int row, int col) {
+    board.update(row, col, theEnvironment);
+  }
   
   public void getSelectedCell() {
     //selectedCell = board.getSelectedCell();

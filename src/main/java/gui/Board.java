@@ -82,6 +82,7 @@ public class Board extends JFrame implements ActionListener {
     //instance of Environment initialized
     Board.e = e;
     
+    
     //rows and columns of environment allocated
     int r = e.getNumRows();
     int c = e.getNumCols();
@@ -130,6 +131,8 @@ public class Board extends JFrame implements ActionListener {
     add("South",bottomPanel);
     pack();
     setVisible(true);
+    
+    e.setBoard(this);
   }
   
   /**
@@ -206,11 +209,11 @@ public class Board extends JFrame implements ActionListener {
     drawer.setColor(new Color(160,160,160));
     drawer.fillRect(0, 0, 50, 50);
     
-    /**   if (e.getLifeForm(row, col) != null) {
+    if (e.getLifeForm(row, col) != null) {
       determineLifeForm(drawer, row, col);
-      } could be used to make lifeform not draw if dead
-    **/   
-    determineLifeForm(drawer, row, col);
+    } 
+    
+    //determineLifeForm(drawer, row, col);
     drawCellWeapons(drawer, row, col);
 
     return new ImageIcon(exampleImage);
@@ -240,15 +243,15 @@ public class Board extends JFrame implements ActionListener {
    * calls for a the appropriate function as well as for drawWeapon
    */
   private void determineLifeForm(Graphics drawer, int row, int col) {
-    if (e.getLifeForm(row, col) != null 
+    if (e.getLifeForm(row, col).getCurrentLifePoints() != 0 
         && e.getLifeForm(row, col).getClass() == Human.class) {
       drawHuman(drawer, row, col);
       drawWeapon(drawer, row, col);
-    } else if (e.getLifeForm(row, col) != null 
+    } else if (e.getLifeForm(row, col).getCurrentLifePoints() != 0 
         && e.getLifeForm(row, col).getClass() == Alien.class) {
       drawAlien(drawer, row, col);
       drawWeapon(drawer, row, col);
-    }
+    } 
   }
   
   /**
