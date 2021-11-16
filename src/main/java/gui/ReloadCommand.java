@@ -2,11 +2,11 @@ package gui;
 
 import lifeform.*;
 
-public class reloadCommand implements Command {
+public class ReloadCommand implements Command {
 
   LifeForm lifeform;
 
-  public reloadCommand(LifeForm lf) {
+  public ReloadCommand(LifeForm lf) {
     lifeform = lf;
   }
   public void execute() {

@@ -4,12 +4,12 @@ import environment.Environment;
 import lifeform.LifeForm;
 import weapon.*;
 
-public class acquireCommand implements Command {
+public class AcquireCommand implements Command {
     
   LifeForm lifeform;
   Environment e;
 
-  public acquireCommand(LifeForm lf, Environment ee) {
+  public AcquireCommand(LifeForm lf, Environment ee) {
     lifeform = lf;
     e = ee;
   }

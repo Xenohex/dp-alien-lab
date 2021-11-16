@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import environment.*;
 import exceptions.*;
@@ -123,48 +121,48 @@ public class Invoker extends JFrame implements ActionListener {
       var remote = new Remote();
       
       if (event.getSource() == eastButton) {
-        var east = new faceEastCommand(lifeform);
+        var east = new FaceEastCommand(lifeform);
         remote.setCommand(east);
         remote.buttonPressed();
         
       } else if (event.getSource() == westButton) {
-        var west = new faceWestCommand(lifeform);
+        var west = new FaceWestCommand(lifeform);
         remote.setCommand(west);
         remote.buttonPressed();
         
       } else if (event.getSource() == northButton) {
-        var north = new faceNorthCommand(lifeform);
+        var north = new FaceNorthCommand(lifeform);
         remote.setCommand(north);
         remote.buttonPressed();
         
       } else if (event.getSource() == southButton) {
-        var south = new faceSouthCommand(lifeform);
+        var south = new FaceSouthCommand(lifeform);
         remote.setCommand(south);
         remote.buttonPressed();
         
       } else if (event.getSource() == moveButton) {
-        var move = new moveCommand(lifeform, e, b);
+        var move = new MoveCommand(lifeform, e, b);
         remote.setCommand(move);
         remote.buttonPressed();
       }
       
         else if (event.getSource() == attackButton) {
-        var attack = new attackCommand(lifeform, e);
+        var attack = new AttackCommand(lifeform, e);
         remote.setCommand(attack);
         remote.buttonPressed();
         
       } else if (event.getSource() == pickUpWeaponButton) {
-        var acquire = new acquireCommand(lifeform, e);
+        var acquire = new AcquireCommand(lifeform, e);
         remote.setCommand(acquire);
         remote.buttonPressed();
         
       } else if (event.getSource() == dropWeaponButton) {
-        var drop = new dropCommand(lifeform, e);
+        var drop = new DropCommand(lifeform, e);
         remote.setCommand(drop);
         remote.buttonPressed();
         
       } else if (event.getSource() == reloadButton) {
-        var reload = new reloadCommand(lifeform);
+        var reload = new ReloadCommand(lifeform);
         remote.setCommand(reload);
         remote.buttonPressed();
       }

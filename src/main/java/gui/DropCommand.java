@@ -4,12 +4,12 @@ import environment.Environment;
 import environment.Cell;
 import lifeform.LifeForm;
 
-public class dropCommand implements Command {
+public class DropCommand implements Command {
   
   LifeForm lifeform;
   Environment e;
 
-  public dropCommand(LifeForm lf, Environment ee) {
+  public DropCommand(LifeForm lf, Environment ee) {
     lifeform = lf;
     e = ee;
   }

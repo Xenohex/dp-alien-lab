@@ -4,13 +4,13 @@ import environment.Environment;
 import exceptions.WeaponException;
 import lifeform.LifeForm;
 
-public class attackCommand implements Command {
+public class AttackCommand implements Command {
   
   LifeForm lifeform;
   String direction;
   Environment e;
   
-  public attackCommand(LifeForm lf, Environment ee) {
+  public AttackCommand(LifeForm lf, Environment ee) {
     lifeform = lf;
     direction = lifeform.getCurrentDirection();
     e = ee;
@@ -24,26 +24,26 @@ public class attackCommand implements Command {
     
     try {
       if (direction == "North") {
-        for (int i = row - 1; i >= -1; i--) {
-          distance += 5;
-          if (i < 0) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
+      for (int i = row - 1; i >= -1; i--) {
+        distance += 5;
+        if (i < 0) {
+          if (lifeform.hasWeapon()) {
+            lifeform.getWeapon().fire(distance);
           }
-          if (i == 0 && e.getLifeForm(i, col) == null) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
-          } 
-          if (e.getLifeForm(i, col) != null) {
-            lifeform.attack(e.getLifeForm(i, col), distance);
-            System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(i, col).getName());
-            break;
-          }
+          break;
         }
+        if (i == 0 && e.getLifeForm(i, col) == null) {
+          if (lifeform.hasWeapon()) {
+            lifeform.getWeapon().fire(distance);
+          }
+          break;
+        } 
+        if (e.getLifeForm(i, col) != null) {
+          lifeform.attack(e.getLifeForm(i, col), distance);
+          System.out.println(lifeform.getName() + " attacked " + e.getLifeForm(i, col).getName());
+          break;
+        }
+      }
       } else if (direction == "South") {
         for (int i = row + 1; i <= e.getNumRows(); i++) {
           distance += 5;
@@ -88,7 +88,6 @@ public class attackCommand implements Command {
         }
       } else if (direction == "West") {
         for (int i = col - 1; i >= -1; i--) {
-          
           distance += 5;
           if (i < 0) {
             if (lifeform.hasWeapon()) {

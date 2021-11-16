@@ -2,11 +2,11 @@ package gui;
 
 import lifeform.LifeForm;
 
-public class faceNorthCommand implements Command {
+public class FaceNorthCommand implements Command {
   
   LifeForm lifeform;
 
-  public faceNorthCommand(LifeForm lf) {
+  public FaceNorthCommand(LifeForm lf) {
     lifeform = lf;
   }
   
