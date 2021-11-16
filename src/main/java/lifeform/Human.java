@@ -23,13 +23,12 @@ public class Human extends LifeForm {
     maxSpeed = 3;
   }
   
-  /*
-   * Temporary constructor to change speed value
-   * 
-   * @param name  of human
-   * @param life starting hp
-   * @param armor  armor value
-   * @param speed  starting max speed
+  
+  /**
+   * @param name
+   * @param life
+   * @param armor
+   * @param speed
    */
   public Human(String name, int life, int armor, int speed) {
     super(name, life);
