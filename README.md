@@ -54,10 +54,14 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Turn & Movement | Bader | 11/16/21 | 11/12/21|
-| Commands | Austin | 11/16/21 | 11/12/21|
-| Game UI | Chris | 11/16/21 | 11/12/21|
-| edit README | Bader | 11/16/21 | 11/3/21 |
+| Activity#1 | Bader | 11/17/21 | 11/02/21 |
+| Activity#2 | Christian | 11/17/21 | 11/02/21 |
+| Activity#3 | Austin | 11/17/21 | 11/02/21 |
+| Activity#4 | All group | 11/17/21 | 11/02/21 |
+| Turn & Movement | Bader | 11/17/21 | 11/12/21|
+| Commands | Austin | 11/17/21 | 11/12/21|
+| Game UI | Chris | 11/17/21 | 11/12/21|
+| edit README | Bader | 11/17/21 | 11/16/21 |
 
 
 # Team Meeting Log
