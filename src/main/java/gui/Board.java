@@ -179,7 +179,7 @@ public class Board extends JFrame implements ActionListener {
     }
     if (fun[7]) {
       drawer.setColor(new Color(255,0,0));
-      drawer.fillRect(40, 0, 10, 10);
+      drawer.fillRect(40, 40, 10, 10);
     }
     if (fun[8]) {
       drawer.setColor(new Color(255,0,0));
