@@ -143,10 +143,11 @@ public class AttackCommand implements Command {
       System.out.println("Error: WeaponException thrown in attack command");
     }
     
-    if (affectedLifeform.getCurrentLifePoints() == 0) { 
+    if (affectedLifeform != null && affectedLifeform.getCurrentLifePoints() == 0) { 
       env.removeLifeForm(affectedLifeform.getRow(), affectedLifeform.getCol());
+      env.notifyBoard(affectedLifeform.getRow(), affectedLifeform.getCol());
     }
-    env.notifyBoard(affectedLifeform.getRow(), affectedLifeform.getCol());
+    
   }
 }
     
