@@ -6,22 +6,149 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import environment.Environment;
 import exceptions.EnvironmentException;
+import exceptions.RecoveryRateException;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.Weapon;
-
+import gui.Board;
+import gui.Command;
+import gui.MoveCommand;
+import gui.Remote;
 /**
  * Test all cases for environment class
  * 
- * @author Christian Spitler lab 5; jun up to lab 4
+ * @author Bader lab 6, Christian Spitler lab 5; jun up to lab 4
  *
  */
 public class TestEnvironment {
+  /*---------------------------lab6-tests--------------------------------------*/
+  
+  /**
+   * testing Moving w or w/o obstacles, also, on different edges of the environment
+   * @throws EnvironmentException
+   * @throws RecoveryRateException
+   */
+  @Test
+  public void testMoveNorth() throws EnvironmentException, RecoveryRateException {
+    Environment e = Environment.getEnvironment(6, 6);
+    Board b = new Board(e);
+    Remote r = new Remote();
+    Alien Bob = new Alien("Bob", 30);
+    Human Alice = new Human("Alice", 40, 0);
+    e.addLifeForm(Alice, 5, 0);
+    e.addLifeForm(Bob, 4, 0);
+    Command move = new MoveCommand(Alice, e, b);
+    r.setCommand(move);
+    r.buttonPressed();
+    assertEquals(2, Alice.getRow());
+    Command move2 = new MoveCommand(Bob, e, b);
+    r.setCommand(move2);
+    r.buttonPressed();
+    assertEquals(3, Bob.getRow());
+  }
+  
+  @Test
+  public void testMoveSouth() throws EnvironmentException, RecoveryRateException {
+    Environment e = Environment.getEnvironment(6, 6);
+    Board b = new Board(e);
+    Remote r = new Remote();
+    Alien Bob = new Alien("Bob", 30);
+    Human Alice = new Human("Alice", 40, 0);
+    Bob.changeDirection("South");
+    Alice.changeDirection("South");
+    e.addLifeForm(Alice, 1, 0);
+    e.addLifeForm(Bob, 2, 0);
+    Command move = new MoveCommand(Alice, e, b);
+    r.setCommand(move);
+    r.buttonPressed();
+    assertEquals(4, Alice.getRow());
+    Command move2 = new MoveCommand(Bob, e, b);
+    r.setCommand(move2);
+    r.buttonPressed();
+    assertEquals(3, Bob.getRow());
+  }
+  
+  @Test
+  public void testMoveEast() throws EnvironmentException, RecoveryRateException {
+    Environment e = Environment.getEnvironment(6, 6);
+    Board b = new Board(e);
+    Remote r = new Remote();
+    Alien Bob = new Alien("Bob", 30);
+    Human Alice = new Human("Alice", 40, 0);
+    Bob.changeDirection("East");
+    Alice.changeDirection("East");
+    e.addLifeForm(Alice, 0, 0);
+    e.addLifeForm(Bob, 0, 1);
+    Command move = new MoveCommand(Alice, e, b);
+    r.setCommand(move);
+    r.buttonPressed();
+    assertEquals(3, Alice.getCol());
+    Command move2 = new MoveCommand(Bob, e, b);
+    r.setCommand(move2);
+    r.buttonPressed();
+    assertEquals(2, Bob.getCol());
+  }
+  
+  @Test
+  public void testMoveWest() throws EnvironmentException, RecoveryRateException {
+    Environment e = Environment.getEnvironment(6, 6);
+    Board b = new Board(e);
+    Remote r = new Remote();
+    Alien Bob = new Alien("Bob", 30);
+    Human Alice = new Human("Alice", 40, 0);
+    Bob.changeDirection("West");
+    Alice.changeDirection("West");
+    e.addLifeForm(Alice, 0, 3);
+    e.addLifeForm(Bob, 0, 2);
+    Command move = new MoveCommand(Alice, e, b);
+    r.setCommand(move);
+    r.buttonPressed();
+    assertEquals(0, Alice.getCol());
+    Command move2 = new MoveCommand(Bob, e, b);
+    r.setCommand(move2);
+    r.buttonPressed();
+    assertEquals(1, Bob.getCol());
+  }
+  
+  @Test
+  public void testMoveAtEdge() throws EnvironmentException, RecoveryRateException {
+    Environment e = Environment.getEnvironment(6, 6);
+    Board b = new Board(e);
+    Remote r = new Remote();
+    Alien Bob = new Alien("Bob", 30);
+    Human Alice = new Human("Alice", 40, 0);
+    Human Josh = new Human("Josh", 40, 0);
+    Alien John = new Alien("John", 30);
+    Josh.changeDirection("South");
+    Bob.changeDirection("East");
+    Alice.changeDirection("West");
+    e.addLifeForm(John, 1, 0);
+    e.addLifeForm(Josh, 5, 0);
+    e.addLifeForm(Alice, 0, 1);
+    e.addLifeForm(Bob, 0, 5);
+    Command move1 = new MoveCommand(Alice, e, b);
+    r.setCommand(move1);
+    r.buttonPressed();
+    assertEquals(0, Alice.getCol());
+    Command move2 = new MoveCommand(Bob, e, b);
+    r.setCommand(move2);
+    r.buttonPressed();
+    assertEquals(5, Bob.getCol());
+    Command move3 = new MoveCommand(Josh, e, b);
+    r.setCommand(move3);
+    r.buttonPressed();
+    assertEquals(5, Josh.getRow());
+    Command move4 = new MoveCommand(John, e, b);
+    r.setCommand(move4);
+    r.buttonPressed();
+    assertEquals(1, John.getRow());
+  }
+  
+  
   //-------lab5 tests -------------------------
   
   /**
