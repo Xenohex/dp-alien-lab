@@ -68,8 +68,8 @@ public class Board extends JFrame implements ActionListener {
   //Cell[][] selectedCell;
   private int selectedRow;
   private int selectedCol;
-  private int[] xCoordinates  = new int[3];
-  private int[] yCoordinates = new int[3];
+  private int[] xcoordinates  = new int[3];
+  private int[] ycoordinates = new int[3];
   
   /**
    * This constructor takes in the environment variable 
@@ -153,19 +153,19 @@ public class Board extends JFrame implements ActionListener {
     }
     if (fun[2]) {
       drawer.setColor(new Color(230,180,140));
-      drawer.fillPolygon(xCoordinates, yCoordinates, 3);
+      drawer.fillPolygon(xcoordinates, ycoordinates, 3);
     }
     if (fun[3]) {
       drawer.setColor(new Color(0,200,0));
-      drawer.fillPolygon(xCoordinates,yCoordinates,3);
+      drawer.fillPolygon(xcoordinates,ycoordinates,3);
     }
     if (fun[4]) {
       drawer.setColor(new Color(255,0,0));
       int[] newx  = new int[4];
       int[] newy = new int[4];
       for (int i = 0; i < newx.length; i++) {
-        newx[i] = xCoordinates[i % 3];
-        newy[i] = yCoordinates[i % 3];
+        newx[i] = xcoordinates[i % 3];
+        newy[i] = ycoordinates[i % 3];
       }
       drawer.drawPolyline(newx, newy, 4);
     }
@@ -260,7 +260,7 @@ public class Board extends JFrame implements ActionListener {
   private void drawHuman(Graphics drawer, int row, int col) { 
     drawer.setColor(new Color(230,180,140));
     direct(row, col);
-    drawer.fillPolygon(xCoordinates, yCoordinates, 3);
+    drawer.fillPolygon(xcoordinates, ycoordinates, 3);
   }
   
   /**
@@ -272,7 +272,7 @@ public class Board extends JFrame implements ActionListener {
   private void drawAlien(Graphics drawer, int row, int col) {
     drawer.setColor(new Color(0,200,0));
     direct(row, col);
-    drawer.fillPolygon(xCoordinates,yCoordinates,3);
+    drawer.fillPolygon(xcoordinates,ycoordinates,3);
   }
   
   /**
@@ -288,8 +288,8 @@ public class Board extends JFrame implements ActionListener {
       int[] newx  = new int[4];
       int[] newy = new int[4];
       for (int i = 0; i < newx.length; i++) {
-        newx[i] = xCoordinates[i % 3];
-        newy[i] = yCoordinates[i % 3];
+        newx[i] = xcoordinates[i % 3];
+        newy[i] = ycoordinates[i % 3];
       }
       drawer.drawPolyline(newx, newy, 4);
       
@@ -347,48 +347,48 @@ public class Board extends JFrame implements ActionListener {
    * Sets coordinates so a lifeform can be drawn pointing North.
    */
   private void turnNorth() {
-    xCoordinates[0] = 25;
-    xCoordinates[1] = 15;
-    xCoordinates[2] = 35;
-    yCoordinates[0] = 15;
-    yCoordinates[1] = 35;
-    yCoordinates[2] = 35;
+    xcoordinates[0] = 25;
+    xcoordinates[1] = 15;
+    xcoordinates[2] = 35;
+    ycoordinates[0] = 15;
+    ycoordinates[1] = 35;
+    ycoordinates[2] = 35;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing South.
    */
   private void turnSouth() {
-    xCoordinates[0] = 25;
-    xCoordinates[1] = 15;
-    xCoordinates[2] = 35;
-    yCoordinates[0] = 35;
-    yCoordinates[1] = 15;
-    yCoordinates[2] = 15;
+    xcoordinates[0] = 25;
+    xcoordinates[1] = 15;
+    xcoordinates[2] = 35;
+    ycoordinates[0] = 35;
+    ycoordinates[1] = 15;
+    ycoordinates[2] = 15;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing West.
    */
   private void turnWest() {
-    xCoordinates[0] = 15;
-    xCoordinates[1] = 35;
-    xCoordinates[2] = 35;
-    yCoordinates[0] = 25;
-    yCoordinates[1] = 15;
-    yCoordinates[2] = 35;
+    xcoordinates[0] = 15;
+    xcoordinates[1] = 35;
+    xcoordinates[2] = 35;
+    ycoordinates[0] = 25;
+    ycoordinates[1] = 15;
+    ycoordinates[2] = 35;
   }
   
   /**
    * Sets coordinates so a lifeform can be drawn pointing East.
    */
   private void turnEast() {
-    xCoordinates[0] = 35;
-    xCoordinates[1] = 15;
-    xCoordinates[2] = 15;
-    yCoordinates[0] = 25;
-    yCoordinates[1] = 15;
-    yCoordinates[2] = 35;
+    xcoordinates[0] = 35;
+    xcoordinates[1] = 15;
+    xcoordinates[2] = 15;
+    ycoordinates[0] = 25;
+    ycoordinates[1] = 15;
+    ycoordinates[2] = 35;
   }
   
   

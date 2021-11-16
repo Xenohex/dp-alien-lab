@@ -9,23 +9,52 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import environment.*;
-import exceptions.*;
-import lifeform.*;
-import weapon.*;
+import environment.Environment;
+import exceptions.AttachmentException;
+import exceptions.EnvironmentException;
+import exceptions.RecoveryRateException;
+import lifeform.LifeForm;
+import lifeform.Alien;
+import lifeform.Human;
+import weapon.Pistol;
+import weapon.ChainGun;
+import weapon.PlasmaCannon;
 
-
+/**
+ * 
+ * @author Austin Pliska
+ * This class has been designated to initalize the entire program, and the class
+ * itself creates the remote that allows the user to command the lifeform's in 
+ * the board.
+ *
+ */
 public class Invoker extends JFrame implements ActionListener {
   
-  JButton eastButton, westButton, northButton, southButton, moveButton;
-  JButton attackButton, dropWeaponButton, pickUpWeaponButton, reloadButton;
-  Environment e;
-  Board b;
+  JButton eastButton;
+  JButton westButton;
+  JButton northButton;
+  JButton southButton;
+  JButton moveButton;
   
+  JButton attackButton;
+  JButton dropWeaponButton;
+  JButton acquireWeaponButton;
+  JButton reloadButton;
+  
+  Environment env;
+  Board board;
+  
+  /**
+   * 
+   * @param e  singleton environment
+   * @param b  board
+   * Constructor that takes in the environment and game board to initialize them and
+   * control what happens in them using the concrete commands implemented with the game.
+   */
   public Invoker(Environment e, Board b) {
     
-    this.e = e;
-    this.b = b;
+    this.env = e;
+    this.board = b;
     
     setLayout(new BorderLayout());
     
@@ -58,9 +87,9 @@ public class Invoker extends JFrame implements ActionListener {
     attackButton.addActionListener(this);
     buttonArray[0][0] = attackButton;
     
-    pickUpWeaponButton = new JButton("pick-up weapon");
-    pickUpWeaponButton.addActionListener(this);
-    buttonArray[1][0] = pickUpWeaponButton;
+    acquireWeaponButton = new JButton("pick-up weapon");
+    acquireWeaponButton.addActionListener(this);
+    buttonArray[1][0] = acquireWeaponButton;
     
     dropWeaponButton = new JButton("drop weapon");
     dropWeaponButton.addActionListener(this);
@@ -82,6 +111,16 @@ public class Invoker extends JFrame implements ActionListener {
     
   }
   
+  /**
+   * 
+   * @param args
+   * @throws EnvironmentException
+   * @throws RecoveryRateException
+   * @throws AttachmentException
+   * 
+   * This is the main method that initializes the entire program and spawns in 
+   * various lifeforms as well as the environment, game board, and remote controller.
+   */
   public static void main(String[] args) 
       throws EnvironmentException, RecoveryRateException, AttachmentException {
     Environment e = Environment.getEnvironment(7, 10);
@@ -107,71 +146,71 @@ public class Invoker extends JFrame implements ActionListener {
     Invoker gui = new Invoker(e, b);
   }
 
-
+  /**
+   * Decides what command to execute based off of which button was pressed.
+   */
   @Override
   public void actionPerformed(ActionEvent event) {
     
-    if (b.getSelectedCell() == null) {
+    if (board.getSelectedCell() == null) {
       System.out.println("Error: no cell selected");
-    } else if (b.getSelectedCell().getLifeForm() == null) {
-        System.out.println("Error: no lifeform selected :p");
+    } else if (board.getSelectedCell().getLifeForm() == null) {
+      System.out.println("Error: no lifeform selected");
     } else {
     
-      LifeForm lifeform = b.getSelectedCell().getLifeForm();
+      LifeForm lifeform = board.getSelectedCell().getLifeForm();
       var remote = new Remote();
       
-      if (event.getSource() == eastButton) {
+      if (event.getSource() == eastButton) {  // East
         var east = new FaceEastCommand(lifeform);
         remote.setCommand(east);
         remote.buttonPressed();
         
-      } else if (event.getSource() == westButton) {
+      } else if (event.getSource() == westButton) { // West
         var west = new FaceWestCommand(lifeform);
         remote.setCommand(west);
         remote.buttonPressed();
         
-      } else if (event.getSource() == northButton) {
+      } else if (event.getSource() == northButton) {  // North
         var north = new FaceNorthCommand(lifeform);
         remote.setCommand(north);
         remote.buttonPressed();
         
-      } else if (event.getSource() == southButton) {
+      } else if (event.getSource() == southButton) {  // South
         var south = new FaceSouthCommand(lifeform);
         remote.setCommand(south);
         remote.buttonPressed();
         
-      } else if (event.getSource() == moveButton) {
-        var move = new MoveCommand(lifeform, e, b);
+      } else if (event.getSource() == moveButton) { // Move
+        var move = new MoveCommand(lifeform, env, board);
         remote.setCommand(move);
         remote.buttonPressed();
-      }
-      
-        else if (event.getSource() == attackButton) {
-        var attack = new AttackCommand(lifeform, e);
+        
+      } else if (event.getSource() == attackButton) { // Attack
+        var attack = new AttackCommand(lifeform, env);
         remote.setCommand(attack);
         remote.buttonPressed();
         
-      } else if (event.getSource() == pickUpWeaponButton) {
-        var acquire = new AcquireCommand(lifeform, e);
+      } else if (event.getSource() == acquireWeaponButton) { // Pick Up Weapon
+        var acquire = new AcquireCommand(lifeform, env);
         remote.setCommand(acquire);
         remote.buttonPressed();
         
-      } else if (event.getSource() == dropWeaponButton) {
-        var drop = new DropCommand(lifeform, e);
+      } else if (event.getSource() == dropWeaponButton) { // Drop Weapon
+        var drop = new DropCommand(lifeform, env);
         remote.setCommand(drop);
         remote.buttonPressed();
         
-      } else if (event.getSource() == reloadButton) {
+      } else if (event.getSource() == reloadButton) { // Reload
         var reload = new ReloadCommand(lifeform);
         remote.setCommand(reload);
         remote.buttonPressed();
-      }
+        
+      } else {
+      System.out.println("unknown command");
+    }
       
-        else {
-        System.out.println("unknown command");
-      }
-      
-      b.update(lifeform.getRow(), lifeform.getCol(),e);
+      board.update(lifeform.getRow(), lifeform.getCol(),env);
     }
   }
   

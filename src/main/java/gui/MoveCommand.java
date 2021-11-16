@@ -1,7 +1,7 @@
 package gui;
 
+import environment.Environment;
 import exceptions.EnvironmentException;
-import environment.*;
 import lifeform.LifeForm;
 
 public class MoveCommand implements Command {
@@ -9,17 +9,33 @@ public class MoveCommand implements Command {
   LifeForm lifeform;
   String direction;
   int speed;
-  Environment e;
-  Board b;
+  Environment env;
+  Board board;
   
+  /**
+   * 
+   * @param lf  lifeform
+   * @param ee  environment
+   * @param bb  board
+   * Uses lifeform to determine which lifeform to move
+   * Uses environment to obtain which cell the lifeform is in and which cell to move it to
+   * Uses board to actually move the lifeform on the board
+   */
   public MoveCommand(LifeForm lf, Environment ee, Board bb) {
     lifeform = lf;
     direction = lifeform.getCurrentDirection();
     speed = lifeform.getMaxSpeed();
-    e = ee;
-    b = bb;
+    env = ee;
+    board = bb;
   }
   
+  /**
+   * Executes the move command, which uses loops to decide whether the lifeform can
+   * move to where it is trying to, if the command can compromise and at least
+   * move it as far as possible, or not move the lifeform at all.
+   * Once this happens, the lifeform is removed from its old spot on the board
+   * and re-placed in its new spot.
+   */
   public void execute() {
     
     int row = lifeform.getRow();
@@ -30,12 +46,12 @@ public class MoveCommand implements Command {
         for (int i = speed; i >= 0; i--) {
           if ((row - i) < 0) {
             continue;
-          } else if (e.getLifeForm((row - i), col) != null) {
+          } else if (env.getLifeForm((row - i), col) != null) {
             continue;
           } else if (i == 0) {
             System.out.println(lifeform.getName() + " could not move");
             break;
-          } else if (e.getLifeForm(row - i, col) == null) {
+          } else if (env.getLifeForm(row - i, col) == null) {
             lifeform.setLocation(row - i, col);
             break;
           } else {
@@ -45,14 +61,14 @@ public class MoveCommand implements Command {
         
       } else if (direction == "South") {
         for (int i = speed; i >= 0; i--) {
-          if ((row + i) >= e.getNumRows()) { // if lifeform on border
+          if ((row + i) >= env.getNumRows()) { // if lifeform on border
             continue;
-          } else if (e.getLifeForm((row + i), col) != null) { // if a lifeform is in target space
+          } else if (env.getLifeForm((row + i), col) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
             System.out.println(lifeform.getName() + " could not move");
             break;
-          } else if (e.getLifeForm(row + i, col) == null) {
+          } else if (env.getLifeForm(row + i, col) == null) {
             lifeform.setLocation(row + i, col);
             break;
           } else {
@@ -62,14 +78,14 @@ public class MoveCommand implements Command {
         
       } else if (direction == "East") {
         for (int i = speed; i >= 0; i--) {
-          if ((col + i) >= e.getNumCols()) { // if lifeform on border
+          if ((col + i) >= env.getNumCols()) { // if lifeform on border
             continue;
-          } else if (e.getLifeForm(row, (col + i)) != null) { // if a lifeform is in target space
+          } else if (env.getLifeForm(row, (col + i)) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
             System.out.println(lifeform.getName() + " could not move");
             break;
-          } else if (e.getLifeForm(row, col + i) == null) {
+          } else if (env.getLifeForm(row, col + i) == null) {
             lifeform.setLocation(row, col + i);
             break;
           } else {
@@ -81,12 +97,12 @@ public class MoveCommand implements Command {
         for (int i = speed; i >= 0; i--) {
           if ((col - i) < 0) { // if lifeform on border
             continue;
-          } else if (e.getLifeForm(row, (col - i)) != null) { // if a lifeform is in target space
+          } else if (env.getLifeForm(row, (col - i)) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
             System.out.println(lifeform.getName() + " could not move");
             break;
-          } else if (e.getLifeForm(row, col - i) == null) {
+          } else if (env.getLifeForm(row, col - i) == null) {
             lifeform.setLocation(row, col - i);
             break;
           } else {
@@ -95,10 +111,11 @@ public class MoveCommand implements Command {
         }
       }
       
-      e.removeLifeForm(row, col);
-      e.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
+      env.removeLifeForm(row, col);
+      env.addLifeForm(lifeform, lifeform.getRow(), lifeform.getCol());
       
-      System.out.println(lifeform.getName() + " moved to " + lifeform.getRow() + ", " + lifeform.getCol());
+      System.out.println(lifeform.getName() + " moved to " + 
+      lifeform.getRow() + ", " + lifeform.getCol());
     
     } catch (EnvironmentException exception) {
       System.out.println("Error: EnvironmentException in move command");
