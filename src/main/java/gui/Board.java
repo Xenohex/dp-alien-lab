@@ -209,11 +209,9 @@ public class Board extends JFrame implements ActionListener {
     drawer.setColor(new Color(160,160,160));
     drawer.fillRect(0, 0, 50, 50);
     
-    if (e.getLifeForm(row, col) != null) {
-      determineLifeForm(drawer, row, col);
-    } 
     
-    //determineLifeForm(drawer, row, col);
+    
+    determineLifeForm(drawer, row, col);
     drawCellWeapons(drawer, row, col);
 
     return new ImageIcon(exampleImage);
@@ -243,11 +241,11 @@ public class Board extends JFrame implements ActionListener {
    * calls for a the appropriate function as well as for drawWeapon
    */
   private void determineLifeForm(Graphics drawer, int row, int col) {
-    if (e.getLifeForm(row, col).getCurrentLifePoints() != 0 
+    if (e.getLifeForm(row, col) != null
         && e.getLifeForm(row, col).getClass() == Human.class) {
       drawHuman(drawer, row, col);
       drawWeapon(drawer, row, col);
-    } else if (e.getLifeForm(row, col).getCurrentLifePoints() != 0 
+    } else if (e.getLifeForm(row, col) != null 
         && e.getLifeForm(row, col).getClass() == Alien.class) {
       drawAlien(drawer, row, col);
       drawWeapon(drawer, row, col);

@@ -7,7 +7,6 @@ import lifeform.LifeForm;
 public class AttackCommand implements Command {
   
   LifeForm lifeform;
-  LifeForm affectedLifeform;
   String direction;
   Environment env;
   
@@ -57,7 +56,6 @@ public class AttackCommand implements Command {
             lifeform.attack(env.getLifeForm(i, col), distance);
             System.out.println(lifeform.getName() + " attacked " 
                 + env.getLifeForm(i, col).getName());
-            affectedLifeform = env.getLifeForm(i, col);
             break;
           }
         }
@@ -80,7 +78,6 @@ public class AttackCommand implements Command {
             lifeform.attack(env.getLifeForm(i, col), distance);
             System.out.println(lifeform.getName() + " attacked " 
                 + env.getLifeForm(i, col).getName());
-            affectedLifeform = env.getLifeForm(i, col);
             break;
           }
         }
@@ -103,7 +100,6 @@ public class AttackCommand implements Command {
             lifeform.attack(env.getLifeForm(row, i), distance);
             System.out.println(lifeform.getName() + " attacked " 
                 + env.getLifeForm(row, i).getName());
-            affectedLifeform = env.getLifeForm(row,  i);
             break;
           }
         }
@@ -126,7 +122,6 @@ public class AttackCommand implements Command {
             lifeform.attack(env.getLifeForm(row, i), distance);
             System.out.println(lifeform.getName() + " attacked " 
                 + env.getLifeForm(row, i).getName());
-            affectedLifeform = env.getLifeForm(row, i);
             break;
           }
         }
@@ -141,11 +136,6 @@ public class AttackCommand implements Command {
     
     } catch (WeaponException exception) {
       System.out.println("Error: WeaponException thrown in attack command");
-    }
-    
-    if (affectedLifeform != null && affectedLifeform.getCurrentLifePoints() == 0) { 
-      env.removeLifeForm(affectedLifeform.getRow(), affectedLifeform.getCol());
-      env.notifyBoard(affectedLifeform.getRow(), affectedLifeform.getCol());
     }
     
   }
