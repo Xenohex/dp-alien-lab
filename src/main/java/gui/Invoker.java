@@ -16,9 +16,7 @@ import exceptions.RecoveryRateException;
 import lifeform.LifeForm;
 import lifeform.Alien;
 import lifeform.Human;
-import weapon.Pistol;
-import weapon.ChainGun;
-import weapon.PlasmaCannon;
+import weapon.*;
 
 /**
  * 
@@ -128,19 +126,29 @@ public class Invoker extends JFrame implements ActionListener {
     LifeForm bob = new Alien("bob", 100);
     e.addLifeForm(bob, 0, 0);
     var w1 = new Pistol();
-    //bob.pickUpWeapon(w1);
     e.addWeapon(w1, 4, 6);
     
-    LifeForm joe = new Human("joe", 100, 0, 1);
-    e.addLifeForm(joe, 0, 1);
-    var w2 = new ChainGun();
+    LifeForm joe = new Human("joe", 100, 0);
+    e.addLifeForm(joe, 6, 9);
+    var w2 = new Stabilizer(new ChainGun());
     joe.pickUpWeapon(w2);
     
-    
-    LifeForm bran = new Human("bran", 100, 0, 1);
-    e.addLifeForm(bran, 0, 2);
-    var w3 = new PlasmaCannon();
+    LifeForm bran = new Human("bran", 100, 0);
+    e.addLifeForm(bran, 5, 2);
+    var w3 = new PowerBooster(new Scope(new PlasmaCannon()));
     bran.pickUpWeapon(w3);
+    
+    LifeForm al = new Alien ("al", 100);
+    e.addLifeForm(al, 6, 0);
+    var w4 = new Pistol();
+    al.pickUpWeapon(w4);
+    
+    var w5 = new Pistol();
+    e.addWeapon(w5, 4, 3);
+    var w6 = new ChainGun();
+    e.addWeapon(w6, 2, 3);
+    var w7 = new PlasmaCannon();
+    e.addWeapon(w7, 3, 1);
     
     Board b = new Board(e);
     Invoker gui = new Invoker(e, b);
