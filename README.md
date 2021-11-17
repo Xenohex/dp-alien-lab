@@ -1,5 +1,5 @@
-# Lab 6 Description
-In this lab we design and make a graphic user interface (GUI) for the game.
+# Lab 7 Description
+Implement the state pattern for the game.
 
 # Team Contract
 
@@ -54,13 +54,7 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
-| Activity#1 | Bader | 11/17/21 | 11/02/21 |
-| Activity#2 | Christian | 11/17/21 | 11/02/21 |
-| Activity#3 | Austin | 11/17/21 | 11/02/21 |
-| Activity#4 | All group | 11/17/21 | 11/02/21 |
-| Turn & Movement | Bader | 11/17/21 | 11/12/21|
-| Commands | Austin | 11/17/21 | 11/12/21|
-| Game UI | Chris | 11/17/21 | 11/12/21|
+
 | edit README | Bader | 11/17/21 | 11/16/21 |
 
 
@@ -69,8 +63,4 @@ Using the following table
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 01 | 10/27/21 | class | all group | get Activity 4 done first |
-| 02 | 10/28/21 | Zoom | all group | work on the design |
-| 03 | 11/3/21 | class | all group | Design evaluation | 
-| 04 | 11/11/21 | Zoom | Bader & Chris | Talk about GUI |
-| 05 | 11/14/21 | Zoom | Austin & Bader | Talk about the Commands |  
-| 06 | 11/15/21 | Zoom | All group | Cleaning up the lab |
+
