@@ -1,5 +1,7 @@
 package environment;
 
+import java.util.Random;
+
 import exceptions.EnvironmentException;
 import gui.Board;
 import lifeform.LifeForm;
@@ -223,12 +225,20 @@ public class Environment {
     board = b;
   }
   
+  /**
+   * @param row
+   * @param col
+   * notifies the board if the board is initialized
+   */
   public void notifyBoard(int row, int col) {
     board.update(row, col, theEnvironment);
   }
   
-  public void getSelectedCell() {
-    //selectedCell = board.getSelectedCell();
+  /**
+   * @return a random cell (maybe for respawning?)
+   */
+  public Cell getRandomCell() {
+    Random ran = new Random();
+    return cells[ran.nextInt(getNumRows())][ran.nextInt(getNumCols())];    
   }
-  
 }

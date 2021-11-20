@@ -24,6 +24,15 @@ import gui.Remote;
  *
  */
 public class TestEnvironment {
+  //-----------------------------Lab 7 Tests-------------------//
+  /*
+   * 
+   */
+  @Test
+  public void testRandom() {
+    Environment e = Environment.getEnvironment(6, 6);
+    System.out.println(e.getRandomCell());
+  }
   /*---------------------------lab6-tests--------------------------------------*/
   
   /**
