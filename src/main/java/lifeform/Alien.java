@@ -14,7 +14,6 @@ import recovery.RecoveryNone;
  */
 public class Alien extends LifeForm implements TimerObserver {
 
-  int maxLifePoints = 0;
   int recoveryRate = 0;
   int roundsTillRecover = 1;
   RecoveryBehavior rb;
@@ -52,7 +51,7 @@ public class Alien extends LifeForm implements TimerObserver {
     super(name, life);
     attackStrength = 10;
     maxSpeed = 2;
-    maxLifePoints = life;
+    //maxLifePoints = life;
     this.rb = rb;
     this.recoveryRate = recoveryRate;
     try {
@@ -64,13 +63,6 @@ public class Alien extends LifeForm implements TimerObserver {
     } catch (Exception e) {
       throw e;
     }
-  }
-
-  /**
-   * @return maximum life points the alien can have
-   */
-  public int getMaxLifePoints() {
-    return maxLifePoints;
   }
 
   /**

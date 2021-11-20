@@ -15,6 +15,19 @@ import recovery.RecoveryLinear;
  *
  */
 public class TestAlien {
+  
+  //---------------------Lab 7 Tests-----------------------------------//
+  /**
+   * Test maxLifePoints of Alien
+   * @throws RecoveryRateException 
+   */
+  @Test
+  public void testmaxLifePoints() throws RecoveryRateException {
+    Alien entity = new Alien("Bob",100);
+    entity.takeHit(20);
+    entity.takeHit(5);
+    assertEquals(100, entity.getMaxLifePoints());
+  }
 
   //-----------------------Lab6 tests-----------------------------------------------
   /**

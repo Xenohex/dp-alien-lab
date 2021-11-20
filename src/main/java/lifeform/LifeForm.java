@@ -21,6 +21,8 @@ public abstract class LifeForm extends Object {
   protected String currentDirection;
   protected int maxSpeed;
   
+  protected int maxLifePoints;
+  
   /**
    * Create an instance
    * 
@@ -41,11 +43,19 @@ public abstract class LifeForm extends Object {
    */
   public LifeForm(String name, int points, int attack) {
     myName = name;
+    maxLifePoints = points;
     currentLifePoints = points;
     attackStrength = attack;
     currentDirection = "North";
     this.row = -1;
     this.col = -1;
+  }
+  
+  /**
+   * @return maximum life points the alien can have
+   */
+  public int getMaxLifePoints() {
+    return maxLifePoints;
   }
 
   /**
