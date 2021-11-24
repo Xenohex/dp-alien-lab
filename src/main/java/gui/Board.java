@@ -413,6 +413,24 @@ public class Board extends JFrame implements ActionListener {
   
   
   /**
+   * @param row 
+   * @param col 
+   * @param e
+   * For lab 7, will just update an individual cell, not 
+   * affecting highlighted cells. This can function without
+   * human intervention.
+   */
+  public void newUpdate(int row, int col, Environment e) {
+    Board.e = e;
+    
+    buttonArray[row][col].remove(imageLabel[row][col]);
+    imageLabel[row][col] = new JLabel(createCell(row, col));
+    buttonArray[row][col].add(imageLabel[row][col]);
+    
+    setVisible(true);
+  }
+  
+  /**
    * @param row
    * @param col
    * will be called when environment notifies the observer(board)

@@ -225,10 +225,21 @@ public class Environment {
     board = b;
   }
   
+  
+  /**
+   * @param row
+   * @param col
+   * will redraw the selected Cell
+   */
+  public void updateCell(int row, int col) {
+    board.newUpdate(row, col, theEnvironment);
+  }
+  
   /**
    * @param row
    * @param col
    * notifies the board if the board is initialized
+   * FOR THE LAB 6
    */
   public void notifyBoard(int row, int col) {
     board.update(row, col, theEnvironment);
