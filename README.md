@@ -57,7 +57,7 @@ Using the following table
 | Person C | Austin | 12/30/21 | 11/28/21 |
 | Person D | Christian | 12/30/21 | 11/26/21 |
 | Person B | Bader | 12/30/21 | 11/28/21 |
-| edit README | Bader | 11/17/21 | 11/16/21 |
+| edit README | Bader | 12/30/21 | 12/28/21 |
 
 
 # Team Meeting Log
