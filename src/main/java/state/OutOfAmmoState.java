@@ -8,8 +8,17 @@ public class OutOfAmmoState extends ActionState {
 
   @Override
   void executeAction() {
-    // TODO Auto-generated method stub
-    
+    if (lifeForm.getCurrentLifePoints() <= 0) {
+      context.setCurrentState(context.getDeadState());
+    } else {
+      reload();
+    }
+    // Evaluation
+  }
+  
+  public void reload() {
+    lifeForm.reload(); // wow that was hard
+    context.setCurrentState(context.hasWeaponState);
   }
 
 }
