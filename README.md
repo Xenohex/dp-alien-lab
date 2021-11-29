@@ -54,9 +54,11 @@ Using the following table
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
+| code activity 1 & 2 | christian | 12/30/21 | 11/29/21 |
 | Person C | Austin | 12/30/21 | 11/28/21 |
 | Person D | Christian | 12/30/21 | 11/26/21 |
 | Person B | Bader | 12/30/21 | 11/28/21 |
+| Person A | All group | 12/30/21 | 11/28/21 |
 | edit README | Bader | 12/30/21 | 12/28/21 |
 
 
@@ -64,5 +66,6 @@ Using the following table
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 01 | 10/27/21 | class | all group | get Activity 4 done first |
+| 01 | 11/29/21 | Zoom | all group | clean up the states |
+
 
