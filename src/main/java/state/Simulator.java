@@ -71,6 +71,7 @@ public class Simulator { //implements TimerObserver {
         b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
         //b = c.addWeapon(w);
       } while (!b);
+      t.addTimeObserver(w);
     }
     
     
@@ -97,17 +98,17 @@ public class Simulator { //implements TimerObserver {
       do {
         b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
       } while(!b);
-      
+      t.addTimeObserver(w);
     }
   }
   
   
   public static void main(String[] args) {
     
-    Environment e = Environment.getEnvironment(4,4);
+    Environment e = Environment.getEnvironment(3,3);
     SimpleTimer t = new SimpleTimer(1000);
     try {
-      Simulator s = new Simulator(e, t, 1, 1);
+      Simulator s = new Simulator(e, t, 1, 2);
     } catch (EnvironmentException e1) {
       e1.printStackTrace();
     } catch (AttachmentException e1) {

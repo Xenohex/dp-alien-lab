@@ -27,6 +27,7 @@ boolean shouldMove = false;
     } else {
       attackTarget();
     }
+    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
   }
   
   public void attackTarget() { 
@@ -44,7 +45,7 @@ boolean shouldMove = false;
           for (int i = row - 1; i >= -1; i--) {
             distance += 5;
             if ((i == 0 && e.getLifeForm(i, col) == null) || i < 0) {
-                lifeForm.getWeapon().fire(distance);
+             //   lifeForm.getWeapon().fire(distance);
               break;
             } 
             if (e.getLifeForm(i, col) != null) {
@@ -63,7 +64,7 @@ boolean shouldMove = false;
             distance += 5;
             if ((i == (e.getNumRows() - 1) && e.getLifeForm(i, col) == null)
                 || i == e.getNumRows()) {
-                lifeForm.getWeapon().fire(distance);
+               // lifeForm.getWeapon().fire(distance);
               break;
             } 
             if (e.getLifeForm(i, col) != null) {
@@ -82,11 +83,11 @@ boolean shouldMove = false;
             distance += 5;
             if ((i == (e.getNumCols() - 1) && e.getLifeForm(row, i) == null)
                 || i == e.getNumCols()) {
-                lifeForm.getWeapon().fire(distance);
+               // lifeForm.getWeapon().fire(distance);
               break;
             } 
             if (e.getLifeForm(row, i) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
                 break; 
               }
               lifeForm.attack(e.getLifeForm(row, i), distance);
@@ -100,11 +101,11 @@ boolean shouldMove = false;
           for (int i = col - 1; i >= -1; i--) {
             distance += 5;
             if ((i == 0 && e.getLifeForm(row, i) == null) || (i < 0)) {
-                lifeForm.getWeapon().fire(distance);
+               // lifeForm.getWeapon().fire(distance);
               break;
             } 
             if (e.getLifeForm(row, i) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
                 break; 
               }
               lifeForm.attack(e.getLifeForm(row, i), distance);

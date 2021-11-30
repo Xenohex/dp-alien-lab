@@ -12,7 +12,7 @@ public class OutOfAmmoState extends ActionState {
   @Override
   void executeAction() {
     LifeForm lf = context.getLifeForm();
-    Environment env = context.getEnvironment();
+    Environment e = context.getEnvironment();
     
     if (lf.getCurrentLifePoints() <= 0) {
       context.setCurrentState(context.getDeadState());
