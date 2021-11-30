@@ -1,7 +1,6 @@
 package lifeform;
 
 import weapon.Weapon;
-import environment.Environment;
 import exceptions.WeaponException;
 import exceptions.EnvironmentException;
 
@@ -113,6 +112,13 @@ public abstract class LifeForm extends Object {
     } */
   }
   
+  /**
+   * Setter for the currentLifePoints instance 
+   * @param points
+   */
+  public void setCurrentLifePoints(int points) {
+    currentLifePoints = points;
+  }
   
   /**
    * @return true if lifeform has a weapon

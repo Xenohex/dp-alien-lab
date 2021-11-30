@@ -7,7 +7,6 @@ public class DeadState extends ActionState {
 
   DeadState(AIContext context) {
     super(context);
-    // TODO Auto-generated constructor stub
   }
 
   @Override
@@ -22,9 +21,10 @@ public class DeadState extends ActionState {
     if(lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
       cell.addLifeForm(lifeForm);
       w = lifeForm.dropWeapon();
-       
+      e.addWeapon(w, lifeForm.getRow(), lifeForm.getCol());
     } else {
-     
+      System.out.println("No space available in this cell to drop the weapon!");
     }
+    lifeForm.setCurrentLifePoints(lifeForm.getMaxLifePoints());  
   }
 }
