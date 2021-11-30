@@ -36,6 +36,9 @@ boolean shouldMove = false;
         if (direction == "North") {
           for (int i = row - 1; i >= -1; i--) {
             distance += 5;
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
+            }
             if (i < 0) {
                 lifeForm.getWeapon().fire(distance);
               break;
@@ -55,6 +58,9 @@ boolean shouldMove = false;
         } else if (direction == "South") {
           for (int i = row + 1; i <= e.getNumRows(); i++) {
             distance += 5;
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
+            }
             if (i == e.getNumRows()) {
                 lifeForm.getWeapon().fire(distance);
               break;
@@ -74,6 +80,9 @@ boolean shouldMove = false;
         } else if (direction == "East") {
           for (int i = col + 1; i <= e.getNumCols(); i++) {
             distance += 5;
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
+            }
             if (i == e.getNumCols()) {
                 lifeForm.getWeapon().fire(distance);
               break;
@@ -93,6 +102,9 @@ boolean shouldMove = false;
         } else if (direction == "West") {
           for (int i = col - 1; i >= -1; i--) {
             distance += 5;
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
+            }
             if ((i == 0 && e.getLifeForm(row, i) == null) || (i < 0)) {
                 lifeForm.getWeapon().fire(distance);
               break;
