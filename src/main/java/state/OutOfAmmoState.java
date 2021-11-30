@@ -13,6 +13,7 @@ public class OutOfAmmoState extends ActionState {
     } else {
       reload();
     }
+    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
     // Evaluation
   }
   

@@ -21,6 +21,7 @@ public class NoWeaponState extends ActionState {
     } else {
       search();
     }
+    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
     // Evaluation
   }
   
@@ -65,7 +66,6 @@ public class NoWeaponState extends ActionState {
           } else if (e.getLifeForm((row - i), col) != null) {
             continue;
           } else if (i == 0) {
-            System.out.println(lifeForm.getName() + " could not move");
             break;
           } else if (e.getLifeForm(row - i, col) == null) {
             lifeForm.setLocation(row - i, col);
@@ -82,7 +82,6 @@ public class NoWeaponState extends ActionState {
           } else if (e.getLifeForm((row + i), col) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
-            System.out.println(lifeForm.getName() + " could not move");
             break;
           } else if (e.getLifeForm(row + i, col) == null) {
             lifeForm.setLocation(row + i, col);
@@ -99,7 +98,6 @@ public class NoWeaponState extends ActionState {
           } else if (e.getLifeForm(row, (col + i)) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
-            System.out.println(lifeForm.getName() + " could not move");
             break;
           } else if (e.getLifeForm(row, col + i) == null) {
             lifeForm.setLocation(row, col + i);
@@ -116,7 +114,6 @@ public class NoWeaponState extends ActionState {
           } else if (e.getLifeForm(row, (col - i)) != null) { // if a lifeform is in target space
             continue;
           } else if (i == 0) {
-            System.out.println(lifeForm.getName() + " could not move");
             break;
           } else if (e.getLifeForm(row, col - i) == null) {
             lifeForm.setLocation(row, col - i);
@@ -129,9 +126,6 @@ public class NoWeaponState extends ActionState {
       
       e.removeLifeForm(row, col);
       e.addLifeForm(lifeForm, lifeForm.getRow(), lifeForm.getCol());
-      
-      System.out.println(lifeForm.getName() + " moved to " 
-          + lifeForm.getRow() + ", " + lifeForm.getCol());
     
     } catch (EnvironmentException exception) {
       System.out.println("Error: EnvironmentException in move command");

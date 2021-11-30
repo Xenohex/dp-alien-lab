@@ -40,13 +40,7 @@ public class AttackCommand implements Command {
       if (direction == "North") {
         for (int i = row - 1; i >= -1; i--) {
           distance += 5;
-          if (i < 0) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
-          }
-          if (i == 0 && env.getLifeForm(i, col) == null) {
+          if ((i < 0) || (i == 0 && env.getLifeForm(i, col) == null)) {
             if (lifeform.hasWeapon()) {
               lifeform.getWeapon().fire(distance);
             }
@@ -62,13 +56,8 @@ public class AttackCommand implements Command {
       } else if (direction == "South") {
         for (int i = row + 1; i <= env.getNumRows(); i++) {
           distance += 5;
-          if (i == env.getNumRows()) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
-          }
-          if (i == (env.getNumRows() - 1) && env.getLifeForm(i, col) == null) {
+          if ((i == env.getNumRows()) 
+              || (i == (env.getNumRows() - 1) && env.getLifeForm(i, col) == null)) {
             if (lifeform.hasWeapon()) {
               lifeform.getWeapon().fire(distance);
             }
@@ -84,13 +73,8 @@ public class AttackCommand implements Command {
       } else if (direction == "East") {
         for (int i = col + 1; i <= env.getNumCols(); i++) {
           distance += 5;
-          if (i == env.getNumCols()) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
-          }
-          if (i == (env.getNumCols() - 1) && env.getLifeForm(row, i) == null) {
+          if ((i == env.getNumCols()) 
+              || (i == (env.getNumCols() - 1) && env.getLifeForm(row, i) == null)) {
             if (lifeform.hasWeapon()) {
               lifeform.getWeapon().fire(distance);
             }
@@ -106,13 +90,7 @@ public class AttackCommand implements Command {
       } else if (direction == "West") {
         for (int i = col - 1; i >= -1; i--) {
           distance += 5;
-          if (i < 0) {
-            if (lifeform.hasWeapon()) {
-              lifeform.getWeapon().fire(distance);
-            }
-            break;
-          }
-          if (i == 0 && env.getLifeForm(row, i) == null) {
+          if ((i < 0) || (i == 0 && env.getLifeForm(row, i) == null)) {
             if (lifeform.hasWeapon()) {
               lifeform.getWeapon().fire(distance);
             }
