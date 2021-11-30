@@ -2,7 +2,10 @@ package state;
 
 import java.util.Random;
 
+import environment.Environment;
 import exceptions.EnvironmentException;
+import lifeform.LifeForm;
+import weapon.Weapon;
 
 public class NoWeaponState extends ActionState {
 
@@ -13,50 +16,89 @@ public class NoWeaponState extends ActionState {
 
   @Override
   void executeAction() {
+    LifeForm lf = context.getLifeForm();
+    Environment e = context.getEnvironment();
     // TODO Auto-generated method stub
-    if (lifeForm.getCurrentLifePoints() <= 0) {
+    //search();
+    if (lf.getCurrentLifePoints() <= 0) {
       context.setCurrentState(context.getDeadState());
-    } else if (e.getWeapons(lifeForm.getRow(), lifeForm.getCol()) != null) {
-      acquireWeapon();
-    } else {
+    } else if (e.getCell(lf.getRow(), lf.getCol()).getWeapon1() == null) {
       search();
+      
+    } else {
+      acquireWeapon();
+      
     }
-    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
+    //search();
+    e.updateCell(lf.getRow(), lf.getCol());
     // Evaluation
   }
   
   public void acquireWeapon() {
-    if (e.getCell(lifeForm.getRow(), lifeForm.getCol()).getWeapon1() == null) {
-      lifeForm.pickUpWeapon(e.getCell(lifeForm.getRow(), lifeForm.getCol()).getWeapon2());
-    } else {
-      lifeForm.pickUpWeapon(e.getCell(lifeForm.getRow(), lifeForm.getCol()).getWeapon1());
+    LifeForm lifeform = context.getLifeForm();
+    Environment env = context.getEnvironment();
+    if (env.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon2() != null) {
+      Weapon w = lifeform.dropWeapon();
+      lifeform.pickUpWeapon(env.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1());
+      env.removeWeapon(lifeform.getWeapon(), lifeform.getRow(), lifeform.getCol());
+      env.addWeapon(w, lifeform.getRow(), lifeform.getCol());
+      context.setCurrentState(context.hasWeaponState);
+      env.updateCell(lifeform.getRow(), lifeform.getCol());
+      System.out.println("Weapon switched");
+    } else if (env.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1() != null) {
+      Weapon w = lifeform.dropWeapon();
+      lifeform.pickUpWeapon(env.getCell(lifeform.getRow(), lifeform.getCol()).getWeapon1());
+      env.removeWeapon(lifeform.getWeapon(), lifeform.getRow(), lifeform.getCol());
+      env.addWeapon(w, lifeform.getRow(), lifeform.getCol());
+      context.setCurrentState(context.hasWeaponState);
+      env.updateCell(lifeform.getRow(), lifeform.getCol());
+      System.out.println("Weapon switched");
     }
-    context.setCurrentState(context.hasWeaponState);
+    /**
+    if (e.getCell(lf.getRow(), lf.getCol()).getWeapon1() != null) {
+      e.removeWeapon(null, 0, 0);
+      lf.pickUpWeapon(e.getCell(lf.getRow(), lf.getCol()).);
+      
+      
+    } else {
+      lf.pickUpWeapon(e.getCell(lf.getRow(), lf.getCol()).getWeapon1());
+    }
+    context.setCurrentState(context.hasWeaponState); **/
   }
   
   public void search() {
+    LifeForm lf = context.getLifeForm();
+    Environment e = context.getEnvironment();
     
-    int row = lifeForm.getRow();
-    int col = lifeForm.getCol();
-    int speed = lifeForm.getMaxSpeed();
+    int row = lf.getRow();
+    int col = lf.getCol();
+    int speed = lf.getMaxSpeed();
     
     Random random = new Random();
     int d = random.nextInt(4) + 1;
     switch (d) {
     case 1:
-      lifeForm.changeDirection("North");
+      lf.changeDirection("North");
+      System.out.println("North");
+      e.updateCell(lf.getRow(), lf.getCol());
       break;
     case 2:
-      lifeForm.changeDirection("South");
+      lf.changeDirection("South");
+      System.out.println("south");
+      e.updateCell(lf.getRow(), lf.getCol());
       break;
     case 3:
-      lifeForm.changeDirection("East");
+      lf.changeDirection("East");
+      System.out.println("east");
+      e.updateCell(lf.getRow(), lf.getCol());
       break;
     case 4:
-      lifeForm.changeDirection("West");
+      lf.changeDirection("West");
+      System.out.println("west");
+      e.updateCell(lf.getRow(), lf.getCol());
     }
     
-    String direction = lifeForm.getCurrentDirection();
+    String direction = lf.getCurrentDirection();
     
     try {
       if (direction == "North") {
@@ -68,65 +110,77 @@ public class NoWeaponState extends ActionState {
           } else if (i == 0) {
             break;
           } else if (e.getLifeForm(row - i, col) == null) {
-            lifeForm.setLocation(row - i, col);
+            lf.setLocation(row - i, col);
+            e.updateCell(row - i, col);
             break;
           } else {
-            lifeForm.setLocation(row - speed, col);
+            lf.setLocation(row - speed, col);
+            e.updateCell(row - speed, col);
           }
-        }
+          
+        }System.out.println(lf.getName() + "moved");
         
       } else if (direction == "South") {
         for (int i = speed; i >= 0; i--) {
-          if ((row + i) >= e.getNumRows()) { // if lifeform on border
+          if ((row + i) >= e.getNumRows()) { // if lf on border
             continue;
-          } else if (e.getLifeForm((row + i), col) != null) { // if a lifeform is in target space
+          } else if (e.getLifeForm((row + i), col) != null) { // if a lf is in target space
             continue;
           } else if (i == 0) {
             break;
           } else if (e.getLifeForm(row + i, col) == null) {
-            lifeForm.setLocation(row + i, col);
+            lf.setLocation(row + i, col);
+            e.updateCell(row + i, col);
             break;
           } else {
-            lifeForm.setLocation(row + speed, col);
+            lf.setLocation(row + speed, col);
+            e.updateCell(row + speed, col);
           }
-        }
+          
+        }System.out.println(lf.getName() + "moved");
         
       } else if (direction == "East") {
         for (int i = speed; i >= 0; i--) {
-          if ((col + i) >= e.getNumCols()) { // if lifeform on border
+          if ((col + i) >= e.getNumCols()) { // if lf on border
             continue;
-          } else if (e.getLifeForm(row, (col + i)) != null) { // if a lifeform is in target space
+          } else if (e.getLifeForm(row, (col + i)) != null) { // if a lf is in target space
             continue;
           } else if (i == 0) {
             break;
           } else if (e.getLifeForm(row, col + i) == null) {
-            lifeForm.setLocation(row, col + i);
+            lf.setLocation(row, col + i);
+            e.updateCell(row, col + i);
             break;
           } else {
-            lifeForm.setLocation(row, col + speed);
+            lf.setLocation(row, col + speed);
+            e.updateCell(row, col + speed);
           }
+          
         }
-        
+        System.out.println(lf.getName() + "moved");
       } else if (direction == "West") {
         for (int i = speed; i >= 0; i--) {
-          if ((col - i) < 0) { // if lifeform on border
+          if ((col - i) < 0) { // if lf on border
             continue;
-          } else if (e.getLifeForm(row, (col - i)) != null) { // if a lifeform is in target space
+          } else if (e.getLifeForm(row, (col - i)) != null) { // if a lf is in target space
             continue;
           } else if (i == 0) {
             break;
           } else if (e.getLifeForm(row, col - i) == null) {
-            lifeForm.setLocation(row, col - i);
+            lf.setLocation(row, col - i);
+            e.updateCell(row, col - i);
             break;
           } else {
-            lifeForm.setLocation(row, col - speed);
+            lf.setLocation(row, col - speed);
+            e.updateCell(row, col - i);
           }
-        }
+          
+        }System.out.println(lf.getName() + "moved");
       }
       
       e.removeLifeForm(row, col);
-      e.addLifeForm(lifeForm, lifeForm.getRow(), lifeForm.getCol());
-    
+      e.addLifeForm(lf, lf.getRow(), lf.getCol());
+      e.updateCell(row, col);
     } catch (EnvironmentException exception) {
       System.out.println("Error: EnvironmentException in move command");
     } catch (ArrayIndexOutOfBoundsException exception) {

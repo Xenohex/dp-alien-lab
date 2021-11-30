@@ -2,8 +2,10 @@ package state;
 
 import java.util.Random;
 
+import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
+import lifeform.LifeForm;
 
 public class HasWeaponState extends ActionState {
 
@@ -15,6 +17,9 @@ boolean shouldMove = false;
 
   @Override
   void executeAction() {
+    LifeForm lifeForm = context.getLifeForm();
+    Environment e = context.getEnvironment();
+    
     if(lifeForm.getWeapon().getCurrentAmmo() <= 0) {
       context.setCurrentState(context.getOutOfAmmoState());
     } else if (lifeForm.getCurrentLifePoints() <= 0) {
@@ -24,7 +29,9 @@ boolean shouldMove = false;
     }
   }
   
-  public void attackTarget() {    
+  public void attackTarget() { 
+    LifeForm lifeForm = context.getLifeForm();
+    Environment e = context.getEnvironment();
     
   String direction = lifeForm.getCurrentDirection();
   int row = lifeForm.getRow();
@@ -117,6 +124,8 @@ boolean shouldMove = false;
   }
 
   public void search() {
+    LifeForm lifeForm = context.getLifeForm();
+    Environment e = context.getEnvironment();
     Random random = new Random();
     int d = random.nextInt(4) + 1;
     switch (d) {
@@ -140,6 +149,8 @@ boolean shouldMove = false;
   }
   
   public void move() {
+    LifeForm lifeForm = context.getLifeForm();
+    Environment e = context.getEnvironment();
     int row = lifeForm.getRow();
     int col = lifeForm.getCol();
     int speed = lifeForm.getMaxSpeed();

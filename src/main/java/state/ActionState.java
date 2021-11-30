@@ -9,7 +9,7 @@ public abstract class ActionState {
   protected Environment e;
   protected LifeForm lifeForm;
   
-  ActionState(AIContext context) {
+  public ActionState(AIContext context) {
     this.context = context;
     e = context.getEnvironment();
     lifeForm = context.getLifeForm();
