@@ -1,5 +1,8 @@
 package state;
 
+import environment.Environment;
+import lifeform.LifeForm;
+
 public class OutOfAmmoState extends ActionState {
 
   OutOfAmmoState(AIContext context) {
@@ -8,17 +11,23 @@ public class OutOfAmmoState extends ActionState {
 
   @Override
   void executeAction() {
-    if (lifeForm.getCurrentLifePoints() <= 0) {
+    LifeForm lf = context.getLifeForm();
+    Environment env = context.getEnvironment();
+    
+    if (lf.getCurrentLifePoints() <= 0) {
       context.setCurrentState(context.getDeadState());
     } else {
       reload();
     }
-    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
+    e.updateCell(lf.getRow(), lf.getCol());
     // Evaluation
   }
   
   public void reload() {
-    lifeForm.reload(); // wow that was hard
+    LifeForm lf = context.getLifeForm();
+    Environment env = context.getEnvironment();
+
+    lf.reload();
     context.setCurrentState(context.hasWeaponState);
   }
 
