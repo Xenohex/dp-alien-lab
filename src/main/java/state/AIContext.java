@@ -105,6 +105,8 @@ public class AIContext implements TimerObserver {
    */
   @Override
   public void updateTime(int time) {
+    execute();
+    // e.updateCell()
     myTime = time;
     
   }
