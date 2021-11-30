@@ -27,8 +27,9 @@ public class DeadState extends ActionState {
     Environment e = context.getEnvironment();
     Cell cell = context.e.getRandomCell();
     Random ran = new Random();
-    Weapon w;
-    boolean canSpawn = false;
+    Weapon w = lifeForm.getWeapon();
+    boolean canSpawnWeapon = false;
+    boolean canSpawnLifeForm = false;
     /*if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
       cell.addLifeForm(lifeForm);
       w = lifeForm.dropWeapon();
@@ -38,20 +39,13 @@ public class DeadState extends ActionState {
       System.out.println("No space available in this cell to drop the weapon!");
     }*/
     try {
-      if (e.getCell(lifeForm.getRow(), lifeForm.getCol()).getWeapon2() != null) {
-        do {
-          e.updateCell(lifeForm.getRow(), lifeForm.getCol());
-          e.removeLifeForm(lifeForm.getRow(), lifeForm.getCol());
-          canSpawn = e.addLifeForm(lifeForm,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
-        } while (!canSpawn);
-      } else {
-        e.addWeapon(lifeForm.dropWeapon(), lifeForm.getRow(), lifeForm.getCol());
-        e.removeLifeForm(lifeForm.getRow(), lifeForm.getCol());
-        e.updateCell(lifeForm.getRow(), lifeForm.getCol());
-        do {
-          canSpawn = e.addLifeForm(lifeForm,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
-        } while (!canSpawn);
-      }
+      lifeForm.dropWeapon();
+      e.addWeapon(w, lifeForm.getRow(), lifeForm.getCol());
+      e.removeLifeForm(lifeForm.getRow(), lifeForm.getCol());
+      e.updateCell(lifeForm.getRow(), lifeForm.getCol());
+      do {
+        canSpawnLifeForm = e.addLifeForm(lifeForm, ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
+      } while (!canSpawnLifeForm);
     } catch (EnvironmentException e1) {
       e1.printStackTrace();
     }
