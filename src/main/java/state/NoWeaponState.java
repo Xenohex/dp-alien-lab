@@ -172,7 +172,7 @@ public class NoWeaponState extends ActionState {
             break;
           } else {
             lf.setLocation(row, col - speed);
-            e.updateCell(row, col - i);
+            e.updateCell(row, col - speed);
           }
           
         }System.out.println(lf.getName() + "moved");
