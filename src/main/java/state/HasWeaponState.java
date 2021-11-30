@@ -20,7 +20,7 @@ boolean shouldMove = false;
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
     
-    if(lifeForm.getWeapon().getCurrentAmmo() <= 0) {
+    if (lifeForm.getWeapon().getCurrentAmmo() <= 0) {
       context.setCurrentState(context.getOutOfAmmoState());
     } else if (lifeForm.getCurrentLifePoints() <= 0) {
       context.setCurrentState(context.getDeadState());
@@ -141,6 +141,7 @@ boolean shouldMove = false;
     case 4:
       lifeForm.changeDirection("West");
     }
+    e.updateCell(lifeForm.getRow(), lifeForm.getCol());
     
     if(shouldMove) {
       move();
@@ -168,9 +169,11 @@ boolean shouldMove = false;
             break;
           } else if (e.getLifeForm(row - i, col) == null) {
             lifeForm.setLocation(row - i, col);
+            e.updateCell(row - i, col);
             break;
           } else {
             lifeForm.setLocation(row - speed, col);
+            e.updateCell(row - speed, col);
           }
         }
         
@@ -185,9 +188,11 @@ boolean shouldMove = false;
             break;
           } else if (e.getLifeForm(row + i, col) == null) {
             lifeForm.setLocation(row + i, col);
+            e.updateCell(row + i, col);
             break;
           } else {
             lifeForm.setLocation(row + speed, col);
+            e.updateCell(row + speed, col);
           }
         }
         
@@ -202,9 +207,11 @@ boolean shouldMove = false;
             break;
           } else if (e.getLifeForm(row, col + i) == null) {
             lifeForm.setLocation(row, col + i);
+            e.updateCell(row, col + i);
             break;
           } else {
             lifeForm.setLocation(row, col + speed);
+            e.updateCell(row, col + speed);
           }
         }
         
@@ -219,15 +226,18 @@ boolean shouldMove = false;
             break;
           } else if (e.getLifeForm(row, col - i) == null) {
             lifeForm.setLocation(row, col - i);
+            e.updateCell(row,  col - i);
             break;
           } else {
             lifeForm.setLocation(row, col - speed);
+            e.updateCell(row,  col - speed);
           }
         }
       }
       
       e.removeLifeForm(row, col);
       e.addLifeForm(lifeForm, lifeForm.getRow(), lifeForm.getCol());
+      e.updateCell(row, col);
       shouldMove = false;
       
       System.out.println(lifeForm.getName() + " moved to " 
