@@ -67,5 +67,5 @@ Using the following table
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 01 | 11/29/21 | Zoom | all group | clean up the states |
-| 02 | 11/30/21 | Zoom | all froup | work on simulator |
+| 02 | 11/30/21 | Zoom | all group | work on simulator |
 
