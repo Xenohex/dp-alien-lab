@@ -78,6 +78,7 @@ public class Simulator {
       conListAlien.add(new AiContext(al, e));
       
       t.addTimeObserver(conListAlien.get(i));
+      t.addTimeObserver(al);
       
       w = new RandomWeapon().choose();
       c = e.getRandomCell();
