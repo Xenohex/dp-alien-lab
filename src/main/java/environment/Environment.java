@@ -232,7 +232,7 @@ public class Environment {
    * will redraw the selected Cell
    */
   public void updateCell(int row, int col) {
-    board.newUpdate(row, col, theEnvironment);
+    //board.newUpdate(row, col, theEnvironment);
   }
   
   /**
