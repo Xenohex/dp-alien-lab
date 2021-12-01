@@ -1,6 +1,5 @@
 package state;
 
-import environment.Cell;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import lifeform.LifeForm;
@@ -28,11 +27,8 @@ public class DeadState extends ActionState {
   public void respawn() {
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
-    Cell cell = context.env.getRandomCell();
-    //if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
     Random ran = new Random();
     Weapon w = lifeForm.getWeapon();
-    boolean canSpawnWeapon = false;
     boolean canSpawnLifeForm = false;
     
     try {
