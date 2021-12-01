@@ -9,6 +9,9 @@ public class RandomAlien implements Random<Alien> {
   
   List<String> names = List.of("A1", "A2", "A3", "A4");
   
+  /**
+   * chooses random name and makes a random alien
+   */
   public Alien choose() {
     
     try {

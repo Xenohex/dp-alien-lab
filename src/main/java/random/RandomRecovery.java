@@ -13,6 +13,9 @@ public class RandomRecovery implements Random<RecoveryBehavior> {
       new RecoveryLinear(new RandInt(0,10).choose()), 
       new RecoveryFractional(new java.util.Random().nextDouble()));
   
+  /**
+   * chooses recovery behavior at random
+   */
   public RecoveryBehavior choose() {
     
     return new FromList<RecoveryBehavior>(choices).choose();

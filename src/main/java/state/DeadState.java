@@ -7,7 +7,7 @@ import weapon.Weapon;
 
 public class DeadState extends ActionState {
 
-  DeadState(AIContext context) {
+  DeadState(AiContext context) {
     super(context);
   }
 
@@ -20,12 +20,15 @@ public class DeadState extends ActionState {
     e.updateCell(lifeForm.getRow(), lifeForm.getCol());
   }
 
+  /**
+   * 
+   */
   public void respawn() {
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
-    Cell cell = context.e.getRandomCell();
+    Cell cell = context.env.getRandomCell();
     Weapon w;
-    if(lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
+    if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
       cell.addLifeForm(lifeForm);
       w = lifeForm.dropWeapon();
       e.addWeapon(w, lifeForm.getRow(), lifeForm.getCol());

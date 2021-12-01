@@ -5,13 +5,16 @@ import lifeform.LifeForm;
 
 public abstract class ActionState {
   
-  protected AIContext context;
-  protected Environment e;
+  protected AiContext context;
+  protected Environment env;
   protected LifeForm lifeForm;
   
-  public ActionState(AIContext context) {
+  /**
+   * @param context
+   */
+  public ActionState(AiContext context) {
     this.context = context;
-    e = context.getEnvironment();
+    env = context.getEnvironment();
     lifeForm = context.getLifeForm();
   }
   

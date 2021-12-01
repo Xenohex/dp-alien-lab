@@ -16,7 +16,12 @@ import exceptions.RecoveryRateException;
 import lifeform.LifeForm;
 import lifeform.Alien;
 import lifeform.Human;
-import weapon.*;
+import weapon.ChainGun;
+import weapon.Pistol;
+import weapon.PlasmaCannon;
+import weapon.PowerBooster;
+import weapon.Scope;
+import weapon.Stabilizer;
 
 /**
  * 
@@ -138,7 +143,7 @@ public class Invoker extends JFrame implements ActionListener {
     var w3 = new PowerBooster(new Scope(new PlasmaCannon()));
     bran.pickUpWeapon(w3);
     
-    LifeForm al = new Alien ("al", 100);
+    LifeForm al = new Alien("al", 100);
     e.addLifeForm(al, 6, 0);
     var w4 = new Pistol();
     al.pickUpWeapon(w4);

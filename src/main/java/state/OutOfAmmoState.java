@@ -5,7 +5,7 @@ import lifeform.LifeForm;
 
 public class OutOfAmmoState extends ActionState {
 
-  OutOfAmmoState(AIContext context) {
+  OutOfAmmoState(AiContext context) {
     super(context);
   }
 
@@ -23,6 +23,9 @@ public class OutOfAmmoState extends ActionState {
     // Evaluation
   }
   
+  /**
+   * will reload the weapon the lifeform holds
+   */
   public void reload() {
     LifeForm lf = context.getLifeForm();
     Environment env = context.getEnvironment();

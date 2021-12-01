@@ -9,7 +9,7 @@ import weapon.Weapon;
 
 public class NoWeaponState extends ActionState {
 
-  NoWeaponState(AIContext context) {
+  NoWeaponState(AiContext context) {
     super(context);
     // TODO Auto-generated constructor stub
   }
@@ -29,11 +29,12 @@ public class NoWeaponState extends ActionState {
       acquireWeapon();
       
     }
-    //search();
     e.updateCell(lf.getRow(), lf.getCol());
-    // Evaluation
   }
   
+  /**
+   * will pick up weapon if there is one in the cell
+   */
   public void acquireWeapon() {
     LifeForm lifeform = context.getLifeForm();
     Environment env = context.getEnvironment();
@@ -54,18 +55,11 @@ public class NoWeaponState extends ActionState {
       env.updateCell(lifeform.getRow(), lifeform.getCol());
       System.out.println("Weapon switched");
     }
-    /**
-    if (e.getCell(lf.getRow(), lf.getCol()).getWeapon1() != null) {
-      e.removeWeapon(null, 0, 0);
-      lf.pickUpWeapon(e.getCell(lf.getRow(), lf.getCol()).);
-      
-      
-    } else {
-      lf.pickUpWeapon(e.getCell(lf.getRow(), lf.getCol()).getWeapon1());
-    }
-    context.setCurrentState(context.hasWeaponState); **/
   }
   
+  /**
+   * changes lifeform direction and moves lifeform
+   */
   public void search() {
     LifeForm lf = context.getLifeForm();
     Environment e = context.getEnvironment();
@@ -77,25 +71,27 @@ public class NoWeaponState extends ActionState {
     Random random = new Random();
     int d = random.nextInt(4) + 1;
     switch (d) {
-    case 1:
-      lf.changeDirection("North");
-      System.out.println("North");
-      e.updateCell(lf.getRow(), lf.getCol());
-      break;
-    case 2:
-      lf.changeDirection("South");
-      System.out.println("south");
-      e.updateCell(lf.getRow(), lf.getCol());
-      break;
-    case 3:
-      lf.changeDirection("East");
-      System.out.println("east");
-      e.updateCell(lf.getRow(), lf.getCol());
-      break;
-    case 4:
-      lf.changeDirection("West");
-      System.out.println("west");
-      e.updateCell(lf.getRow(), lf.getCol());
+      default:
+        break;
+      case 1:
+        lf.changeDirection("North");
+        System.out.println("North");
+        e.updateCell(lf.getRow(), lf.getCol());
+        break;
+      case 2:
+        lf.changeDirection("South");
+        System.out.println("south");
+        e.updateCell(lf.getRow(), lf.getCol());
+        break;
+      case 3:
+        lf.changeDirection("East");
+        System.out.println("east");
+        e.updateCell(lf.getRow(), lf.getCol());
+        break;
+      case 4:
+        lf.changeDirection("West");
+        System.out.println("west");
+        e.updateCell(lf.getRow(), lf.getCol());
     }
     
     String direction = lf.getCurrentDirection();
@@ -118,7 +114,8 @@ public class NoWeaponState extends ActionState {
             e.updateCell(row - speed, col);
           }
           
-        }System.out.println(lf.getName() + "moved");
+        } 
+        System.out.println(lf.getName() + "moved");
         
       } else if (direction == "South") {
         for (int i = speed; i >= 0; i--) {
@@ -137,7 +134,8 @@ public class NoWeaponState extends ActionState {
             e.updateCell(row + speed, col);
           }
           
-        }System.out.println(lf.getName() + "moved");
+        } 
+        System.out.println(lf.getName() + "moved");
         
       } else if (direction == "East") {
         for (int i = speed; i >= 0; i--) {
@@ -175,7 +173,8 @@ public class NoWeaponState extends ActionState {
             e.updateCell(row, col - speed);
           }
           
-        }System.out.println(lf.getName() + "moved");
+        } 
+        System.out.println(lf.getName() + "moved");
       }
       
       e.removeLifeForm(row, col);

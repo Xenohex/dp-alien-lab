@@ -9,9 +9,9 @@ import lifeform.LifeForm;
 
 public class HasWeaponState extends ActionState {
 
-boolean shouldMove = false;
+  boolean shouldMove = false;
   
-  HasWeaponState(AIContext context) {
+  HasWeaponState(AiContext context) {
     super(context);
   }
 
@@ -30,128 +30,134 @@ boolean shouldMove = false;
     e.updateCell(lifeForm.getRow(), lifeForm.getCol());
   }
   
+  /**
+   * attacks target
+   */
   public void attackTarget() { 
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
     
-  String direction = lifeForm.getCurrentDirection();
-  int row = lifeForm.getRow();
-  int col = lifeForm.getCol();
-  int distance = 0;
-  boolean hitLifeForm = false;
-      
-      try {
-        if (direction == "North") {
-          for (int i = row - 1; i >= -1; i--) {
-            distance += 5;
-            if ((i == 0 && e.getLifeForm(i, col) == null) || i < 0) {
-             //   lifeForm.getWeapon().fire(distance);
-              break;
-            } 
-            if (e.getLifeForm(i, col) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
-                break; 
-              }
-              lifeForm.attack(e.getLifeForm(i, col), distance);
-              System.out.println(lifeForm.getName() + " attacked " 
-                  + e.getLifeForm(i, col).getName());
-              hitLifeForm = true;
-              break;
+    String direction = lifeForm.getCurrentDirection();
+    int row = lifeForm.getRow();
+    int col = lifeForm.getCol();
+    int distance = 0;
+    boolean hitLifeForm = false;
+    
+    try {
+      if (direction == "North") {
+        for (int i = row - 1; i >= -1; i--) {
+          distance += 5;
+          if ((i == 0 && e.getLifeForm(i, col) == null) || i < 0) {
+            break;
+          } 
+          if (e.getLifeForm(i, col) != null) {
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
             }
-          }
-        } else if (direction == "South") {
-          for (int i = row + 1; i <= e.getNumRows(); i++) {
-            distance += 5;
-            if ((i == (e.getNumRows() - 1) && e.getLifeForm(i, col) == null)
-                || i == e.getNumRows()) {
-               // lifeForm.getWeapon().fire(distance);
-              break;
-            } 
-            if (e.getLifeForm(i, col) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
-                break; 
-              }
-              lifeForm.attack(e.getLifeForm(i, col), distance);
-              System.out.println(lifeForm.getName() + " attacked " 
-                  + e.getLifeForm(i, col).getName());
-              hitLifeForm = true;
-              break;
-            }
-          }
-        } else if (direction == "East") {
-          for (int i = col + 1; i <= e.getNumCols(); i++) {
-            distance += 5;
-            if ((i == (e.getNumCols() - 1) && e.getLifeForm(row, i) == null)
-                || i == e.getNumCols()) {
-               // lifeForm.getWeapon().fire(distance);
-              break;
-            } 
-            if (e.getLifeForm(row, i) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
-                break; 
-              }
-              lifeForm.attack(e.getLifeForm(row, i), distance);
-              System.out.println(lifeForm.getName() + " attacked " 
-                  + e.getLifeForm(row, i).getName());
-              hitLifeForm = true;
-              break;
-            }
-          }
-        } else if (direction == "West") {
-          for (int i = col - 1; i >= -1; i--) {
-            distance += 5;
-            if ((i == 0 && e.getLifeForm(row, i) == null) || (i < 0)) {
-               // lifeForm.getWeapon().fire(distance);
-              break;
-            } 
-            if (e.getLifeForm(row, i) != null) {
-              if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
-                break; 
-              }
-              lifeForm.attack(e.getLifeForm(row, i), distance);
-              System.out.println(lifeForm.getName() + " attacked " 
-                  + e.getLifeForm(row, i).getName());
-              hitLifeForm = true;
-              break;
-            }
-            
+            lifeForm.attack(e.getLifeForm(i, col), distance);
+            System.out.println(lifeForm.getName() + " attacked " 
+                + e.getLifeForm(i, col).getName());
+            hitLifeForm = true;
+            break;
           }
         }
-      } catch (WeaponException exception) {
-        System.out.println("Error: WeaponException thrown in HasWeaponState");
-      }  
-      
-      if (!hitLifeForm) {
-        search();
+      } else if (direction == "South") {
+        for (int i = row + 1; i <= e.getNumRows(); i++) {
+          distance += 5;
+          if ((i == (e.getNumRows() - 1) && e.getLifeForm(i, col) == null)
+              || i == e.getNumRows()) { 
+            break;
+          } 
+          if (e.getLifeForm(i, col) != null) {
+            if (lifeForm.getClass() == e.getLifeForm(i, col).getClass()) { 
+              break; 
+            }
+            lifeForm.attack(e.getLifeForm(i, col), distance);
+            System.out.println(lifeForm.getName() + " attacked " 
+                + e.getLifeForm(i, col).getName());
+            hitLifeForm = true;
+            break;
+          }
+        }
+      } else if (direction == "East") {
+        for (int i = col + 1; i <= e.getNumCols(); i++) {
+          distance += 5;
+          if ((i == (e.getNumCols() - 1) && e.getLifeForm(row, i) == null)
+              || i == e.getNumCols()) { 
+            break;
+          } 
+          if (e.getLifeForm(row, i) != null) {
+            if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
+              break; 
+            }
+            lifeForm.attack(e.getLifeForm(row, i), distance);
+            System.out.println(lifeForm.getName() + " attacked " 
+                + e.getLifeForm(row, i).getName());
+            hitLifeForm = true;
+            break;
+          }
+        }
+      } else if (direction == "West") {
+        for (int i = col - 1; i >= -1; i--) {
+          distance += 5;
+          if ((i == 0 && e.getLifeForm(row, i) == null) || (i < 0)) {
+            break;
+          } 
+          if (e.getLifeForm(row, i) != null) {
+            if (lifeForm.getClass() == e.getLifeForm(row, i).getClass()) { 
+              break; 
+            }
+            lifeForm.attack(e.getLifeForm(row, i), distance);
+            System.out.println(lifeForm.getName() + " attacked " 
+                + e.getLifeForm(row, i).getName());
+            hitLifeForm = true;
+            break;
+          } 
+        }
       }
+    } catch (WeaponException exception) {
+      System.out.println("Error: WeaponException thrown in HasWeaponState");
+    }  
+      
+    if (!hitLifeForm) {
+      search();
+    }
   }
 
+  /**
+   * 
+   */
   public void search() {
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
     Random random = new Random();
     int d = random.nextInt(4) + 1;
     switch (d) {
-    case 1:
-      lifeForm.changeDirection("North");
-      break;
-    case 2:
-      lifeForm.changeDirection("South");
-      break;
-    case 3:
-      lifeForm.changeDirection("East");
-      break;
-    case 4:
-      lifeForm.changeDirection("West");
+      default:
+        break;
+      case 1:
+        lifeForm.changeDirection("North");
+        break;
+      case 2:
+        lifeForm.changeDirection("South");
+        break;
+      case 3:
+        lifeForm.changeDirection("East");
+        break;
+      case 4:
+        lifeForm.changeDirection("West");
     }
     e.updateCell(lifeForm.getRow(), lifeForm.getCol());
     
-    if(shouldMove) {
+    if (shouldMove) {
       move();
     }
     shouldMove = true;
   }
   
+  /**
+   * moves the lifeform when it has a weapon
+   */
   public void move() {
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();

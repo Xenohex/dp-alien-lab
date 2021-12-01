@@ -4,10 +4,10 @@ import environment.Environment;
 import gameplay.TimerObserver;
 import lifeform.LifeForm;
 
-public class AIContext implements TimerObserver {
+public class AiContext implements TimerObserver {
 
   protected LifeForm lifeForm;
-  protected Environment e;
+  protected Environment env;
   
   ActionState outOfAmmoState = new OutOfAmmoState(this);
   ActionState hasWeaponState = new HasWeaponState(this);
@@ -20,9 +20,9 @@ public class AIContext implements TimerObserver {
   
   
   
-  AIContext(LifeForm lf, Environment e) {
+  AiContext(LifeForm lf, Environment e) {
     lifeForm = lf;
-    this.e = e;
+    env = e;
   }
   
   /**
@@ -96,7 +96,7 @@ public class AIContext implements TimerObserver {
    * @return the environment
    */
   public Environment getEnvironment() {
-    return e;
+    return env;
   }
   
   

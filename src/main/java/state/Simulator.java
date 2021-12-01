@@ -20,26 +20,24 @@ import random.RandomHuman;
 import random.RandomWeapon;
 import weapon.Weapon;
 
-public class Simulator { //implements TimerObserver {
+public class Simulator { 
 
-  Environment e;
+  Environment env;
   SimpleTimer timer;
   RandList<RandomHuman> humanlst;
-  List<AIContext> conListHuman;
-  List<AIContext> conListAlien;
-  // rand human list/generator;
-  // rand alien list/generator;
-  // rand weapon list/generator;
+  List<AiContext> conListHuman;
+  List<AiContext> conListAlien;
   
-  Simulator(Environment e, SimpleTimer t, int h, int a) throws EnvironmentException, AttachmentException {
-    this.e = e;
+  Simulator(Environment e, SimpleTimer t, int h, int a) throws EnvironmentException, 
+      AttachmentException {
+    env = e;
     timer = t;
     Cell c;
     Human bob;
     Alien al;
     Weapon w;
     boolean b;
-    AIContext con;
+    AiContext con;
     Random ran = new Random();
     conListHuman = new ArrayList<>();
     conListAlien = new ArrayList<>();
@@ -52,14 +50,9 @@ public class Simulator { //implements TimerObserver {
       
       
       do {
-        //c = e.getRandomCell();
-        b = e.addLifeForm(bob,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
-        //b = c.addLifeForm(bob);
-        
+        b = e.addLifeForm(bob,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
       } while (!b);
-      //bob.setLocation(c.getLifeForm().getRow(), c.getLifeForm().getCol());
-      conListHuman.add(new AIContext(bob, e));
-      //con = new AIContext(bob, e);
+      conListHuman.add(new AiContext(bob, e));
       t.addTimeObserver(conListHuman.get(i));
       
       w = new RandomWeapon().choose();
@@ -67,9 +60,7 @@ public class Simulator { //implements TimerObserver {
       b = false;
       
       do {
-        //c = e.getRandomCell();
-        b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
-        //b = c.addWeapon(w);
+        b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
       } while (!b);
       t.addTimeObserver(w);
     }
@@ -81,28 +72,29 @@ public class Simulator { //implements TimerObserver {
       b = false;
       
       do {
-        b = e.addLifeForm(al,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
+        b = e.addLifeForm(al,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
       } while (!b);
-      //al.setLocation(c.getLifeForm().getRow(), c.getLifeForm().getCol());
-      //con = new AIContext(al, e);
-      conListAlien.add(new AIContext(al, e));
-      //con = new AIContext(bob, e);
+   
+      conListAlien.add(new AiContext(al, e));
+      
       t.addTimeObserver(conListAlien.get(i));
-      //t.addTimeObserver(con);
-      //ActionState as = new ActionState(con);
       
       w = new RandomWeapon().choose();
       c = e.getRandomCell();
       b = false;
       
       do {
-        b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()) );
-      } while(!b);
+        b = e.addWeapon(w,ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
+      } while (!b);
       t.addTimeObserver(w);
     }
   }
   
   
+  /**
+   * @param args
+   * tests the simulator class
+   */
   public static void main(String[] args) {
     
     Environment e = Environment.getEnvironment(3,3);
@@ -122,20 +114,5 @@ public class Simulator { //implements TimerObserver {
    
   }
   
-  
-  
-  
-  
-  
-  
-  /**
-  @Override
-  public void updateTime(int time) {
-    
-    // TODO Auto-generated method stub
-    
-  }
-
-  **/
 
 }
