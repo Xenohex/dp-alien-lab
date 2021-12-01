@@ -28,25 +28,13 @@ public class DeadState extends ActionState {
   public void respawn() {
     LifeForm lifeForm = context.getLifeForm();
     Environment e = context.getEnvironment();
-<<<<<<< HEAD
     Cell cell = context.env.getRandomCell();
-    Weapon w;
-    if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
-=======
-    Cell cell = context.e.getRandomCell();
+    //if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
     Random ran = new Random();
     Weapon w = lifeForm.getWeapon();
     boolean canSpawnWeapon = false;
     boolean canSpawnLifeForm = false;
-    /*if (lifeForm.hasWeapon() && cell.getWeaponsCount() != 2 && cell.getLifeForm() == null) {
->>>>>>> 7b1c9005c0ef9cb812bb1f08b33a47fe75b94b69
-      cell.addLifeForm(lifeForm);
-      w = lifeForm.dropWeapon();
-      e.addWeapon(w, lifeForm.getRow(), lifeForm.getCol());
-      e.updateCell(lifeForm.getRow(), lifeForm.getCol());
-    } else {
-      System.out.println("No space available in this cell to drop the weapon!");
-    }*/
+    
     try {
       lifeForm.dropWeapon();
       e.addWeapon(w, lifeForm.getRow(), lifeForm.getCol());
