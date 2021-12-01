@@ -41,7 +41,8 @@ public class DeadState extends ActionState {
       e.removeLifeForm(lifeForm.getRow(), lifeForm.getCol());
       e.updateCell(lifeForm.getRow(), lifeForm.getCol());
       do {
-        canSpawnLifeForm = e.addLifeForm(lifeForm, ran.nextInt(e.getNumRows()), ran.nextInt(e.getNumCols()));
+        canSpawnLifeForm = e.addLifeForm(lifeForm, ran.nextInt(e.getNumRows()), 
+            ran.nextInt(e.getNumCols()));
       } while (!canSpawnLifeForm);
     } catch (EnvironmentException e1) {
       e1.printStackTrace();
