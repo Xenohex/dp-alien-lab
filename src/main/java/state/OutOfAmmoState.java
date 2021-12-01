@@ -19,7 +19,7 @@ public class OutOfAmmoState extends ActionState {
     } else {
       reload();
     }
-    e.updateCell(lf.getRow(), lf.getCol());
+    //e.updateCell(lf.getRow(), lf.getCol());
     // Evaluation
   }
   

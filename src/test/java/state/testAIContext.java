@@ -19,7 +19,7 @@ public class testAIContext {
   public void testGetStates() throws RecoveryRateException {
     Environment e = Environment.getEnvironment(3, 5);
     LifeForm al = new Alien("Al",35);
-    AIContext context = new AIContext(al, e);
+    AiContext context = new AiContext(al, e);
     assertEquals(NoWeaponState.class, context.getCurrentState().getClass());
     assertEquals(HasWeaponState.class, context.getHasWeaponState().getClass());
     assertEquals(DeadState.class, context.getDeadState().getClass());
@@ -34,7 +34,7 @@ public class testAIContext {
   public void testChangeState() throws RecoveryRateException {
     Environment e = Environment.getEnvironment(3, 5);
     LifeForm al = new Alien("Al",35);
-    AIContext context = new AIContext(al, e);
+    AiContext context = new AiContext(al, e);
     context.setCurrentState(context.getDeadState());
     assertEquals(DeadState.class, context.getCurrentState().getClass());
     context.setCurrentState(context.getHasWeaponState());
