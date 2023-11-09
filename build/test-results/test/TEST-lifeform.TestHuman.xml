@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestHuman" tests="8" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.003">
+  <properties/>
+  <testcase name="defaultAttackStrength" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="sameArmorThanDamage" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="zeroArmor" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="testArmorPointsLessThanZero" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="testInitialization" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="testMaxSpeed" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="moreArmorThanDamage" classname="lifeform.TestHuman" time="0.0"/>
+  <testcase name="lessArmorThanDamage" classname="lifeform.TestHuman" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

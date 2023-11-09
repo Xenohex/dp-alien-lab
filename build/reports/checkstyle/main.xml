@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.11">
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\environment\Cell.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\environment\Environment.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\exceptions\AttachmentException.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\exceptions\EnvironmentException.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\exceptions\RecoveryRateException.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\exceptions\WeaponException.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gameplay\MockSimpleTimerObserver.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gameplay\SimpleTimer.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gameplay\Timer.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gameplay\TimerObserver.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\AcquireCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\AttackCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\Board.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\Command.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\DropCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\FaceEastCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\FaceNorthCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\FaceSouthCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\FaceWestCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\Invoker.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\MoveCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\ReloadCommand.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\gui\Remote.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\lifeform\Alien.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\lifeform\Human.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\lifeform\LifeForm.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\lifeform\MockLifeForm.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\FromList.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandInt.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandList.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\Random.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandomAlien.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandomHuman.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandomRecovery.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\random\RandomWeapon.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\recovery\RecoveryBehavior.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\recovery\RecoveryFractional.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\recovery\RecoveryLinear.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\recovery\RecoveryNone.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\ActionState.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\AiContext.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\DeadState.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\HasWeaponState.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\NoWeaponState.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\OutOfAmmoState.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\state\Simulator.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\Attachment.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\ChainGun.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\GenericWeapon.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\MockWeapon.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\Pistol.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\PlasmaCannon.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\PowerBooster.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\Scope.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\Stabilizer.java">
+</file>
+<file name="C:\Users\HP\Documents\SU\Y2S1\Design Patterns\labs\Lab567\lab567proj\lab567-team1\src\main\java\weapon\Weapon.java">
+</file>
+</checkstyle>

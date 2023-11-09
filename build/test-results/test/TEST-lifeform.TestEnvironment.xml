@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestEnvironment" tests="19" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:11" hostname="XEN-OMEN" time="0.01">
+  <properties/>
+  <testcase name="testRemoveLifeForm" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testWeaponArray" classname="lifeform.TestEnvironment" time="0.002"/>
+  <testcase name="testGetDistanceLifeFormsDiffRowDiffCol" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testGetDistanceOnlyCoordinatesSameCol" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testGetDistanceOnlyCoordinatesSameRow" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testLifeFormtoCellContainingLifeForm" classname="lifeform.TestEnvironment" time="0.001"/>
+  <testcase name="testAddLifeForm" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testRemoveWeapon" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testEnvironmentInitializationSingle" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testMoveEast" classname="lifeform.TestEnvironment" time="0.001"/>
+  <testcase name="testMoveWest" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testAddWeapon" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testAddLifeFormBigNum" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testMoveAtEdge" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testAddLifeFormNegNum" classname="lifeform.TestEnvironment" time="0.001"/>
+  <testcase name="testRandom" classname="lifeform.TestEnvironment" time="0.001"/>
+  <testcase name="testMoveNorth" classname="lifeform.TestEnvironment" time="0.0"/>
+  <testcase name="testMoveSouth" classname="lifeform.TestEnvironment" time="0.001"/>
+  <testcase name="testEnvironmentInitialization" classname="lifeform.TestEnvironment" time="0.0"/>
+  <system-out><![CDATA[Alice moved to 0, 3
+Bob moved to 0, 2
+Alice moved to 0, 0
+Bob moved to 0, 1
+Alice moved to 0, 0
+Bob moved to 0, 5
+Josh moved to 5, 0
+John moved to 1, 0
+environment.Cell@179ece50
+Alice moved to 2, 0
+Bob moved to 3, 0
+Alice moved to 4, 0
+Bob moved to 3, 0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

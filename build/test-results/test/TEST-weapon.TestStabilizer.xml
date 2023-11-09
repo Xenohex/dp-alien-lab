@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="weapon.TestStabilizer" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.001">
+  <properties/>
+  <testcase name="testPlasmaCannonNoAttachments" classname="weapon.TestStabilizer" time="0.001"/>
+  <testcase name="testPistolStabilizerScope" classname="weapon.TestStabilizer" time="0.0"/>
+  <testcase name="testPlasmaCannonStabilizerStabilizer" classname="weapon.TestStabilizer" time="0.0"/>
+  <testcase name="testPlasmaCannonThreeAttachments" classname="weapon.TestStabilizer" time="0.0"/>
+  <testcase name="testChainGunPowerBoosterStabilizer" classname="weapon.TestStabilizer" time="0.0"/>
+  <testcase name="testPlasmaCannonStabilizer" classname="weapon.TestStabilizer" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

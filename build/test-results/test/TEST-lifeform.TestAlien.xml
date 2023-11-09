@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestAlien" tests="11" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.008">
+  <properties/>
+  <testcase name="linearRecovery" classname="lifeform.TestAlien" time="0.002"/>
+  <testcase name="testmaxLifePoints" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="defaultAttackStrength" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testRecoverRateAtTwo" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testRecoverRateAtZero" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testInitialization" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testMaxSpeed" classname="lifeform.TestAlien" time="0.001"/>
+  <testcase name="testInvalidRecoveryRate" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testNoRecoveryWhenRemoved" classname="lifeform.TestAlien" time="0.001"/>
+  <testcase name="testRecoverRateAtThree" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testTrackPassedTime" classname="lifeform.TestAlien" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

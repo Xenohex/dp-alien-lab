@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="weapon.TestGenericWeapon" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:25" hostname="XEN-OMEN" time="0.005">
+  <properties/>
+  <testcase name="testMockWeapon" classname="weapon.TestGenericWeapon" time="0.001"/>
+  <testcase name="testPlasmaCannon" classname="weapon.TestGenericWeapon" time="0.0"/>
+  <testcase name="testPistol" classname="weapon.TestGenericWeapon" time="0.0"/>
+  <testcase name="testTooManyAttachments" classname="weapon.TestGenericWeapon" time="0.003"/>
+  <testcase name="testRoundUpdates" classname="weapon.TestGenericWeapon" time="0.0"/>
+  <testcase name="testChainGun" classname="weapon.TestGenericWeapon" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

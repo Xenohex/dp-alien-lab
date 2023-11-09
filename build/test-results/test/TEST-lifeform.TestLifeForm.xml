@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestLifeForm" tests="17" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:11" hostname="XEN-OMEN" time="0.006">
+  <properties/>
+  <testcase name="useMeleeNoAmmo" classname="lifeform.TestLifeForm" time="0.001"/>
+  <testcase name="noPickUpWeapon" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testChangeDirection" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testLifeFormPlacement" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testLifeFormResistInvalidPlacement" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="attackAnotherLifeForm" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="useWeapon" classname="lifeform.TestLifeForm" time="0.001"/>
+  <testcase name="testDefaultDirection" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="canReload" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testTakeHits" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="attackWithWeapon" classname="lifeform.TestLifeForm" time="0.002"/>
+  <testcase name="pickUpWeapon" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testInitialization" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="dropWeapon" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testCoordinateInitialization" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="meleeNoDamage" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="cannotAttackWhenDead" classname="lifeform.TestLifeForm" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

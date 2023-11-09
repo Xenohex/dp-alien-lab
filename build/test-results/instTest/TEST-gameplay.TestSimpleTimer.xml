@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gameplay.TestSimpleTimer" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:20" hostname="XEN-OMEN" time="5.287">
+  <properties/>
+  <testcase name="testSimpleTimerAsThread" classname="gameplay.TestSimpleTimer" time="5.284"/>
+  <testcase name="testAddOneAndUpdate" classname="gameplay.TestSimpleTimer" time="0.001"/>
+  <testcase name="testInitialization" classname="gameplay.TestSimpleTimer" time="0.0"/>
+  <testcase name="testAddThreeAndUpdate" classname="gameplay.TestSimpleTimer" time="0.001"/>
+  <testcase name="testRemoveObserver" classname="gameplay.TestSimpleTimer" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

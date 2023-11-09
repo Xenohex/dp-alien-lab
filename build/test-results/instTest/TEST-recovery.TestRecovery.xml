@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="recovery.TestRecovery" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:25" hostname="XEN-OMEN" time="0.0">
+  <properties/>
+  <testcase name="testRecoverFullAmount" classname="recovery.TestRecovery" time="0.0"/>
+  <testcase name="testNoRecoveryWhenNotHurt" classname="recovery.TestRecovery" time="0.0"/>
+  <testcase name="testRecoveryNone" classname="recovery.TestRecovery" time="0.0"/>
+  <testcase name="testNoReturnFromDead" classname="recovery.TestRecovery" time="0.0"/>
+  <testcase name="testRecoveryPartial" classname="recovery.TestRecovery" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

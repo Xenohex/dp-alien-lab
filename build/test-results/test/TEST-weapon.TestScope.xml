@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="weapon.TestScope" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.001">
+  <properties/>
+  <testcase name="testPistolScope" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testChainGunPowerBoosterScope" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPlasmaCannonStabilizerScope" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPistolScopeLosesAmmo" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPistolScopeStabilizer" classname="weapon.TestScope" time="0.001"/>
+  <testcase name="testPistolThreeAttachments" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPistolNoAttachments" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPistolScopePowerBooster" classname="weapon.TestScope" time="0.0"/>
+  <testcase name="testPistolScopeScope" classname="weapon.TestScope" time="0.0"/>
+  <system-out><![CDATA[9
+8
+7
+6
+5
+4
+3
+2
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

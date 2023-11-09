@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestLifeForm" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:25" hostname="XEN-OMEN" time="0.002">
+  <properties/>
+  <testcase name="testTakeHit" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testAttackWithWeapon" classname="lifeform.TestLifeForm" time="0.002"/>
+  <testcase name="testInitialization" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testHandToHandOutOfRange" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testWeaponPickUpAndDrop" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testAttack" classname="lifeform.TestLifeForm" time="0.0"/>
+  <testcase name="testDeadCantAttack" classname="lifeform.TestLifeForm" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

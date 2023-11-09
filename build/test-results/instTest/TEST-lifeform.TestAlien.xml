@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lifeform.TestAlien" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:25" hostname="XEN-OMEN" time="0.004">
+  <properties/>
+  <testcase name="testLinearFractional" classname="lifeform.TestAlien" time="0.001"/>
+  <testcase name="testNegRecovery" classname="lifeform.TestAlien" time="0.001"/>
+  <testcase name="testSetRecoveryRate" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testInitialization" classname="lifeform.TestAlien" time="0.001"/>
+  <testcase name="testAttack" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testLinearRecovery" classname="lifeform.TestAlien" time="0.0"/>
+  <testcase name="testCombatRecovery" classname="lifeform.TestAlien" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

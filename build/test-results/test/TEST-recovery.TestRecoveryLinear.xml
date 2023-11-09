@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="recovery.TestRecoveryLinear" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.002">
+  <properties/>
+  <testcase name="noRecoveryWhenNotHurt" classname="recovery.TestRecoveryLinear" time="0.0"/>
+  <testcase name="noRecoveryWhenDead" classname="recovery.TestRecoveryLinear" time="0.001"/>
+  <testcase name="perfectRecovery" classname="recovery.TestRecoveryLinear" time="0.0"/>
+  <testcase name="maxRecoverByOriginalHealthPoints" classname="recovery.TestRecoveryLinear" time="0.0"/>
+  <testcase name="recoverToMaxNotGoingOver" classname="recovery.TestRecoveryLinear" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

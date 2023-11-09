@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="environment.TestCell" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-01T02:38:20" hostname="XEN-OMEN" time="0.005">
+  <properties/>
+  <testcase name="testSetLifeForm" classname="environment.TestCell" time="0.004"/>
+  <testcase name="testRemoveLifeForm" classname="environment.TestCell" time="0.0"/>
+  <testcase name="testAddWeapons" classname="environment.TestCell" time="0.001"/>
+  <testcase name="testRemoveWeapon" classname="environment.TestCell" time="0.0"/>
+  <testcase name="testInitialization" classname="environment.TestCell" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

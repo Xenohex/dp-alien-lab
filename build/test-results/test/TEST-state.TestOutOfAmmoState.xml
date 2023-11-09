@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="state.TestOutOfAmmoState" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-12-01T14:52:16" hostname="XEN-OMEN" time="0.013">
+  <properties/>
+  <testcase name="testDead" classname="state.TestOutOfAmmoState" time="0.001"/>
+  <testcase name="testInitialization" classname="state.TestOutOfAmmoState" time="0.0"/>
+  <testcase name="testReload" classname="state.TestOutOfAmmoState" time="0.008"/>
+  <testcase name="testMoveStates" classname="state.TestOutOfAmmoState" time="0.004"/>
+  <system-out><![CDATA[Weapon switched
+9 8 7 6 5 4 3 2 1 0 
+10
+Weapon switched
+bob moved to 3, 0
+bob moved to 3, 3
+bob moved to 3, 5
+bob moved to 5, 5
+bob moved to 2, 5
+bob moved to 2, 5
+bob moved to 0, 5
+bob moved to 0, 5
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
